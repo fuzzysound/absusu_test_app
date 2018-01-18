@@ -1,0 +1,2361 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ko"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>oksusu</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta property="fb:app_id" content="140512069771590">
+<meta name="format-detection" content="telephone=no">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="oksusu">
+  <meta property="og:url" content="https://www.oksusu.com">
+  <meta property="og:image" content="https://www.oksusu.com/public/assets/img/oksusu_og_image.png">
+  <meta property="og:description" content="100여개의 실시간 채널과 영화, 방송VOD, 클립, 오리지널 콘텐츠가 고화질로! 보는 재미가 우수수, oksusu!">
+<link rel="stylesheet" type="text/css" href="{% static 'purchase_files/fonts.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'purchase_files/common.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'purchase_files/layout.css' %}">
+<script src="{% static 'purchase_files/1393037114073571' %}" async=""></script><script async="" src="{% static 'purchase_files/fbevents.js' %}"></script><script async="" src="{% static 'purchase_files/analytics.js' %}"></script><script type="text/javascript" src="{% static 'purchase_files/jquery-1.js' %}"></script>
+<script type="text/javascript" src="{% static 'purchase_files/jquery-ui.js' %}"></script>
+<script type="text/javascript" src="{% static 'purchase_files/jquery-cookie.js' %}"></script>
+<script type="text/javascript" src="{% static 'purchase_files/jquery_002.js' %}"></script>
+<script type="text/javascript" src="{% static 'purchase_files/moment-with-locales.js' %}"></script>
+<script type="text/javascript" src="{% static 'purchase_files/properties.js' %}"></script>
+<script type="text/javascript" src="{% static 'purchase_files/util.js' %}"></script>
+<script type="text/javascript" src="{% static 'purchase_files/search.js' %}"></script>
+<script type="text/javascript" src="{% static 'purchase_files/banner.js' %}"></script>
+<script type="text/javascript" src="{% static 'purchase_files/searchPeople.js' %}"></script>
+<script type="text/javascript" src="{% static 'purchase_files/style_ui.js' %}"></script>
+<script type="text/javascript" src="{% static 'purchase_files/jquery_003.js' %}"></script>
+<script type="text/javascript">
+  var serverDomain = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '');
+  var console = window.console || {log: function () {}};
+  var User = {
+    userId: 'P3997320180111163326' || 'bmguest',
+    isLogin: true,
+    isAdult: true,
+    isMemberAuth: true,
+    serviceProvider: 'kakao',
+    watchLevel: 'N',
+    isKidsLockFirstYn: 'Y',
+    isWatchAvailable: ($.cookie('popupRestrictView')) ? $.cookie('popupRestrictView') : 'N',
+    sex : '0',
+    ageGroup : '20',
+    nickName : '고준현11****',
+    userNo : 'U022111577'
+  };
+
+  var Category = {};
+    Category['free'] = {};
+      Category['free']['name'] = 'free';
+      Category['free']['code'] = '9000001345';
+      Category['free']['title'] = '무료';
+      Category['free']['link'] = '/free';
+      Category['free']['display'] = 'show';
+    Category['live'] = {};
+      Category['live']['name'] = 'live';
+      Category['live']['code'] = '9000000238';
+      Category['live']['title'] = 'LIVE';
+      Category['live']['link'] = '/live';
+      Category['live']['display'] = 'show';
+    Category['vod'] = {};
+      Category['vod']['name'] = 'vod';
+      Category['vod']['code'] = '9000000270';
+      Category['vod']['title'] = '방송VOD';
+      Category['vod']['link'] = '/vod';
+      Category['vod']['display'] = 'show';
+    Category['movie'] = {};
+      Category['movie']['name'] = 'movie';
+      Category['movie']['code'] = '9000000269';
+      Category['movie']['title'] = '영화';
+      Category['movie']['link'] = '/movie';
+      Category['movie']['display'] = 'show';
+    Category['sports'] = {};
+      Category['sports']['name'] = 'sports';
+      Category['sports']['code'] = '9000000239';
+      Category['sports']['title'] = '스포츠';
+      Category['sports']['link'] = '/sports';
+      Category['sports']['display'] = 'show';
+    Category['clip'] = {};
+      Category['clip']['name'] = 'clip';
+      Category['clip']['code'] = '9000000271';
+      Category['clip']['title'] = '클립';
+      Category['clip']['link'] = '/clip';
+      Category['clip']['display'] = 'show';
+    Category['sktmember'] = {};
+      Category['sktmember']['name'] = 'sktmember';
+      Category['sktmember']['code'] = '9000000396';
+      Category['sktmember']['title'] = 'SKT 고객 전용관';
+      Category['sktmember']['link'] = '/special/sktmember';
+      Category['sktmember']['display'] = 'hide';
+    Category['bandplay'] = {};
+      Category['bandplay']['name'] = 'bandplay';
+      Category['bandplay']['code'] = '9000002489';
+      Category['bandplay']['title'] = 'SKT oksusu 안심팩 혜택관';
+      Category['bandplay']['link'] = '/special/bandplay';
+      Category['bandplay']['display'] = 'hide';
+    Category['news'] = {};
+      Category['news']['name'] = 'news';
+      Category['news']['code'] = '9000002081';
+      Category['news']['title'] = '뉴스';
+      Category['news']['link'] = '/special/news';
+      Category['news']['display'] = 'hide';
+
+
+  function setCookie(cookie_name, value, exdays) {
+    var exdate = new Date();
+    exdate.setDate(exdate.getDate() + exdays);
+    var cookie_value = escape(value) + ((exdays == null) ? "" : "; expires=" + exdate.toUTCString()) + "; path=/";
+    document.cookie = cookie_name + "=" + cookie_value;
+  }
+
+  function getCookie(cookie_name) {
+    var i, x, y, z = document.cookie.split("; ");
+    for (i = 0; i < z.length; i++) {
+      x = z[i].substr(0, z[i].indexOf("="));
+      y = z[i].substr(z[i].indexOf("=") + 1);
+      x = x.replace(/^s+|s+$/g, "");
+
+      if (x == cookie_name) {
+        return unescape(y);
+      }
+    }
+  }
+
+  function addCookie(str) {
+    var maxitem = 8; // 최대 유지할 수 있는 개수
+    var prev_recent = getCookie('recent');
+    var isExist = false;
+    if ((prev_recent == '') || (prev_recent == null)) {
+      setCookie('recent', str);
+    } else {
+      if (getCookie('recent').split(',').length > maxitem - 1) {
+        prev_recent = prev_recent.substring(prev_recent.indexOf(',') + 1);
+      }
+
+      for (var i=0; i<prev_recent.split(',').length; i++) {
+        if (prev_recent.split(',')[i] == str) {
+          isExist = true;
+        }
+      }
+
+      if (isExist) {
+        console.log(str); // 이미 존재하는 경우 console에만 출력하고 실제 반영되지 않음
+      }
+      else {
+        setCookie('recent', prev_recent + ',' + str);
+      }
+    }
+  }
+</script>  <script type="text/javascript" src="{% static 'purchase_files/numeral.js' %}"></script>
+</head>
+<body>
+
+<div id="wrap">
+
+  <div id="header" style="position: absolute; top: 0px; margin-left: 0px;">
+<div class="header_top">
+  <div class="header_top_inner">
+    <div class="header_info_view" id="header-notice">
+      <a href="https://www.oksusu.com/support/notice"><span class="info_view_tit">공지사항</span></a><a href="https://www.oksusu.com/support/notice/open" class="info_view_cnt"><span class="info_view_summary">인기영화, 드라마, 오리지널 콘텐츠를 oksusu에서 Full HD(1080P)로 즐겨보세요.</span><span class="info_view_date">2017.10.26</span></a>
+    </div>
+    <div class="util_menu"> 
+      <a href="https://www.oksusu.com/event/list">이벤트</a>
+      <a href="https://www.oksusu.com/schedule">편성표</a>
+      <a href="https://www.oksusu.com/bill/ticket">이용권</a>
+              <a href="http://www.oksusu.com/user/login" title="로그인" id="header-login">로그인</a>
+        <div class="user_info" style="display: none;">
+          <i class="img_arrow"></i>
+          <ul>
+            <li>
+              <a href="https://www.oksusu.com/my" title="마이페이지">마이 페이지</a>
+            </li>
+            <li>
+              <a href="https://www.oksusu.com/my/ticket" title="이용권">
+                <dl>
+                  <dt>이용권</dt>
+                  <dd id="user-ticket-info">0</dd>
+                </dl>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.oksusu.com/my/point" title="포인트">
+                <dl>
+                  <dt>포인트</dt>
+                  <dd id="user-point-info">0 P</dd>
+                </dl>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.oksusu.com/my/coupon" title="쿠폰">
+                <dl>
+                  <dt>쿠폰</dt>
+                  <dd id="user-coupon-info">0</dd>
+                </dl>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.oksusu.com/user/logout" title="로그아웃">로그아웃</a>
+            </li>
+          </ul>
+        </div>
+    </div>
+  </div>
+</div>
+<div class="header_bottom">
+<div class="header_bottom_inner">
+  <div class="nav_bar_left">
+    <a href="javascript:;" class="hmenu">카테고리</a>
+    <!--cate menu s-->
+    <div class="hmenu_gnb_list">
+      <i class="img_arrow"></i>
+      <ul>
+                        <li>
+                  <a href="https://www.oksusu.com/free" title="무료" class="hmenu_free">
+                    무료
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.oksusu.com/live" title="LIVE" class="hmenu_live">
+                    LIVE
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.oksusu.com/vod" title="방송VOD" class="hmenu_vod">
+                    방송VOD
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.oksusu.com/movie" title="영화" class="hmenu_movie">
+                    영화
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.oksusu.com/sports" title="스포츠" class="hmenu_sports">
+                    스포츠
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.oksusu.com/clip" title="클립" class="hmenu_clip">
+                    클립
+                  </a>
+                </li>
+                <li style="display: none;">
+                  <a href="https://www.oksusu.com/special/sktmember" title="SKT 고객 전용관" class="hmenu_sktmember">
+                    SKT 고객 전용관
+                  </a>
+                </li>
+                <li style="display: none;">
+                  <a href="https://www.oksusu.com/special/news" title="뉴스" class="hmenu_news">
+                    뉴스
+                  </a>
+                </li>
+                <li style="display: none;">
+                  <a href="https://www.oksusu.com/special/bandplay" title="SKT oksusu 안심팩 혜택관" class="hmenu_bandplay">
+                    SKT oksusu 안심팩 혜택관
+                  </a>
+                </li>
+        <li>
+          <a href="https://www.oksusu.com/clip?mid=9000002133" title="뉴스" class="hmenu_news">
+            뉴스
+          </a>
+        </li>
+        <li>
+          <a href="https://www.oksusu.com/clip?mid=9000000292" title="오리지널" class="hmenu_original">
+            오리지널
+          </a>
+        </li>
+        <li>
+          <a href="https://www.oksusu.com/sports?mid=9000000243&amp;sid=9000001159" title="프리미어리그" class="hmenu_league">
+            프리미어리그
+          </a>
+        </li>
+        <li>
+          <a href="https://www.oksusu.com/vod?mid=9000000328&amp;sid=9000000369" title="키즈" class="hmenu_kids">
+            키즈
+          </a>
+        </li>
+        <li>
+          <a href="https://www.oksusu.com/special/sktmember" title="SKT 고객 전용관" class="hmenu_sktmember">
+            SKT 고객 전용관
+          </a>
+        </li>
+        <li>
+          <a href="https://www.oksusu.com/special/bandplay" title="SKT oksusu 안심팩 혜택관" class="hmenu_bandplay">
+            SKT oksusu 안심팩 혜택관
+          </a>
+        </li>
+      </ul>
+    </div>
+    <!-- cate menu e-->
+    <a href="https://www.oksusu.com/special/ranking" class="header_rank" style="display:none;">랭킹</a>
+    <a href="https://www.oksusu.com/my" class="header_my ">MY</a>
+  </div>
+  <h1 class="logo"><a id="goHome" href="https://www.oksusu.com/" title="홈 페이지로 이동">oksusu logo</a></h1>
+  <div class="nav_bar_right">
+    <a href="https://www.oksusu.com/special/sktmember" class="header_customtheater"><span class="txt_strong">SKT</span> 고객전용관</a>
+    <a href="https://www.oksusu.com/special/bandplay" class="header_playpack"><span class="txt_strong">SKT oksusu</span> 안심팩 혜택관</a>
+    <button type="button" id="search-btn" class="btnUnifedSearch"><span>통합검색하기</span></button>
+  </div>
+</div>
+<script>
+  $(function(){
+    /* s : 본문바로가기 포커스 이동시 페이지 상단으로 스크롤되는 현상 방지 */
+    $('#contStart').focusin(function() {
+      $('html, body').animate({scrollTop : 0}, 0);
+    });
+    /* e : 본문바로가기 포커스 이동시 페이지 상단으로 스크롤되는 현상 방지 */
+
+    /* s : 사용자 메뉴 */
+    $('.header_top .util_menu > a').focusin(function() {
+      var _this = $(this);
+      var _userUtil = $('.header_top .util_menu .user_info');
+      var _hmenu = $('.header_bottom .hmenu');
+      var _hmenu_gnb_list = $('.hmenu_gnb_list');
+
+      if(!_hmenu_gnb_list.is(':hidden')) {
+        _hmenu.removeClass('hover');
+        _hmenu_gnb_list.hide();
+      }
+
+      if(_this.hasClass('user_id')) {
+        _userUtil.show();
+      }else{
+        _userUtil.hide();
+      }
+    });
+    /* e : 사용자 메뉴 */
+
+    /* s : 카테고리 메뉴*/
+    $('.header_bottom .hmenu').mouseenter(function() {
+      var _this = $(this);
+      var _hmenu_gnb_list = $('.hmenu_gnb_list');
+
+      _this.addClass('hover');
+      _hmenu_gnb_list.show();
+
+    }).mouseleave(function() {
+      var _this = $(this);
+      var _hmenu_gnb_list = $('.hmenu_gnb_list');
+
+      _this.removeClass('hover');
+      _hmenu_gnb_list.hide();
+
+    });
+    $('.hmenu_gnb_list').mouseenter(function() {
+      var _this = $(this);
+      var _hmenu = $('.header_bottom .hmenu');
+
+      _hmenu.addClass('hover');
+      _this.show();
+
+    }).mouseleave(function() {
+      var _this = $(this);
+      var _hmenu = $('.header_bottom .hmenu');
+
+      _hmenu.removeClass('hover');
+      _this.hide();
+
+    });
+    $('.header_bottom .nav_bar_left > a').focusin(function() {
+      var _this = $(this);
+      var _hmenu = $('.header_bottom .hmenu');
+      var _hmenu_gnb_list = $('.hmenu_gnb_list');
+      var _userUtil = $('.header_top .util_menu .user_info');
+
+      if(!_this.hasClass('hmenu')) {
+        if(_hmenu_gnb_list.is(':hidden')) {return;}
+        _hmenu.removeClass('hover');
+        _hmenu_gnb_list.hide();
+      }else{
+        _userUtil.hide();
+        _hmenu.addClass('hover');
+        _hmenu_gnb_list.show();
+      }
+    });
+    /* e : 카테고리 메뉴*/
+  });
+</script>
+</div>
+<!-- 통합검색 -->
+<div id="search-area" class="unifiedSearchWrap" style="display: none;">
+  <div class="unifiedTop">
+    <div class="unifiedTopInner">
+      <form onsubmit="return false;">
+        <fieldset>
+          <legend class="over_hidden">통합검색</legend>
+          <input placeholder="검색어를 입력해주세요." title="검색어를 입력해주세요." class="iptSearch" maxlength="35" type="text">
+          <button type="button" class="btnSchClear" onclick="Search.clickClearKeyword();" style="display:none;"><span>검색어 지우기</span></button>
+          <!-- 연관검색어 -->
+          <div class="searchRelateWrap" style="display:none;">
+            <!-- <h2 class="searchRelateTit">연관검색어</h2> -->
+            <ul class="relateListBox">
+            </ul>
+          </div>
+          <!-- //연관검색어 -->
+          <button type="button" class="btnSearch"><span>검색하기</span></button>
+        </fieldset>
+      </form>
+    </div>
+    <!-- 최근검색 -->
+    <div class="unifiRecentBox">
+      <div class="recentInner">
+        <strong class="recentTit">최근 검색어</strong>
+        <div class="recentListBox">
+          <ul class="recentList">
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- //최근검색 -->
+  </div>
+  <!-- 인기검색어 -->
+  <div class="unifiedPopularWrap" style="display: none;">
+    <div class="unifiedPopularInner">
+      <div class="popularTit">인기 검색어</div>
+      <div class="timeBox">2018.01.18 13:31 <span>기준</span></div>
+      <div class="popularList"><ul>	<li><span class="popularTop">1</span> <a href="https://www.oksusu.com/search/result?q=LEVEL%20UP%20Project%202">LEVEL UP Project 2</a> </li>	<li><span class="popularTop">2</span> <a href="https://www.oksusu.com/search/result?q=%EC%8A%AC%EA%B8%B0%EB%A1%9C%EC%9A%B4%20%EA%B0%90%EB%B9%B5%EC%83%9D%ED%99%9C">슬기로운 감빵생활</a> </li>	<li><span class="popularTop">3</span> <a href="https://www.oksusu.com/search/result?q=%EB%B3%B5%EC%88%98%EB%85%B8%ED%8A%B8">복수노트</a> </li>	<li><span>4</span> <a href="https://www.oksusu.com/search/result?q=%EC%8B%A0%EC%84%9C%EC%9C%A0%EA%B8%B0%204">신서유기 4</a> </li>	<li><span>5</span> <a href="https://www.oksusu.com/search/result?q=%EC%95%A0%EA%B0%84%EC%9E%A5">애간장</a> </li></ul><ul>	<li><span>6</span> <a href="https://www.oksusu.com/search/result?q=%EB%8F%84%EA%B9%A8%EB%B9%84">도깨비</a> </li>	<li><span>7</span> <a href="https://www.oksusu.com/search/result?q=%EC%95%84%EB%8A%94%20%ED%98%95%EB%8B%98">아는 형님</a> </li>	<li><span>8</span> <a href="https://www.oksusu.com/search/result?q=LEVEL%20UP%20Project">LEVEL UP Project</a> </li>	<li><span>9</span> <a href="https://www.oksusu.com/search/result?q=%EC%9C%A4%EC%8B%9D%EB%8B%B9%202">윤식당 2</a> </li>	<li><span>10</span> <a href="https://www.oksusu.com/search/result?q=%EC%8B%A0%EC%84%9C%EC%9C%A0%EA%B8%B0%20%EC%99%B8%EC%A0%84%20%EA%B0%95%EC%8B%9D%EB%8B%B9">신서유기 외전 강식당</a> </li></ul><ul>	<li><span>11</span> <a href="https://www.oksusu.com/search/result?q=%EC%8B%A0%EC%84%9C%EC%9C%A0%EA%B8%B03">신서유기3</a> </li>	<li><span>12</span> <a href="https://www.oksusu.com/search/result?q=%ED%99%94%EC%9C%A0%EA%B8%B0">화유기</a> </li>	<li><span>13</span> <a href="https://www.oksusu.com/search/result?q=%EC%9D%B8%EC%83%9D%EC%88%A0%EC%A7%91">인생술집</a> </li>	<li><span>14</span> <a href="https://www.oksusu.com/search/result?q=%EC%9C%A4%EC%8B%9D%EB%8B%B9">윤식당</a> </li>	<li><span>15</span> <a href="https://www.oksusu.com/search/result?q=%EC%95%8C%EC%95%84%EB%91%90%EB%A9%B4%20%EC%93%B8%EB%8D%B0%EC%97%86%EB%8A%94%20%EC%8B%A0%EB%B9%84%ED%95%9C%20%EC%9E%A1%ED%95%99%EC%82%AC%EC%A0%842">알아두면 쓸데없는 신비한 잡학사전2</a> </li></ul><ul>	<li><span>16</span> <a href="https://www.oksusu.com/search/result?q=%EB%82%98%EB%A7%8C%20%EB%AF%BF%EA%B3%A0%20%EB%94%B0%EB%9D%BC%EC%99%80%2C%20%EB%8F%84%EC%8B%9C%EC%96%B4%EB%B6%80">나만 믿고 따라와, 도시어부</a> </li>	<li><span>17</span> <a href="https://www.oksusu.com/search/result?q=%EB%82%98%EC%81%9C%EB%85%80%EC%84%9D%EB%93%A4%3A%20%EC%95%85%EC%9D%98%20%EB%8F%84%EC%8B%9C">나쁜녀석들: 악의 도시</a> </li>	<li><span>18</span> <a href="https://www.oksusu.com/search/result?q=%EC%9D%B4%EB%B2%88%20%EC%83%9D%EC%9D%80%20%EC%B2%98%EC%9D%8C%EC%9D%B4%EB%9D%BC">이번 생은 처음이라</a> </li>	<li><span>19</span> <a href="https://www.oksusu.com/search/result?q=%EB%B9%84%EB%B0%80%EC%9D%98%20%EC%88%B2">비밀의 숲</a> </li>	<li><span>20</span> <a href="https://www.oksusu.com/search/result?q=%EC%8B%A0%EC%84%9C%EC%9C%A0%EA%B8%B02">신서유기2</a> </li></ul></div>
+    </div>
+  </div>
+  <!-- //인기검색어 -->
+</div>
+<!-- 통합검색 //-->
+
+
+  </div>
+
+  <div id="container">
+
+    <div class="payment_wrap">
+
+      <div class="top_box">
+        <div class="top_box_left">[HD]윤식당 2</div>
+        <div class="top_box_right">
+          <span class="use_device_label">이용기기</span>
+          <span class="use_device_cnt" id="device_info"><img src="{% static 'purchase_files/ico_btv.png' %}" alt="btv">(TV시청), 안드로이드, iOS, PC</span>
+        </div>
+      </div>
+
+      <div class="bottom_box_wrap ver02">
+        <div class="select_view">
+
+          <div class="select_view_inner">
+            <div class="select_tit">상품선택</div>
+              <div class="rdo_wrap" onchange="Purchase.Control.selectProduct(this);">
+
+
+
+
+
+                <input id="5919105" name="psl_rdo" value="단편구매" checked="checked" type="radio">
+                <label for="5919105" class="lbl_lrw">
+                  <div class="btn_rdo_layer">
+                    <div class="btn_rdo_point"></div>
+                  </div>
+                  <span class="rdo_right_msg">단편구매</span>
+                </label>
+
+                  <span class="input_field">1,500원 / 7일</span>
+              </div>
+
+
+              <div class="rdo_wrap" onchange="Purchase.Control.selectProduct(this);">
+
+
+
+
+
+                <input id="3396003" name="psl_rdo" value="CJ E&amp;M 월정액" type="radio">
+                <label for="3396003" class="lbl_lrw">
+                  <div class="btn_rdo_layer">
+                    <div class="btn_rdo_point"></div>
+                  </div>
+                  <span class="rdo_right_msg">CJ E&amp;M 월정액</span>
+                </label>
+
+                  <span class="input_field">10,000원 / 매월</span>
+              </div>
+
+
+              <div class="rdo_wrap" onchange="Purchase.Control.selectProduct(this);">
+
+
+
+
+
+                <input id="4192983" name="psl_rdo" value="CJ E&amp;M 기간권" type="radio">
+                <label for="4192983" class="lbl_lrw">
+                  <div class="btn_rdo_layer">
+                    <div class="btn_rdo_point"></div>
+                  </div>
+                  <span class="rdo_right_msg">CJ E&amp;M 기간권</span>
+                </label>
+
+                  <div class="default_select_box floating">
+                    <div class="default_select_box_inner">
+                      <div id="period_choice" onclick="Purchase.Control.showPeriodList();">12,000원 / 30일</div>
+                      <div class="default_select_box_option">
+                          <div id="4192983" onclick="Purchase.Control.selectPeriod(this);">12,000원 / 30일</div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+
+
+          </div>
+
+          <div class="select_view_inner" id="discount_view" style="">
+            <div class="select_tit">할인선택</div>
+            <div class="checkbox_wrap has_selectbox" id="coupon_view" style="display: none;">
+              <input id="coupon_checkbox" class="cm_chkbox" value="쿠폰" onclick="Purchase.Control.resetByCheckbox(this);" type="checkbox">
+              <label for="coupon_checkbox">
+                <i class="ico_checkbox"></i>
+                <span class="cm_chkbox_txt">쿠폰</span>
+              </label>
+              <div class="default_select_box">
+                <div class="default_select_box_inner">
+                  <div id="coupon_choice" onclick="Purchase.Control.showCouponList();"></div>
+                  <div class="default_select_box_option">
+                  </div>
+                </div>
+              </div>
+              <span class="input_field em_red"></span>
+            </div>
+            <div class="checkbox_wrap" id="membership_view" style="display: none;">
+              <input id="membership_checkbox" class="cm_chkbox" value="T멤버십" onclick="Purchase.Control.resetByCheckbox(this);" disabled="disabled" type="checkbox">
+              <label for="membership_checkbox">
+                <i class="ico_checkbox"></i>
+                <span class="cm_chkbox_txt">T멤버십</span>
+              </label>
+            </div>
+            <div class="checkbox_wrap" id="point_view" style="display: block;">
+              <input id="point_checkbox" class="cm_chkbox" value="포인트" onclick="Purchase.Control.resetByCheckbox(this);" disabled="disabled" type="checkbox">
+              <label for="point_checkbox" class="disabled_case">
+                <i class="ico_checkbox"></i>
+                <span class="cm_chkbox_txt">포인트<span class="detail01">0P</span></span>
+              </label>
+            <span class="input_field btn_box" onclick="location.href='/bill/purchase/point?rw=' + encodeURIComponent(location.href);">충전</span></div>
+          </div>
+
+          <div class="select_view_inner" id="payment_view" style="">
+            <div class="select_tit">결제수단</div>
+            <div class="rdo_wrap">
+              <input id="card_radio" name="payment_opt" value="creditcard" style="display: block;" checked="checked" type="radio">
+              <label for="card_radio" class="lbl_lrw" style="display: block;">
+                <div class="btn_rdo_layer">
+                  <div class="btn_rdo_point"></div>
+                </div>
+                <span class="rdo_right_msg">신용카드</span>
+              </label>
+              <input id="phone_radio" name="payment_opt" value="danal" type="radio">
+              <label for="phone_radio" class="lbl_lrw">
+                <div class="btn_rdo_layer">
+                  <div class="btn_rdo_point"></div>
+                </div>
+                <span class="rdo_right_msg">휴대폰 소액결제</span>
+              </label>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="final_payment_view">
+          <div class="final_payment_view_inner">
+            <p class="t_msg">총 결제 금액<span class="sub_description"> (부가세 포함)</span></p>
+
+            <p class="t_msg_field"><strong class="em_red" id="total_price">1,650원</strong></p>
+
+            <div class="payment_detail_inner">
+
+              <span class="product_price_label">상품금액</span><span class="em_black" id="product_price">1,500원</span>
+              <div class="clrfix"></div>
+
+              <span class="dc_price_label">할인금액</span><span class="em_red" id="discount_price">- 0원</span>
+              <div class="clrfix"></div>
+
+              <div class="add_msg" id="band_price_info" style="display: none">* 이번 달에 한해 이용권 가격이 일할 계산되어 <strong class="txt_color_red">0원</strong>으로 이용 가능하며, 다음 달 1일부터는 <strong class="txt_color_red">0원</strong>이 자동 결제됩니다.</div>
+
+            </div>
+
+            <div class="agree_monthly_payment checkbox_wrap" style="display: none">
+              <input class="cm_chkbox" id="monthly_pay_agreement" title="매월 정기결제 동의" type="checkbox"><label for="monthly_pay_agreement"><i class="ico_checkbox"></i><span class="cm_chkbox_txt">매월 정기결제 동의</span></label>
+            </div>
+          </div>
+
+          <button type="button" class="btn_default" id="purchase_button" onclick="Purchase.Control.invokePurchase();">결제하기</button>
+          <button type="button" class="btn_default cancel" onclick="location.href=getUrlParam('rw')||'/';">취소
+          </button>
+
+        </div>
+
+        <div class="info_noti_bottom_wrap" id="info_ppm" style="display: none">
+          <div class="ico_info_gray">이용안내</div>
+          <ul class="info_noti_bottom_msg">
+            <li><span>*</span> 구매 시 지정된 기간 동안 이용이 가능합니다.</li>
+            <li><span>*</span> 매월 가입일을 기준으로 자동 결제되며, 해지 시 다음월 부터 자동 결제가 중지됩니다.</li>
+            <li><span>*</span> 구매 후 상품을 이용하지 않은 경우에 한해 결제일로부터 7일 이내 청약철회가 가능합니다. <span class="detail_view cls_cm_btn">자세히 보기 </span></li>
+            <li><span>*</span> 법정대리인 동의 없이 미성년자 명의의 결제 수단으로 결제가 된 경우 법정대리인/미성년자 본인이 취소할 수 있습니다.</li>
+            <li><span>*</span> 일부 콘텐츠는 방송사/콘텐츠제공사 또는 저작권자의 요청에 의해 제공되지 않을 수 있습니다.</li>
+          </ul>
+        </div>
+
+        <div class="info_noti_bottom_wrap" id="info_period" style="display: none">
+          <div class="ico_info_gray">이용안내</div>
+          <ul class="info_noti_bottom_msg">
+            <li><span>*</span> 구매 시 지정된 기간 동안 이용이 가능합니다.</li>
+            <li><span>*</span> 구매 후 상품을 이용하지 않은 경우에 한해 결제일로부터 7일 이내 청약철회가 가능합니다. <span class="detail_view cls_cm_btn">자세히 보기 </span></li>
+            <li><span>*</span> 법정대리인 동의 없이 미성년자 명의의 결제 수단으로 결제가 된 경우 법정대리인/미성년자 본인이 취소할 수 있습니다.</li>
+            <li><span>*</span> 일부 콘텐츠는 방송사/콘텐츠제공사 또는 저작권자의 요청에 의해 제공되지 않을 수 있습니다.</li>
+          </ul>
+        </div>
+
+        <div class="info_noti_bottom_wrap" id="info_basic" style="display: none">
+          <div class="ico_info_gray">이용안내</div>
+          <ul class="info_noti_bottom_msg">
+            <li><span>*</span> SKT 혜택대상 요금제 할인은 SKT band 데이터 2.2G 이상 요금제 또는 SKT oksusu 안심팩 </li>
+            <li class="txt_int8"> 이용에 따른 T life의 혜택으로 제공됩니다.</li>
+            <li><span>*</span> SKT 혜택대상 요금제를 해지하시거나 비대상 요금제로 변경하시면 기본월정액이 별도 과금되지 않고, 자동 해지됩니다.</li>
+            <li><span>*</span> 일부 콘텐츠는 방송사/콘텐츠제공사 또는 저작권자의 요청에 의해 제공되지 않을 수 있습니다.</li>
+          </ul>
+        </div>
+
+        <div class="info_noti_bottom_wrap" id="info_ppv_pps" style="">
+          <div class="ico_info_gray">이용안내</div>
+          <ul class="info_noti_bottom_msg">
+            <li><span>*</span> 구매 시 지정된 기간 동안 이용이 가능합니다.</li>
+            <li><span>*</span> 구매 후 상품을 이용하지 않은 경우에 한해 결제일로부터 7일 이내 청약철회가 가능합니다. <span class="detail_view cls_cm_btn">자세히 보기 </span></li>
+            <li><span>*</span> 법정대리인 동의 없이 미성년자 명의의 결제 수단으로 결제가 된 경우 법정대리인/미성년자 본인이 취소할 수 있습니다.</li>
+          </ul>
+        </div>
+
+        <div class="info_noti_bottom_wrap" id="info_ppv_sd" style="display: none">
+          <div class="ico_info_gray">이용안내</div>
+          <ul class="info_noti_bottom_msg">
+            <li><span>*</span> 해당 상품은 SD 화질만 제공됩니다.</li>
+            <li><span>*</span> 구매 시 지정된 기간 동안 이용이 가능합니다.</li>
+            <li><span>*</span> 구매 후 상품을 이용하지 않은 경우에 한해 결제일로부터 7일 이내 청약철회가 가능합니다. <span class="detail_view cls_cm_btn">자세히 보기 </span></li>
+            <li><span>*</span> 법정대리인 동의 없이 미성년자 명의의 결제 수단으로 결제가 된 경우 법정대리인/미성년자 본인이 취소할 수 있습니다.</li>
+          </ul>
+        </div>
+
+        <div class="info_noti_bottom_wrap" id="info_band" style="display: none">
+          <div class="ico_info_gray">이용안내</div>
+          <ul class="info_noti_bottom_msg">
+            <li><span>*</span> 구매 시 지정된 기간 동안 이용이 가능합니다.</li>
+            <li><span>*</span> 가입 당월에 한해 말일 기준으로 일할 계산되며, 익월부터는 매월 1일 기준으로 포인트 보유 시에 한해 포인트 자동 차감 및 결제됩니다.</li>
+            <li><span>*</span> 해지 시 다음 월 1일부터 자동 결제가 중지됩니다.</li>
+            <li><span>*</span> 구매 후 상품을 이용하지 않은 경우에 한해 결제일로부터 7일 이내 청약철회가 가능합니다. <span class="detail_view cls_cm_btn">자세히 보기 </span></li>
+            <li><span>*</span> 법정대리인 동의 없이 미성년자 명의의 결제 수단으로 결제가 된 경우 법정대리인/미성년자 본인이 취소할 수 있습니다.</li>
+            <li><span>*</span> 일부 콘텐츠는 방송사/콘텐츠제공사 또는 저작권자의 요청에 의해 제공되지 않을 수 있습니다.</li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+<!-- 브라우저 지원 여부 팝업(윈도우) -->
+<div class="popup_wrap check_browser" style="display:none;">
+  <div class="pop_wrap_inner">
+    <div class="popup_header"><a href="javascript:" onclick="SupportBrowser.close()" class="popup_btn_close" title="정보동의 팝업 닫기">닫기</a></div>
+    <div class="popup_content">
+      <p class="one_txt">죄송합니다.</p>
+      <p class="two_txt_top">현재 사용하고 계신 인터넷 브라우저에서는<br>옥수수 서비스를 이용하실 수 없습니다.</p>
+      <p class="two_txt_bottom">옥수수 서비스를 이용하시려면 Internet Explorer 11(Windows 8.1 이상), Microsoft Edge 이상의 브라우저<br>또는 Chrome, Firefox 브라우저를 설치하신 후 이용하여 주시기 바랍니다.</p>
+      <div class="btn_set">
+        <a href="https://support.microsoft.com/ko-kr/help/17621/internet-explorer-downloads">Internet Explorer11<br>다운로드</a><a href="https://www.google.com/chrome/browser/desktop/index.html">chrome 다운로드</a>
+      </div>
+      <a href="https://www.oksusu.com/" class="btn_default">홈으로 돌아가기</a>
+    </div>
+  </div>
+</div>
+<!-- 브라우저 지원 여부 팝업 //-->
+
+<div id="footer">
+  <div class="footer_top">
+    <div class="footer_top_inner">
+      <div class="footer_info_view" id="footer-notice">
+        <a href="https://www.oksusu.com/support/notice"><span class="info_view_tit">공지사항</span></a><a href="https://www.oksusu.com/support/notice/open" class="info_view_cnt"><span class="info_view_summary">인기영화, 드라마, 오리지널 콘텐츠를 oksusu에서 Full HD(1080P)로 즐겨보세요.</span><span class="info_view_date">2017.10.26</span></a>
+      </div>
+
+      <button type="button" class="btn_detail">전체보기</button>
+    </div>
+  </div>
+  <div class="footer_bottom">
+    <div class="footer_bottom_inner">
+      <div class="footer_bottom_menu">
+        <a href="https://www.oksusu.com/guide/intro">옥수수소개</a>
+        <a href="https://www.oksusu.com/guide/sitemap">사이트맵</a>
+        <a href="https://www.oksusu.com/guide/terms">이용약관</a>
+        <a href="http://www.skbroadband.com/footer/Page.do?retUrl=/footer/PrivacyStatement" target="_blank"><strong>개인정보처리방침</strong></a>
+        <a href="https://www.oksusu.com/support/notice">고객센터</a>
+        <a href="https://www.oksusu.com/guide/newsPolicy">기사배열기본방침</a>
+      </div>
+      <div class="info_company">SK브로드밴드㈜  <span class="info_company_divide"></span> 대표이사/사장  이형희 <span class="info_company_divide"></span> 서울시 중구 퇴계로 24 SK남산빌딩 <span class="info_company_divide"></span> 사업자등록번호 : 214-86-18758 <br> 통신판매신고번호 : 서울 중구 제 2008-1608호 <span class="info_company_divide"></span> <a href="http://www.ftc.go.kr/info/bizinfo/communicationView.jsp?apv_perm_no=2008301010030201608&amp;area1=&amp;area2=&amp;currpage=1&amp;search%20Key=04&amp;searchVal=2148618758&amp;stdate=&amp;enddate=" class="info_company_link" target="_blank">사업자정보확인</a> 고객센터 : 가입문의 국번 없이 106 (당사 전화고객 무료, 타사 전화고객 유료) 080-8282-106 (무료)<span class="info_company_divide"></span>E-mail : <a href="mailto:mobileqna@skbroadband.com" class="footEmail">mobileqna@skbroadband.com</a></div>
+      <div class="copyright">COPYRIGHT  © SK broadband CO.LTD. ALL RIGHTS RESERVED.</div>
+    </div>
+  </div>
+  <div class="btn_top" style="top: -70px; display: block;">위로가기</div>
+  <div class="pop_dimmed"></div>
+</div>
+<!-- 성인 등급제한 설정 //-->
+<!-- 등급 제한 설정 (비밀번호 확인) 팝업 -->
+<div id="kidsLevelIdentifyPwDiv" class="popup_wrap payment" style="display: none">
+    <div class="pop_wrap_inner default">
+        <div class="popup_header">등급제한 설정<a href="javascript:;" class="popup_btn_close" title="팝업 닫기">닫기</a></div>
+        <div class="popup_content">
+            <div class="one_txt">성인 인증 번호를 입력해 주세요.</div>
+            <div class="input_inner">
+                <input id="kidsIdentifyPin" placeholder="4자리 숫자를 입력해 주세요." maxlength="4" type="password">
+                <span id="msgKidsPinIdentifyPw01" class="hidden_msg" style="display: none"><i class="ico_info"></i>성인 인증번호가 일치하지 않습니다.</span>
+                <span id="msgKidsPinIdentifyPw02" class="hidden_msg" style="display: none"><i class="ico_info"></i>인증번호 4자리 숫자를 입력하세요.</span>
+            </div>
+            <div id="kidsLockPwUpdateDiv" class="small_txt"><a href="javascript:;">인증번호 재설정</a>
+            </div>
+        </div>
+        <div class="popup_footer">
+            <button type="button" id="accept" class="btn_default accept">확인</button>
+            <button type="button" id="cancel" class="btn_default cancel">취소</button>
+        </div>
+    </div>
+</div>
+<!-- 등급 제한 설정 팝업 //-->
+
+<div id="kidsLockSaveComplete" class="popup_wrap my" style="display: none"><!-- 등급 제한 설정 완료 팝업 -->
+    <div class="pop_wrap_inner">
+        <div class="popup_header">등급제한 설정<a href="javascript:" onclick="Popup.close('kidsLockSaveComplete')" class="popup_btn_close" title="팝업 닫기">닫기</a></div>
+        <div class="popup_content">
+            <p class="one_txt">등급 제한 설정이 완료되었습니다.</p>
+        </div>
+        <div class="popup_footer">
+            <button type="button" class="btn_default accept" onclick="Popup.confirm('kidsLockSaveComplete')">확인</button>
+        </div>
+    </div>
+</div><!-- 등급 제한 설정 완료 팝업 -->
+
+<div class="popup_wrap alert" style="display:none"><!-- 경고 팝업 -->
+  <div class="pop_wrap_inner">
+    <div class="popup_header">Alert<a href="#" class="popup_btn_close" title="경고 팝업 닫기">닫기</a></div>
+    <div class="popup_content">
+      <p class="one_txt">검색어를 입력해주세요.</p>
+    </div>
+    <div class="popup_footer">
+      <button type="button" class="btn_default accept">확인</button>
+    </div>
+  </div>
+</div><!-- 경고 팝업 //-->
+
+<div class="popup_wrap alert" style="display:none"><!-- 경고 팝업 -->
+  <div class="pop_wrap_inner">
+    <div class="popup_header">Alert<a href="#" class="popup_btn_close" title="경고 팝업 닫기">닫기</a></div>
+    <div class="popup_content">
+      <p class="one_txt">상품 구매 후 시청이 가능한 프로그램입니다.<br>상품을 구매하시겠습니까?</p>
+
+      <div class="popup_one_input">
+        <input title="비밀번호를 입력해 주세요." placeholder="비밀번호를 입력해 주세요." type="text">
+      </div>
+
+    </div>
+
+    <div class="popup_footer">
+      <button type="button" class="btn_default find">확인</button><button type="button" class="btn_default cancel">취소</button>
+    </div>
+  </div>
+</div><!-- 경고 팝업 //-->
+
+<div id="commonPopup" class="popup_wrap" style="display: none;height: 180px">
+  <div class="pop_wrap_inner nohead">
+    <a href="#" class="popup_btn_close" title="닫기">닫기</a>
+    <div class="popup_content">
+      <p class="one_txt mart40">메시지</p>
+    </div>
+    <div class="popup_footer">
+      <button type="button" class="btn_default find">확인</button>
+    </div>
+  </div>
+</div>
+
+<div id="commonPopupWithHeader" class="popup_wrap alert" style="display:none">
+  <div class="pop_wrap_inner">
+    <div class="popup_header"><span class="header">헤더</span><a href="#" class="popup_btn_close" title="경고 팝업 닫기">닫기</a></div>
+    <div class="popup_content">
+      <p class="one_txt">내용</p>
+    </div>
+    <div class="popup_footer">
+      <button type="button" class="btn_default accept">확인</button>
+    </div>
+  </div>
+</div>
+
+<div id="popupLogin2" class="popup_wrap" style="display:none">
+  <div class="pop_wrap_inner ident">
+    <div class="popup_header"><a href="javascript:" class="popup_btn_close" onclick="Popup.close('popupLogin2')" title="팝업 닫기">닫기</a></div>
+    <div class="popup_content">
+      <p class="one_txt">로그인이 필요한 정보입니다.<br>로그인하시겠습니까?</p>
+    </div>
+    <div class="popup_footer">
+      <button type="button" class="btn_default" onclick="Popup.move('popupLogin2','/user/login')">확인</button><button type="button" onclick="Popup.close('popupLogin2')" class="btn_default cancel">취소</button>
+    </div>
+  </div>
+</div><!-- 본인인증 팝업 //-->
+<div id="popupLogin" class="popup_wrap" style="display:none">
+  <div class="pop_wrap_inner ident">
+    <div class="popup_header">로그인<a href="javascript:" class="popup_btn_close" onclick="Popup.close('popupLogin')" title="팝업 닫기">닫기</a></div>
+    <div class="popup_content">
+      <p class="one_txt">로그인 후 사용 가능합니다.<br>로그인 페이지로 이동하시겠습니까?</p>
+    </div>
+    <div class="popup_footer">
+      <button type="button" class="btn_default" onclick="Popup.move('popupLogin','/user/login')">확인</button><button type="button" onclick="Popup.close('popupLogin')" class="btn_default cancel">취소</button>
+    </div>
+  </div>
+</div><!-- 본인인증 팝업 //-->
+
+<div id="popupCheckMe" class="popup_wrap" style="display:none">
+  <div class="pop_wrap_inner ident">
+    <div class="popup_header">본인인증<a href="javascript:" class="popup_btn_close" onclick="Popup.close('popupCheckMe')" title="팝업 닫기">닫기</a></div>
+    <div class="popup_content">
+      <p class="one_txt">본인인증 후 사용 가능합니다.<br>본인인증 페이지로 이동하시겠습니까?</p>
+    </div>
+    <div class="popup_footer">
+      <button type="button" class="btn_default" onclick="Popup.move('popupCheckMe','/user/check/me')">확인</button><button type="button" onclick="Popup.close('popupCheckMe')" class="btn_default cancel">취소</button>
+    </div>
+  </div>
+</div><!-- 본인인증 팝업 //-->
+
+<div id="popupCheckAdult" class="popup_wrap" style="display:none"><!-- 본인인증 팝업 -->
+  <div class="pop_wrap_inner ident">
+    <div class="popup_header">성인인증<a href="javascript:" onclick="Popup.close('popupCheckAdult')" class="popup_btn_close" title="팝업 닫기">닫기</a></div>
+    <div class="popup_content">
+      <p class="one_txt">성인인증이 필요합니다.<br>인증하시겠습니까?</p>
+    </div>
+    <div class="popup_footer">
+      <button type="button" class="btn_default" onclick="Popup.move('popupCheckAdult','/user/check/adult')">확인</button><button type="button" onclick="Popup.close('popupCheckAdult')" class="btn_default cancel">취소</button>
+    </div>
+  </div>
+</div><!-- 본인인증 팝업 //-->
+
+<div class="popup_wrap payment" style="display:none"><!-- 등급 설정 팝업 -->
+  <div class="pop_wrap_inner default">
+    <div class="popup_header">등급제한 설정<a href="#" class="popup_btn_close" title="팝업 닫기">닫기</a></div>
+    <div class="popup_content">
+      <div class="one_txt">성인 인증 번호를 입력해 주세요.</div>
+      <div class="input_inner">
+        <input placeholder="4자리 숫자를 입력해 주세요." type="text">
+      </div>
+      <div class="small_txt"><a href="">인증번호 재설정</a></div>
+    </div>
+    <div class="popup_footer">
+      <button type="button" class="btn_default">확인</button><button type="button" class="btn_default cancel">취소</button>
+    </div>
+  </div>
+</div><!-- 등급 설정 팝업 -->
+
+<div class="popup_wrap" style="display:none"> <!-- 등급 설정 팝업 -->
+  <div class="pop_wrap_inner rating_limit">
+    <div class="popup_header">등급제한 설정<a href="#" class="popup_btn_close" title="팝업 닫기">닫기</a></div>
+    <div class="popup_content">
+      <p class="one_txt">성인 인증 번호를 입력해 주세요.</p>
+
+      <div class="popup_one_input">
+        <input title="4자리 숫자를 입력해주세요." class="onlynum" placeholder="4자리 숫자를 입력해주세요." type="text">
+      </div>
+
+      <p class="one_txt">인증 번호를 재입력해 주세요.</p>
+
+      <div class="popup_one_input">
+        <input title="4자리 숫자를 입력해주세요." class="onlynum" placeholder="4자리 숫자를 입력해주세요." type="text">
+      </div>
+
+      <!-- <p class="one_txt_red"><i class="ico_info"></i>인증 번호 숫자 4자리를 입력해주세요.</p> -->
+
+    </div>
+
+    <div class="popup_footer">
+      <button type="button" class="btn_default">확인</button><button type="button" class="btn_default cancel">취소</button>
+    </div>
+  </div>
+</div> <!-- 등급 설정 팝업 //-->
+
+<div class="popup_wrap" style="display:none"> <!-- 등급 설정 팝업 -->
+  <div class="pop_wrap_inner rating_limit">
+    <div class="popup_header">등급제한 설정<a href="#" class="popup_btn_close" title="팝업 닫기">닫기</a></div>
+    <div class="popup_content">
+      <p class="one_txt text_left">성인 인증 번호를 입력해 주세요.</p>
+
+      <div class="popup_one_input">
+        <input title="4자리 숫자를 입력해주세요." class="onlynum" placeholder="4자리 숫자를 입력해주세요." type="text">
+      </div>
+
+      <p class="one_txt text_left">인증 번호를 재입력해 주세요.</p>
+
+      <div class="popup_one_input">
+        <input title="4자리 숫자를 입력해주세요." class="onlynum" placeholder="4자리 숫자를 입력해주세요." type="text">
+      </div>
+
+      <p class="one_txt_red text_left"><i class="ico_info"></i>인증 번호가 일치하지 않습니다.</p>
+
+    </div>
+
+    <div class="popup_footer">
+      <button type="button" class="btn_default">확인</button><button type="button" class="btn_default cancel">취소</button>
+    </div>
+  </div>
+</div> <!-- 등급 설정 팝업 //-->
+
+<div class="popup_wrap" style="display:none"> <!-- 등급 설정 팝업 -->
+  <div class="pop_wrap_inner rating_limit">
+    <div class="popup_header">등급제한 설정<a href="#" class="popup_btn_close" title="팝업 닫기">닫기</a></div>
+    <div class="popup_content">
+      <p class="one_txt text_left">성인 인증 번호를 입력해 주세요.</p>
+
+      <div class="popup_one_input">
+        <input title="4자리 숫자를 입력해주세요." class="onlynum" placeholder="4자리 숫자를 입력해주세요." type="text">
+      </div>
+
+      <p class="one_txt text_left">인증 번호를 재입력해 주세요.</p>
+
+      <div class="popup_one_input">
+        <input title="4자리 숫자를 입력해주세요." class="onlynum" placeholder="4자리 숫자를 입력해주세요." type="text">
+      </div>
+
+      <p class="one_txt_red text_left"><i class="ico_info"></i>인증 번호 숫자 4자리를 입력해주세요</p>
+
+    </div>
+
+    <div class="popup_footer">
+      <button type="button" class="btn_default">확인</button><button type="button" class="btn_default cancel">취소</button>
+    </div>
+  </div>
+</div> <!-- 등급 설정 팝업 //-->
+
+<div class="popup_wrap my" style="display:none"><!-- 등급 설정 팝업 -->
+  <div class="pop_wrap_inner">
+    <div class="popup_header">등급제한 설정<a href="#" class="popup_btn_close" title="팝업 닫기">닫기</a></div>
+    <div class="popup_content">
+      <p class="one_txt txt_center">등급 제한 설정이 해지되었습니다.</p>
+
+    </div>
+
+    <div class="popup_footer">
+      <button type="button" class="btn_default">확인</button>
+    </div>
+
+  </div>
+</div><!-- 등급 설정 팝업 //-->
+
+<div id="popupRestrictView" class="popup_wrap payment" style="display:none"><!-- 등급 설정 팝업 -->
+  <div class="pop_wrap_inner default">
+    <div class="popup_header">등급제한 설정<a href="javascript:" onclick="Popup.close('popupRestrictView')" class="popup_btn_close" title="팝업 닫기">닫기</a></div>
+    <div class="popup_content">
+      <div class="one_txt">성인 인증 번호를 입력해 주세요.</div>
+      <div class="input_inner">
+        <input maxlength="4" class="onlynum" placeholder="4자리 숫자를 입력해 주세요." type="password">
+      </div>
+      <div class="info_notice_msg grade red"></div>
+      <div class="small_txt"><a href="javascript:" class="ch_pin">인증번호 재설정</a></div>
+    </div>
+    <div class="popup_footer">
+      <button type="button" class="btn_default" onclick="Popup.confirm('popupRestrictView')">확인</button>
+      <button type="button" onclick="" class="btn_default cancel">취소</button>
+    </div>
+  </div>
+</div><!-- 등급 설정 팝업 -->
+
+<div id="confirmPw" class="popup_wrap payment" style="display:none"><!-- 등급 설정 팝업 -->
+  <div class="pop_wrap_inner default">
+    <div class="popup_header">인증번호 재설정<a href="javascript:" onclick="Popup.close('confirmPw')" class="popup_btn_close" title="팝업 닫기">닫기</a></div>
+    <div class="popup_content">
+      <div class="one_txt">인증 번호 재설정을 위해<br>oksusu비밀번호를 입력해 주세요.</div>
+      <div class="input_inner">
+        <input maxlength="20" placeholder="비밀번호를 입력해 주세요." type="password">
+        <div class="info_notice_msg grade red"></div>
+      </div>
+    </div>
+    <div class="popup_footer">
+      <button type="button" class="btn_default" onclick="Popup.confirm('confirmPw')">확인</button>
+      <button type="button" class="btn_default cancel" onclick="">취소</button>
+    </div>
+  </div>
+</div><!-- 등급 설정 팝업 -->
+
+<div id="kidsLockUpdate" class="popup_wrap" style="display: none;"><!-- 성인 등급제한 설정 -->
+  <div class="pop_wrap_inner rating_limit default_type02">
+    <div class="popup_header">등급제한 설정<a href="javascript:" onclick="Popup.close('kidsLockUpdate')" class="popup_btn_close" title="팝업 닫기">닫기</a></div>
+    <div class="popup_content">
+      <p class="one_txt">성인 인증 번호를 입력해 주세요.</p>
+      <div class="popup_one_input">
+        <input id="kidsLockPin" class="onlynum" title="4자리 숫자를 입력해주세요." maxlength="4" placeholder="4자리 숫자를 입력해주세요." type="password">
+      </div>
+      <p class="one_txt">성인 인증 번호를 재입력해 주세요.</p>
+      <div class="popup_one_input">
+        <input id="kidsLockPinChk" class="onlynum" title="4자리 숫자를 입력해주세요." maxlength="4" placeholder="4자리 숫자를 입력해주세요." type="password">
+      </div>
+      <div class="info_notice_msg grade red"></div>
+    </div>
+    <div class="popup_footer">
+      <button type="button" class="btn_default accept" onclick="Popup.confirm('kidsLockUpdate')">확인</button>
+      <button type="button" class="btn_default cancel">취소</button>
+    </div>
+  </div>
+</div><!-- 성인 등급제한 설정 //-->
+
+<div class="popup_wrap" style="display:none"><!-- 본인인증 팝업 -->
+  <div class="pop_wrap_inner default">
+    <div class="popup_header">본인인증<a href="#" class="popup_btn_close" title="팝업 닫기">닫기</a></div>
+    <div class="popup_content">
+      <div class="one_txt">미성인인 경우, 성인 월정액 구매가<br>불가합니다.<br>성인인증 후, 이용해주세요.</div>
+    </div>
+    <div class="popup_footer">
+      <button type="button" class="btn_default cfm">확인</button><button type="button" class="btn_default cancel">취소</button>
+    </div>
+  </div>
+</div><!-- 본인인증 팝업 -->
+
+<div class="popup_wrap my" style="display:none"><!-- 본인인증 팝업 -->
+  <div class="pop_wrap_inner">
+    <div class="popup_header">성인 인증<a href="#" class="popup_btn_close" title="팝업 닫기">닫기</a></div>
+    <div class="popup_content">
+      <p class="one_txt txt_center">성인 인증이 완료되었습니다.</p>
+
+    </div>
+
+    <div class="popup_footer">
+      <button type="button" class="btn_default cfm">확인</button>
+    </div>
+
+  </div>
+</div><!-- 본인인증 팝업 //-->
+<div class="popup_wrap my" style="display:none"><!-- 본인인증 팝업 -->
+  <div class="pop_wrap_inner">
+    <div class="popup_header">성인 인증<a href="#" class="popup_btn_close" title="팝업 닫기">닫기</a></div>
+    <div class="popup_content">
+      <p class="one_txt txt_center">성인 인증이 실패하였습니다.</p>
+
+    </div>
+
+    <div class="popup_footer">
+      <button type="button" class="btn_default cfm">확인</button>
+    </div>
+
+  </div>
+</div><!-- 본인인증 팝업 //-->
+
+
+<!-- 성인인증 팝업 -->
+<div class="toast_popup_wrap popup_wrap" style="display:none">
+  <div class="toast_wrap_inner">
+    <p>
+      성인인증에 실패하였습니다.
+    </p>
+  </div>
+</div>
+<!-- 성인인증 팝업 -->
+
+<!-- 성인인증 팝업 -->
+<div class="toast_popup_wrap popup_wrap" style="display:none">
+  <div class="toast_wrap_inner">
+    <p>
+      성인인증이 완료되었습니다.
+    </p>
+  </div>
+</div>
+<!-- 성인인증 팝업 -->
+
+<div class="toast_popup_wrap popup_wrap" style="display:none" id="toastPopup">
+  <div class="toast_wrap_inner"><p class="toastMessage"></p></div>
+</div>
+
+<div id="layer-popup-alert" class="popup_wrap" style="display:none">
+  <div class="pop_wrap_inner ident">
+    <div class="popup_header"></div>
+    <div class="popup_content">
+      <p class="one_txt"></p>
+    </div>
+    <div class="popup_footer">
+      <button type="button" class="btn_default accept">확인</button>
+    </div>
+  </div>
+</div>
+
+<div id="layer-popup-confirm" class="popup_wrap" style="display:none">
+    <div class="pop_wrap_inner ident">
+        <div class="popup_header"></div>
+        <div class="popup_content">
+            <p class="one_txt"></p>
+        </div>
+        <div class="popup_footer">
+            <button type="button" class="btn_default accept">확인</button>
+            <button type="button" class="btn_default cancel" onclick="Popup.close('layer-popup-confirm')">취소</button>
+        </div>
+    </div>
+</div>
+<script>
+  var LayerPopup = {
+    addDimmed : function($id) {
+      $id.show().before('<div class="pop_dimmed addDim" style="display:block;"></div>');
+      $(document).bind('mousewheel DOMMouseScroll', function(e) {e.preventDefault();});
+    },
+    removeDimmed : function($id) {
+      $id.hide();
+      $('.addDim').remove();
+      $(document).unbind('mousewheel DOMMouseScroll');
+    },
+    alert : function(title, msg, okCallback, closeCallback) {
+      var $id = $('#layer-popup-alert');
+
+      LayerPopup.addDimmed($id);
+      $id.show();
+      $id.find('.popup_header').html(title + '<a href="javascript:;" class="popup_btn_close" title="정보동의 팝업 닫기">닫기</a>');
+      $id.find('.one_txt').html(msg);
+
+      $id.find('.popup_btn_close').off().click(function(e) {
+        e.preventDefault();
+
+        LayerPopup.closePopup($id);
+        if (closeCallback) {
+          closeCallback();
+        }
+      });
+
+      $id.find('.btn_default.accept').off().click(function(e) {
+        LayerPopup.closePopup($id);
+
+        if (okCallback) {
+          okCallback();
+        }
+      });
+    },
+      confirm : function(title, msg, okCallback, closeCallback) {
+      var $id = $('#layer-popup-confirm');
+
+      LayerPopup.addDimmed($id);
+      $id.show();
+      $id.find('.popup_header').html(title + '<a href="javascript:;" class="popup_btn_close" title="정보동의 팝업 닫기">닫기</a>');
+      $id.find('.one_txt').html(msg);
+
+      $id.find('.popup_btn_close').off().click(function(e) {
+          e.preventDefault();
+
+          LayerPopup.closePopup($id);
+          if (closeCallback) {
+              closeCallback();
+          }
+      });
+
+      $id.find('.btn_default.accept').off().click(function(e) {
+          LayerPopup.closePopup($id);
+
+          if (okCallback) {
+              okCallback();
+          }
+      });
+    },
+    closePopup : function($id) {
+      LayerPopup.removeDimmed($id);
+      $id.hide();
+    }
+  };
+
+  /**
+   * layer popup
+   */
+  var Popup = {
+    property: {
+      url: null,
+      type: 'list',
+      where: ''
+    },
+    initialize: function(id, data, url, where) {
+      this.property.type = data.type;
+      this.property.eros = data.eros;
+      this.property.url = url;
+      this.property.where = where;
+
+      switch(id){
+        case 'popupRestrictView':
+          $('#popupRestrictView input:password').val('');
+          $('#popupRestrictView .info_notice_msg').html('');
+
+          $('#'+id+' .cancel').on('click', function() {
+            Popup.close('popupRestrictView');
+          });
+
+          $('#'+id+' .ch_pin').on('click', function() {
+            Popup.close('popupRestrictView');
+            Popup.show('confirmPw', '', url);
+          });
+
+          break;
+        case 'confirmPw':
+          $('#confirmPw input:password').val('');
+          $('#confirmPw .info_notice_msg').html('');
+
+          $('#' + id + ' .cancel').on('click', function () {
+            Popup.close('confirmPw');
+          });
+
+          break;
+        case 'kidsLockUpdate':
+          $('#kidsLockUpdate input:password').val('');
+
+          $('#' + id + ' .cancel').on('click', function () {
+            Popup.close('kidsLockUpdate');
+          });
+          break;
+      }
+    },
+    close: function(id) {
+      this.removeDimmed(id);
+      if (this.property.type === 'view') {
+        if ( document.referrer.indexOf( 'bill/purchase/result' ) > -1 ) {
+         if($('.vod_watch_wrap').length > 0){
+            location.href = '/vod';
+          } else if($('.movie_watch_wrap').length > 0){
+            location.href = '/movie';
+          } else if($('.live_watch_wrap').length > 0){
+            location.href = '/live';
+          }
+        } else if(this.property.eros == 'Y'){
+          location.href = '/';
+        } else {
+          history.back(1);
+        }
+      }
+      return false;
+    },
+    addDimmed: function(id) {
+      $('#' + id).show().before('<div class="pop_dimmed addDim" style="display:block;"></div>');
+      $(document).bind('mousewheel DOMMouseScroll', function(e) {e.preventDefault();});
+    },
+    removeDimmed: function(id) {
+      $('#' + id).hide();
+      $('.addDim').remove();
+      $(document).unbind('mousewheel DOMMouseScroll');
+    },
+    isViewPage: function() {
+      return (location.pathname.indexOf('/v/') === 0) ? true : false;
+    },
+    show: function (id, data, url, where) {
+      this.initialize(id, data, url, where);
+      if (id !== 'popupPurchase') {
+        this.addDimmed(id);
+      }
+      return false;
+    },
+    move: function(id, url) {
+//      if (url === '/user/check/adult') {
+//        if (User.isLogin && User.isMemberAuth && !User.isAdult) {
+//          this.close(id);
+//          CommonPopupWithHeader.open('본인인증', '미성인인 경우\n성인인증을 할 수 없습니다.');
+//          return false;
+//        }
+//      }
+      location.href = url + '?rw='+location.pathname+location.search;
+      return false;
+    },
+    confirm: function(cmd, where) {
+
+      switch(cmd){
+        case 'popupRestrictView':
+          var password = $('#popupRestrictView input:password').val();
+          if (!password) {
+            $('#popupRestrictView .info_notice_msg').html('<i class="ico_info_red_small"></i>인증번호 숫자 4자리를 입력해 주세요.');
+            return false;
+          }
+          $.ajax({
+            url: '/api/my/confirm/kids',
+            data: {
+              passwd: password
+            },
+            type: "GET",
+            success: function (response) {
+              if (response.result === "OK") {
+                $.cookie(cmd, 'Y', {domain: '.oksusu.com', path: '/', expires: GetDate.seconds(5)});
+                if (Popup.property.url) {
+                  location.href = Popup.property.url;
+                } else {
+                  // 상세시놉의 상품선택 변경시 등급제한 성공 후 선택한 상품으로 유지
+                  if (Popup.property.where === "detailSynopsis") {
+                    $('.buy_list li a').trigger('click');
+                  } else {
+                    $("#popupRestrictView").trigger( 'allowWatch' );
+                  }
+
+                  Popup.removeDimmed(cmd);
+                }
+              } else if (response.result === "NE-89019") {
+                $('#popupRestrictView .info_notice_msg').html('<i class="ico_info_red_small"></i>성인 인증번호가 일치하지 않습니다.');
+                return false;
+              } else {
+                $('#popupRestrictView .info_notice_msg').html('<i class="ico_info_red_small"></i>'+response.message);
+                return false;
+              }
+            }
+          });
+          break;
+        case 'confirmPw':
+          var password = $('#confirmPw input:password').val();
+          if (!password) {
+            $('#confirmPw .info_notice_msg').html('<i class="ico_info_red_small"></i>비밀번호를 입력해 주세요.');
+            return false;
+          }
+          $.ajax({
+            url: '/api/user/confirm/password',
+            data: {
+              pass: password
+            },
+            type: "POST",
+            cache: false,
+            success: function (response) {
+              if (response.result === "OK") {
+                Popup.removeDimmed(cmd);
+                Popup.show('kidsLockUpdate', '', Popup.property.url);
+              } else if (response.result === "NE-89016") {
+                $('#confirmPw .info_notice_msg').html('<i class="ico_info_red_small"></i>비밀번호가 일치하지 않습니다.');
+                return false;
+              } else {
+                $('#confirmPw .info_notice_msg').html('<i class="ico_info_red_small"></i>'+response.message);
+                return false;
+              }
+            }
+          });
+          break;
+        case 'kidsLockUpdate':
+          var pin = $('#kidsLockUpdate #kidsLockPin').val();
+          var pinChk = $('#kidsLockUpdate #kidsLockPinChk').val();
+
+          if (!pin || pin.length!==4) {
+            $('#kidsLockUpdate .info_notice_msg').html('<i class="ico_info_red_small"></i>4자리 숫자를 입력하세요.');
+            return false;
+          } else if ( pin !== pinChk ){
+            $('#kidsLockUpdate .info_notice_msg').html('<i class="ico_info_red_small"></i>인증번호가 일치하지 않습니다.');
+            return false;
+          }
+
+          $.ajax({
+            async: 'true',
+            url: '/api/my/update/kids',
+            data: {
+              passwd: pin
+            },
+            cache : false,
+            type: "GET",
+            dataType: "json"
+          }).done(function (res) {
+            if (res.result == "OK") {
+              Popup.removeDimmed(cmd);
+              Popup.show('kidsLockSaveComplete', '', Popup.property.url);
+            } else {
+              $('#kidsLockUpdate .info_notice_msg').html('<i class="ico_info_red_small"></i>'+response.message);
+            }
+          }).fail(function (jqXHR, textStatus) {
+            Popup.close('kidsLockUpdate');
+            CommonPopup.open('시스템 장애가 발생 하였습니다.<br/>다시 시도해 주세요.');
+          });
+
+          break;
+
+        case 'kidsLockSaveComplete':
+          $.cookie('popupRestrictView', 'Y', {domain: '.oksusu.com', path: '/', expires: GetDate.seconds(5)});
+          if (Popup.property.url) {
+            location.href = Popup.property.url;
+          }
+
+          break;
+      }
+    },
+    toast:function(id, message){
+      $("#" + id)
+        .find(".toastMessage").text(message).end()
+        .stop( true ).delay( 400 ).fadeIn( 600 ).delay( 1000 ).fadeOut( 600 );
+    }
+  };
+  //글씨 제어
+  $(".onlynum").keyup(function () {
+      $(this).val($(this).val().replace(/[^0-9]/g, ""));
+  });
+</script><script src="{% static 'purchase_files/oksusu-logger-1.js' %}"></script>
+<script>
+  $(function () {
+    var isLogin, loginChannel;
+    if (User.isLogin) {
+      isLogin = '1';
+    } else {
+      isLogin = '0';
+    }
+
+    if (User.serviceProvider === 'fb') {
+      loginChannel = '5'; // facebook 로그인
+    } else if (User.serviceProvider === 'kakao') {
+      loginChannel = '4'; // 카카오 로그인
+    } else if (User.userId.indexOf('P') === 0) {
+      loginChannel = '2'; // MDN 로그인
+    } else if (User.isLogin) {
+      loginChannel = '1'; // ID/PW 로그인
+    } else {
+      loginChannel = '0';
+    }
+
+    OksusuLogger.init({
+      appInfo: {
+        deviceId: $.cookie('CORN_SESSIONID') || '',
+        xOsInfo: ua_result.os.name + '/' + ua_result.os.version.info,
+        xServiceInfo: 'oksusu-web',
+        xDeviceInfo: ua_result.browser.name + '-' + ua_result.browser.version.major
+      },
+      userInfo: {
+        bmUserId: User.userId,
+        mobileUserNum: 'U022111577',
+        userPack: {
+          isLogin: isLogin,
+          loginChannel: loginChannel,
+          telecommType: ''
+        }
+      },
+      contentsType: '',
+      contentsInfo: ''
+    });
+  });
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-88848313-3', 'auto');
+  ga('send', 'pageview');
+
+  <!-- Facebook Pixel Code -->
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1393037114073571');
+  fbq('track', 'PageView');
+  <!-- End Facebook Pixel Code -->
+
+  OksusuLogger.registerEventTrackingLogo();
+
+  function registerSynopEventTracking(){
+    OksusuLogger.registerEventTrackingPlay();
+    OksusuLogger.registerEventTrackingShare();
+    OksusuLogger.registerEventTrackingReply();
+    OksusuLogger.registerEventTrackingRelated();
+    OksusuLogger.registerEventTrackingFeaturePresentation();
+  }
+
+</script>
+
+<noscript>
+  <img height="1" width="1" style="display:none"
+       src="https://www.facebook.com/tr?id=1393037114073571&ev=PageView&noscript=1"/>
+</noscript>
+<!-- End Facebook Pixel Code --><script type="text/javascript" src="{% static 'purchase_files/jquery.js' %}"></script>
+<script type="text/javascript" src="{% static 'purchase_files/userAgent.js' %}"></script>
+<script type="text/javascript" src="{% static 'purchase_files/oksusuCard-v1.js' %}"></script>
+<script type="text/javascript" src="{% static 'purchase_files/oksusuBookmark.js' %}"></script>
+<script type="text/javascript" src="{% static 'purchase_files/commonInfo.js' %}"></script>
+<script type="text/javascript">
+  $(function() {
+    Search.init('');
+
+    $(window).on("scroll load", function() {
+      var $win_st = $(window).scrollTop();
+      $("#header").css("position","absolute").css("top", $win_st);
+
+      if ($(this).scrollTop() > 300) {
+        var btnTopT = ($(window).height() - 70) + $win_st;
+        var btnPos = (btnTopT + 270) - $('#wrap').outerHeight();
+        if($('#wrap').outerHeight() - btnTopT > 340) {
+          $('.btn_top').hide().css("top",btnPos).fadeIn();
+        }else if($('#wrap').outerHeight() - btnTopT <= 340){
+          $('.btn_top').hide().css("top", "-70px").fadeIn();
+        }
+      } else {
+        $('.btn_top').hide();
+      }
+    });
+
+    var marginLeft = parseInt( $("#header").css('margin-left') );
+
+    $(window).scroll(function(e) {
+      $("#header").css("margin-left", marginLeft - $(this).scrollLeft());
+    });
+
+    $('div.btn_top').click(function(e) {
+      e.preventDefault();
+      $('html, body').animate({scrollTop: 0}, 0);
+    });
+
+    CommonInfo.init();
+    SupportBrowser.check();
+    OksusuBookmark.init('P3997320180111163326', 'U022111577');
+
+    $('#header-login').click(function(e) {
+      e.preventDefault();
+
+      if (/^\?rw=/.test(location.search)) {
+        location.href = '/user/login' + location.search;
+      } else {
+        location.href = '/user/login?rw=' + encodeURIComponent(location.pathname + location.search);
+      }
+    });
+  });
+
+  $(document).ajaxStop(function () {
+    $(window).on("load", function () {
+      $('.general_section_list .text_title').dotdotdot({
+        wrap: 'letter'
+        , height: 36
+      });
+
+      $('.general_section_list .section_vlist movie.movie .summary_info .text_title, .general_section_list .section_vlist.movie .summary_info .text_summary').dotdotdot({
+        wrap: 'letter'
+        , height: 59
+      });
+
+      $('.general_poster_list .poster_vlist.movie .summary_info .text_title').dotdotdot({
+        wrap: 'letter'
+        , height: 55
+      });
+
+      $('.general_poster_list .poster_vlist.movie .summary_info .text_summary').dotdotdot({
+        wrap: 'letter'
+        , height: 105
+      });
+    });
+  });
+</script>
+  <div class="popup_wrap payment payment04" id="reject_error" style="display:none"><!-- 오류 안내 팝업 -->
+    <div class="pop_wrap_inner default">
+      <div class="popup_header">오류 안내<a href="javascript:;" onclick="Popup.removeDimmed('reject_error');return false;" class="popup_btn_close" title="팝업 닫기">닫기</a></div>
+      <div class="popup_content">
+        <div class="one_txt" id="reject_error_message"></div>
+      </div>
+      <div class="popup_footer">
+        <button type="button" class="btn_default" onclick="Popup.removeDimmed('reject_error');return false;">확인</button>
+      </div>
+    </div>
+  </div><!-- 오류 안내 팝업 -->
+
+  <div class="popup_wrap payment payment16" id="reload_error" style="display:none"><!-- 오류 안내 팝업(기타) -->
+    <div class="pop_wrap_inner default">
+      <div class="popup_header">오류 안내<a href="javascript:;" onclick="reloadPage();" class="popup_btn_close" title="팝업 닫기">닫기</a></div>
+      <div class="popup_content">
+        <div class="one_txt">선택하신 상품의 가격이 변동되어<br>처음으로 돌아갑니다.</div>
+      </div>
+      <div class="popup_footer">
+        <button type="button" class="btn_default" onclick="reloadPage();">확인</button>
+      </div>
+    </div>
+  </div><!-- 오류 안내 팝업 -->
+
+  <div class="popup_wrap" id="return_error" style="display:none"><!-- 안내 팝업 -->
+    <div class="pop_wrap_inner ident">
+      <div class="popup_header">오류 안내<a href="javascript:;" onclick="location.href = getUrlParam('rw') || '/';" class="popup_btn_close" title="팝업 닫기">닫기</a></div>
+      <div class="popup_content">
+        <p class="one_txt" id="return_error_message"></p>
+      </div>
+      <div class="popup_footer">
+        <button type="button" class="btn_default" onclick="location.href = getUrlParam('rw') || '/';">확인</button>
+      </div>
+    </div>
+  </div><!-- 안내 팝업 //-->
+
+  <div class="popup_wrap payment payment10" id="purchase_auth" style="display:none"><!-- 구매 인증 설정 팝업 -->
+    <div class="pop_wrap_inner default">
+      <div class="popup_header">구매 인증 설정<a href="javascript:;" onclick="Popup.removeDimmed('purchase_auth');return false;" class="popup_btn_close" title="팝업 닫기">닫기</a></div>
+      <div class="popup_content">
+        <div class="one_txt">구매 인증 번호를 입력해 주세요.</div>
+        <div class="input_inner">
+          <input placeholder="4자리 숫자를 입력해 주세요." maxlength="4" type="password">
+          <span class="hidden_msg" style="display:none"></span>
+        </div>
+        <div class="small_txt"><a href="javascript:;" onclick="Popup.addDimmed('reset_purchase_auth');return false;">인증번호 재설정</a></div>
+      </div>
+      <div class="popup_footer">
+        <button type="button" class="btn_default" id="auth_confirm_button" onclick="Purchase.Control.confirmAuthNumber();">확인</button>
+        <button type="button" class="btn_default cancel" onclick="Popup.removeDimmed('purchase_auth');return false;">취소</button>
+      </div>
+    </div>
+  </div><!-- 구매 인증 설정 팝업 -->
+
+  <div class="popup_wrap payment payment11" id="reset_purchase_auth" style="display:none"><!-- 구매 인증 설정 팝업 -->
+    <div class="pop_wrap_inner default">
+      <div class="popup_header">구매 인증 설정<a href="javascript:;" onclick="Popup.removeDimmed('reset_purchase_auth');return false;" class="popup_btn_close" title="팝업 닫기">닫기</a></div>
+      <div class="popup_content">
+        <div class="one_txt">인증 번호 재설정은 <br><a href="https://www.oksusu.com/my/configure" class="linked_txt">'환경설정 &gt; 구매인증'</a>에서 재설정 가능합니다.</div>
+      </div>
+      <div class="popup_footer">
+        <button type="button" class="btn_default" onclick="Popup.removeDimmed('reset_purchase_auth');return false;">확인</button>
+      </div>
+    </div>
+  </div><!-- 구매 인증 설정 팝업 -->
+
+  <div class="popup_wrap payment payment03" id="confirm_purchase" style="display:none"><!-- 구매확인 안내 팝업 -->
+    <div class="pop_wrap_inner default">
+      <div class="popup_header">구매확인 안내<a href="javascript:;" onclick="Popup.removeDimmed('confirm_purchase');return false;" class="popup_btn_close" title="팝업 닫기">닫기</a></div>
+      <div class="popup_content">
+        <div class="one_txt">선택하신 상품을 구매하시겠습니까?</div>
+      </div>
+      <div class="popup_footer">
+        <button type="button" class="btn_default" onclick="Purchase.Control.processPurchase();">확인</button>
+        <button type="button" class="btn_default cancel" onclick="Popup.removeDimmed('confirm_purchase');return false;">취소</button>
+      </div>
+    </div>
+  </div><!-- 구매확인 안내 팝업 -->
+
+  <div class="popup_wrap payment payment02" id="retract_info" style="display:none"><!-- 청약철회 안내 팝업 -->
+    <div class="pop_wrap_inner noti">
+      <div class="popup_header">청약철회 안내<a href="javascript:;" onclick="Popup.removeDimmed('retract_info');return false;" class="popup_btn_close" title="팝업 닫기">닫기</a></div>
+      <div class="popup_content">
+        <p>1. 청약철회 기간</p>
+        <ul>
+          <li><i class="circle_point"></i>구매 후 상품을 이용(재생 또는 다운로드)하지 않은 경우에 한해 구매일로부터 7일 이내 청약철회가 가능합니다.<br>
+            (개별 판매가 가능한 상품을 모아 패키지로 판매하는 경우에는 아직 이용하지 않은 상품에 한해 청약철회 가능)</li>
+          <li><i class="circle_point"></i>상품의 내용이 표시·광고 내용과 다르거나 계약 내용이 다르게 이행된 경우에는 구매일로부터 3개월 이내로서, 그 사실을 안 날 또는 알 수 있었던 날부터 30일 이내에 청약철회가 가능합니다.</li>
+        </ul>
+        <p>2. 청약철회 방법</p>
+        <ul>
+          <li><i class="circle_point"></i><i class="circle_point"></i>고객센터 : 국번없이 106, 080-8282-106(무료), 1:1문의</li>
+        </ul>
+        <p>3. 청약철회 효과</p>
+        <ul>
+          <li><i class="circle_point"></i>접수일로부터 3영업일 이내 환불 처리 (단, 결제 수단에 따라 부득이 처리일수 차이가 있을 수 있음)</li>
+        </ul>
+      </div>
+      <div class="popup_footer">
+        <button type="button" class="btn_default cfm" onclick="Popup.removeDimmed('retract_info');return false;">확인</button>
+      </div>
+    </div>
+  </div><!-- 청약철회 안내 팝업 //-->
+
+</div>
+
+<form action="/bill/purchase/package" name="purchase_form" method="post" target="purchasePopup">
+  <input name="contentsId" value="" type="hidden">
+  <input name="productTypeCode" value="" type="hidden">
+  <input name="productId" value="" type="hidden">
+  <input name="productName" value="" type="hidden">
+  <input name="pgCode" value="" type="hidden">
+  <input name="purchaseNum" value="" type="hidden">
+  <input name="couponUse" value="" type="hidden">
+  <input name="couponNo" value="" type="hidden">
+  <input name="couponDiscount" value="" type="hidden">
+  <input name="tMembershipUse" value="" type="hidden">
+  <input name="tMembershipSeqNo" value="" type="hidden">
+  <input name="tMembershipDiscount" value="" type="hidden">
+  <input name="bpointUse" value="" type="hidden">
+  <input name="bpointDiscount" value="" type="hidden">
+  <input name="purchaseType" value="" type="hidden">
+  <input name="bandProductYn" value="" type="hidden">
+  <input name="calculatedAmount" value="" type="hidden">
+  <input name="productAmount" value="" type="hidden">
+  <input name="productPrice" value="" type="hidden">
+  <input name="totalDiscount" value="" type="hidden">
+  <input name="totalPrice" value="" type="hidden">
+</form>
+
+<form name="resultForm" method="post" action="">
+  <input name="result" value="" type="hidden">
+  <input name="message" value="" type="hidden">
+  <input name="nm_product" value="" type="hidden">
+  <input name="dc_amt" value="" type="hidden">
+  <input name="dc_unit" value="" type="hidden">
+  <input name="sttl_amt" value="" type="hidden">
+  <input name="sale_amt" value="" type="hidden">
+  <input name="sale_unit" value="" type="hidden">
+  <input name="pg_type" value="" type="hidden">
+  <input name="prd_typ_cd" value="" type="hidden">
+  <input name="bpoint_sttl" value="" type="hidden">
+  <input name="bpoint_psp_sttl" value="" type="hidden">
+  <input name="coupon_sttl" value="" type="hidden">
+  <input name="coupon_psp_sttl" value="" type="hidden">
+  <input name="tmb_sttl" value="" type="hidden">
+  <input name="tmb_dc_rate" value="" type="hidden">
+  <input name="bpoint_amt" value="" type="hidden">
+</form>
+
+<script type="text/javascript">
+  window.name ="parent_window";
+
+  var Purchase = {
+    Model: {
+      purchaseTicket: {},
+      product: {},
+      period: {},
+      coupon: {},
+      discount: {
+        coupon: 0,
+        membership: 0,
+        point: 0
+      },
+      pageLoadDate: new Date(),
+      setProduct: function (productId) {
+        var prevProductId = this.product.id_product;
+        var prevPeriodId = this.period.id_product;
+
+        this.product = {};
+        this.period = {};
+
+        $(this.purchaseTicket.products).each(function (i, product) {
+          if (product.id_product === productId) {
+            Purchase.Model.product = product;
+            return false;
+          } else {
+            $(product.period_list).each(function (i, period) {
+              if (period.id_product === productId) {
+                Purchase.Model.product = product;
+                Purchase.Model.period = period;
+                return false;
+              }
+            });
+          }
+        });
+
+        Purchase.State.changeProduct = prevProductId !== this.product.id_product ? true : false;
+        Purchase.State.changePeriod = prevPeriodId !== this.period.id_product ? true : false;
+
+        if (Purchase.State.changeProduct) {
+          this.coupon = {};
+          this.discount.coupon = 0;
+          this.discount.membership = 0;
+          this.discount.point = 0;
+        }
+      },
+      setCoupon: function (couponNo) {
+        this.coupon = {};
+        $(this.product.option.coupons).each(function (i, coupon) {
+          if (coupon.no_coupon === couponNo) {
+            Purchase.Model.coupon = coupon;
+            return false;
+          }
+        });
+      },
+      getPrice: function () {
+        var price = 0;
+        if (this.isBand()) {
+          price = this.product.cal_amt;
+        } else if (this.isPeriod()) {
+          price = this.period.prd_amt;
+        } else {
+          price = this.product.prd_amt;
+        }
+        return price ? Number(price) : 0;
+      },
+      getBasePrice: function () {
+        return this.getPrice() - this.getBaseDiscount();
+      },
+      getTotalPrice: function () {
+        return this.getPrice() - this.getTotalDiscount();
+      },
+      getBaseDiscount: function () {
+        var discount = 0;
+        if (this.product.discount && this.product.discount.length > 0) {
+          $(this.product.discount).each(function (i, discountInfo) {
+            discount += Number(discountInfo.dsc_val);
+          });
+        }
+        return discount;
+      },
+      getTotalDiscount: function () {
+        return this.getBaseDiscount()
+        + ($('#coupon_checkbox').is(':checked') ? this.discount.coupon : 0)
+            + ($('#membership_checkbox').is(':checked') ? this.discount.membership : 0)
+            + ($('#point_checkbox').is(':checked') ? this.discount.point : 0);
+      },
+      isVod: function () {
+        return this.product.prd_typ_cd === '110';
+      },
+      isSeries: function () {
+        return this.product.prd_typ_cd === '120';
+      },
+      isPPM: function () {
+        return this.product.prd_typ_cd === '130' || this.product.prd_typ_cd === '180' || this.isBasic();
+      },
+      isBasic: function () {
+        return this.product.prd_typ_cd === '181';
+      },
+      isBand: function () {
+        return this.product.band_product === 'Y';
+      },
+      isPeriod: function () {
+        return this.product.prd_typ_cd === '132' || this.product.prd_typ_cd === '182';
+      },
+      isExperience: function () {
+        return this.product.prd_typ_cd === '133' || this.product.prd_typ_cd === '183';
+      },
+      hasPeriodList: function () {
+        return this.product.period_list && this.product.period_list.length > 0;
+      },
+      hasOption: function () {
+        return this.product.option;
+      },
+      hasCouponList: function () {
+        return this.hasOption() && this.product.option.coupons && this.product.option.coupons.length > 0;
+      },
+      hasMembership: function () {
+        return this.hasOption() && this.product.option.tple;
+      },
+      hasPoint: function () {
+        return this.hasOption() && this.product.option.bpoint;
+      }
+    },
+    State: {
+      changeProduct: false,
+      changePeriod: false
+    },
+    View: {
+      setSubViews: function () {
+        if (Purchase.State.changeProduct) {
+          this.setDeviceView();
+          this.setDiscountView();
+          this.setPaymentView();
+          this.setInfoView();
+          this.setPurchaseButton();
+        }
+
+        if (Purchase.State.changeProduct || Purchase.State.changePeriod) {
+          this.setFinalPaymentView();
+        }
+      },
+      setDeviceView: function () {
+        var deviceInfo = '';
+        if (Purchase.Model.product.nscreen_yn === 'Y') {
+          deviceInfo = '<img src="/public/assets/img/ico_btv.png" alt="btv"/>(TV시청), ';
+        }
+        switch (Number(Purchase.Model.product.poc_cd)) {
+          case 1:
+            deviceInfo += '안드로이드';
+            break;
+          case 2:
+            deviceInfo += 'iOS';
+            break;
+          case 3:
+            deviceInfo += 'PC';
+            break;
+          case 4:
+            deviceInfo += '안드로이드, iOS';
+            break;
+          case 5:
+            deviceInfo += '안드로이드, PC';
+            break;
+          case 6:
+            deviceInfo += 'iOS, PC';
+            break;
+          case 7:
+            deviceInfo += '안드로이드, iOS, PC';
+            break;
+        }
+        $('#device_info').html(deviceInfo);
+      },
+      setDiscountView: function () {
+        $('#discount_view').hide();
+
+        var basePrice = Purchase.Model.getBasePrice();
+        this.setCouponView(basePrice);
+        this.setMembershipView(basePrice);
+        this.setPointView(basePrice);
+
+        if ($('#coupon_view').css('display') == "block" ||
+            $('#membership_view').css('display') == "block" ||
+            $('#point_view').css('display') == "block") {
+          $('#discount_view').show();
+        }
+      },
+      setCouponView: function (basePrice) {
+        $('#coupon_view').hide();
+        $('#coupon_checkbox').prop('checked', false);
+        if (!Purchase.Model.isSeries() && !Purchase.Model.isPeriod() && !Purchase.Model.isExperience() && Purchase.Model.hasCouponList() && basePrice > 0) {
+          Purchase.Model.setCoupon(Purchase.Model.product.option.coupons[0].no_coupon);
+
+          var couponListHtml = '';
+          $(Purchase.Model.product.option.coupons).each(function (i, coupon) {
+            var couponText = '';
+            if (coupon.ppm_dc_mon && coupon.ppm_dc_mon.length > 0) {
+              couponText = coupon.ppm_dc_mon + '개월 ';
+            }
+            couponText += coupon.val_disc + coupon.fg_disc_txt + ' 할인';
+
+            if (i === 0) {
+              $('#coupon_choice').text(couponText);
+            }
+
+            couponListHtml += '<div id="' + coupon.no_coupon + '" onclick="Purchase.Control.selectCoupon(this);">' + couponText +'</div>';
+          });
+          $('#coupon_choice').next().html(couponListHtml);
+
+          Purchase.Control.setCouponDiscount(basePrice);
+
+          $('#coupon_checkbox').prop('checked', true);
+          $('#coupon_view').show();
+        }
+      },
+      setMembershipView: function (basePrice) {
+        $('#membership_view').hide();
+        $('#membership_checkbox').prop('checked', false);
+        $('#membership_checkbox').prop("disabled", true);
+        $('#membership_view .input_field').remove();
+        if ((Purchase.Model.isVod() || Purchase.Model.isSeries() || Purchase.Model.isBasic()) && Purchase.Model.hasMembership() && basePrice > 0) {
+          var membershipName = 'T멤버십';
+          var membershipInfo = '';
+          if (Purchase.Model.product.option.tple.save === 'true') {
+            membershipName += ' (' + Purchase.Model.product.option.tple.cardName + '/' + Purchase.Model.product.option.tple.gradeName + ')';
+            membershipInfo = '<span class="detail01">' + numeral(Purchase.Model.product.option.tple.point).format('0,0') + 'P</span>' +
+                '<span class="detail02">' + Purchase.Model.product.option.tple.discountRate + '% 할인</span>';
+
+            $('#membership_view').append('<span class="input_field em_red"></span>');
+
+            $('#membership_checkbox').prop('checked', true);
+            Purchase.Control.setMembershipStatus(basePrice);
+          } else {
+            $('#membership_view').append('<span class="input_field btn_box" onclick="location.href=\'/my/membership?rw=\' + encodeURIComponent(location.href);">조회</span>');
+          }
+
+          $('#membership_checkbox').val(membershipName);
+          $('#membership_view label .cm_chkbox_txt').html(membershipName + membershipInfo);
+          $('#membership_view').show();
+        }
+      },
+      setPointView: function (basePrice) {
+        $('#point_view').hide();
+        $('#point_checkbox').prop('checked', false);
+        $('#point_checkbox').prop('disabled', true);
+        $('#point_view .input_field').remove();
+        if ((Purchase.Model.isVod() || Purchase.Model.isSeries() || Purchase.Model.isBand() || Purchase.Model.isPeriod()) && basePrice > 0) {
+          var myPoint = Purchase.Model.hasPoint() ? Number(Purchase.Model.product.option.bpoint) : 0;
+
+          $('#point_view label .cm_chkbox_txt .detail01').text(numeral(myPoint).format('0,0') + 'P');
+
+          if (myPoint >= 100) {
+            $('#point_view').append('<span class="input_field"><input id="point_input" type="text" class="with_msg" maxlength="6"/></span>');
+            Purchase.Control.registerEventHandlerForPointInput();
+
+            $('#point_checkbox').prop('checked', true);
+            Purchase.Control.setPointStatus(basePrice);
+          } else {
+            $('#point_view').append('<span class="input_field btn_box" onclick="location.href=\'/bill/purchase/point?rw=\' + encodeURIComponent(location.href);">충전</span>');
+          }
+
+          $('#point_view').show();
+        }
+      },
+      setPaymentView: function () {
+        $('#payment_view').hide();
+        $('#card_radio').prop('checked', true);
+        if (Purchase.Model.getTotalPrice() > 0 && !Purchase.Model.isExperience()) {
+          $('#card_radio').hide().next().hide();
+          $('#phone_radio').prop('checked', true);
+          if (Purchase.Model.isVod() || Purchase.Model.isSeries() || Purchase.Model.isPeriod()) {
+            $('#card_radio').show().next().show();
+            $('#card_radio').prop('checked', true);
+          }
+          $('#payment_view').show();
+        }
+      },
+      setInfoView: function () {
+        $('.info_noti_bottom_wrap').hide();
+        if (!Purchase.Model.isExperience()) {
+          if (Purchase.Model.isVod() && Purchase.Model.purchaseTicket.content
+              && Purchase.Model.purchaseTicket.content.hd_ecpt === 'Y') {
+            $('#info_ppv_sd').show();
+          } else if (Purchase.Model.isVod() || Purchase.Model.isSeries()) {
+            $('#info_ppv_pps').show();
+          } else if (Purchase.Model.isBasic()) {
+            $('#info_basic').show();
+          } else if (Purchase.Model.isBand()) {
+            $('#info_band').show();
+          } else if (Purchase.Model.isPeriod()) {
+            $('#info_period').show();
+          } else {
+            $('#info_ppm').show();
+          }
+        }
+      },
+      setFinalPaymentView: function () {
+        this.setPrice();
+
+        if (Purchase.State.changeProduct) {
+          $('#band_price_info').hide();
+          if (Purchase.Model.isBand() &&
+              (Purchase.Model.product.cal_amt !== Purchase.Model.product.prd_amt)) {
+            $('#band_price_info').show();
+          }
+
+          $('#monthly_pay_agreement').parent().hide();
+          if (Purchase.Model.isPPM()) {
+            $('#monthly_pay_agreement').prop('checked', true);
+            $('#monthly_pay_agreement').parent().show();
+          }
+        }
+      },
+      setPrice: function () {
+        var price = Purchase.Model.getPrice();
+        var totalDiscount = Purchase.Model.getTotalDiscount();
+        var totalPrice = price - totalDiscount;
+        $('#total_price').text(numeral(totalPrice > 0 ? Math.floor(totalPrice * 1.1) : 0).format('0,0') + '원');
+        $('#product_price').text(numeral(price).format('0,0') + '원');
+        $('#discount_price').text('- ' + numeral(totalDiscount).format('0,0') + '원');
+      },
+      setPurchaseButton: function () {
+        $('#purchase_button').text(Purchase.Model.isExperience() ? '체험하기' : '결제하기');
+      }
+    },
+    Control: {
+      authInput: $('#purchase_auth .pop_wrap_inner .popup_content .input_inner input[type="password"]'),
+      init: function () {
+        this.registerEventHandler();
+
+        var productId = getUrlParam('id_product');
+        if (productId === '' && getUrlParam('id_contents').length > 0 && getUrlParam('dsc') === 'vod') {
+          $(Purchase.Model.purchaseTicket.products).each(function (i, product) {
+            if (product.prd_typ_cd === '110') {
+              productId = product.id_product;
+              return false;
+            }
+          });
+        }
+
+        Purchase.Model.setProduct(productId);
+
+        if (Purchase.Model.isPeriod() && Purchase.Model.hasPeriodList()) {
+          $('#' + Purchase.Model.product.period_list[0].id_product).prop("checked", true);
+          $('#period_choice').text(numeral(Purchase.Model.period.prd_amt).format('0,0') + '원 / ' + Purchase.Model.period.term_nm);
+        } else {
+          $('#' + Purchase.Model.product.id_product).prop("checked", true);
+        }
+
+        Purchase.View.setSubViews();
+      },
+      registerEventHandler: function () {
+        $('.info_noti_bottom_wrap .info_noti_bottom_msg li .detail_view.cls_cm_btn').click(function () {
+          Popup.addDimmed('retract_info');
+          return false;
+        });
+
+        $('#wrap').click(function (e) {
+          if (e.target.id !== 'period_choice' && e.target.id !== 'coupon_choice') {
+            $('#period_choice').next().hide();
+            $('#coupon_choice').next().hide();
+          } else if (e.target.id === 'period_choice') {
+            $('#coupon_choice').next().hide();
+          } else if (e.target.id === 'coupon_choice') {
+            $('#period_choice').next().hide();
+          }
+        });
+      },
+      registerEventHandlerForPointInput: function () {
+        $('#point_input').keyup(function (e) {
+          $(this).val($(this).val().replace(/[^0-9]/gi, ""));
+          if (e.keyCode == 13) { // enter
+            $(this).blur();
+          }
+        }).focus(function () {
+          $(this).val(Purchase.Model.discount.point > 0 ? Purchase.Model.discount.point : '');
+        }).blur(function () {
+          Purchase.Control.resetByPoint(Number($(this).val()));
+        });
+      },
+      reset: function (productId) {
+        Purchase.Model.setProduct(productId);
+
+        if (Purchase.State.changePeriod && Purchase.Model.isPeriod() && Purchase.Model.hasPeriodList()) {
+          $('#period_choice').text(numeral(Purchase.Model.period.prd_amt).format('0,0') + '원 / ' + Purchase.Model.period.term_nm);
+        }
+
+        Purchase.View.setSubViews();
+      },
+      resetByCheckbox: function (checkbox) {
+        var basePrice = Purchase.Model.getBasePrice();
+
+        if (checkbox.id === 'coupon_checkbox') {
+          this.setMembershipStatus(basePrice);
+          this.setPointStatus(basePrice);
+        } else if (checkbox.id === 'membership_checkbox') {
+          this.setPointStatus(basePrice);
+        } else if (checkbox.id === 'point_checkbox') {
+          $('#point_input').prop('disabled', !$(checkbox).is(':checked'));
+        }
+
+        Purchase.View.setPrice();
+        Purchase.View.setPaymentView();
+
+        return false;
+      },
+      resetByCoupon: function (couponNo) {
+        Purchase.Model.setCoupon(couponNo);
+
+        var couponText = '';
+        if (Purchase.Model.coupon.ppm_dc_mon && Purchase.Model.coupon.ppm_dc_mon.length > 0) {
+          couponText = Purchase.Model.coupon.ppm_dc_mon + '개월 ';
+        }
+        couponText += Purchase.Model.coupon.val_disc + Purchase.Model.coupon.fg_disc_txt + ' 할인';
+        $('#coupon_choice').text(couponText);
+
+        var basePrice = Purchase.Model.getBasePrice();
+        this.setCouponDiscount(basePrice);
+        this.setMembershipStatus(basePrice);
+        this.setPointStatus(basePrice);
+
+        Purchase.View.setPrice();
+        Purchase.View.setPaymentView();
+      },
+      setCouponDiscount: function (basePrice) {
+        var discount = Number(Purchase.Model.coupon.val_disc);
+        if (Purchase.Model.coupon.fg_disc === '10') { // %
+          discount = basePrice * discount / 100;
+        }
+
+        Purchase.Model.discount.coupon = discount;
+
+        $('#coupon_view .em_red').text('- ' + numeral(discount).format('0,0') + '원');
+      },
+      setMembershipStatus: function (basePrice) {
+        if ((Purchase.Model.isVod() || Purchase.Model.isSeries() || Purchase.Model.isBasic()) && Purchase.Model.hasMembership() && basePrice > 0
+            && Purchase.Model.product.option.tple.save === 'true') {
+          basePrice -= $('#coupon_checkbox').is(':checked') ? Purchase.Model.discount.coupon : 0;
+
+          Purchase.Model.discount.membership = basePrice * Number(Purchase.Model.product.option.tple.discountRate) / 100;
+
+          if (basePrice <= 0) {
+            $('#membership_checkbox').prop('checked', false);
+          }
+          $('#membership_checkbox').prop("disabled", basePrice <= 0);
+          $('#membership_view .input_field.em_red').text('- ' + numeral(Purchase.Model.discount.membership).format('0,0') + '원');
+        }
+      },
+      setPointStatus: function (basePrice) {
+        if ((Purchase.Model.isVod() || Purchase.Model.isSeries() || Purchase.Model.isBand() || Purchase.Model.isPeriod()) && basePrice > 0) {
+          basePrice -= ($('#coupon_checkbox').is(':checked') ? Purchase.Model.discount.coupon : 0)
+              + ($('#membership_checkbox').is(':checked') ? Purchase.Model.discount.membership : 0);
+
+          if (basePrice <= 0) {
+            $('#point_checkbox').prop('checked', false);
+          }
+          $('#point_checkbox').prop('disabled', basePrice <= 0);
+        }
+      },
+      resetByPoint: function (inputPoint) {
+        Purchase.Model.discount.point = inputPoint;
+
+        $('#point_input').val(inputPoint > 0 ? numeral(inputPoint).format('0,0') : '');
+
+        Purchase.View.setPrice();
+        Purchase.View.setPaymentView();
+      },
+      selectProduct: function (radioWrap) {
+        this.reset($(radioWrap).find('input[type="radio"]:checked').attr('id'));
+      },
+      showPeriodList: function () {
+        if (Purchase.Model.isPeriod() && Purchase.Model.hasPeriodList()) {
+          $('#period_choice').next().show();
+        }
+        return false;
+      },
+      selectPeriod: function (selectedItem) {
+        this.reset(selectedItem.id);
+        return false;
+      },
+      showCouponList: function () {
+        if ($('#coupon_checkbox').is(':checked') && Purchase.Model.hasCouponList()) {
+          $('#coupon_choice').next().show();
+        }
+        return false;
+      },
+      selectCoupon: function (selectedItem) {
+        this.resetByCoupon(selectedItem.id);
+        return false;
+      },
+      invokePurchase: function () {
+        var totalPrice = Purchase.Model.getTotalPrice();
+        if (totalPrice < 0) {
+          $('#reject_error_message').html('할인금액이 결제금액보다 많습니다.<br/>다른 할인수단 선택을 해제하세요.');
+          Popup.addDimmed('reject_error');
+          return false;
+        }
+        if ($('#payment_view').is(':visible') && $('#card_radio').is(':checked') && totalPrice < 100) {
+          $('#reject_error_message').html('100원 미만은 신용카드로 결제할 수 없습니다.<br/>확인 후 다시 이용해주세요.');
+          Popup.addDimmed('reject_error');
+          return false;
+        }
+        if (Purchase.Model.isPPM() && !$('#monthly_pay_agreement').is(':checked')) {
+          $('#reject_error_message').html('매월 정기 결제 항목에 동의해 주세요.');
+          Popup.addDimmed('reject_error');
+          return false;
+        }
+        if ((Purchase.Model.hasPoint() ? Number(Purchase.Model.product.option.bpoint) : 0)
+            < ($('#point_checkbox').is(':checked') ? Purchase.Model.discount.point : 0)) {
+          $('#reject_error_message').html('보유한 포인트보다 더 많이 사용할 수 없습니다.');
+          Popup.addDimmed('reject_error');
+          return false;
+        }
+        if (Purchase.Model.isBasic() && Purchase.Model.purchaseTicket.auth_fail === 'Y') {
+          $('#reject_error_message').html('서비스 정기점검 시간에는<br/>기본 월정액 가입이 불가합니다.<br/>이용에 불편을 드려 죄송합니다.');
+          Popup.addDimmed('reject_error');
+          return false;
+        }
+        if (Purchase.Model.isBand()) {
+          var now = new Date();
+          if (now.getYear() !== Purchase.Model.pageLoadDate.getYear() ||
+              now.getMonth() !== Purchase.Model.pageLoadDate.getMonth() ||
+              now.getDate() !== Purchase.Model.pageLoadDate.getDate()) {
+            Popup.addDimmed('reload_error');
+            return false;
+          }
+        }
+        if (Purchase.Model.purchaseTicket.permissionip_yn === 'N') {
+          $('#return_error_message').html('저작권자의 요청에 의해 해외에서는<br>구매 및 시청이 제한됩니다.');
+          Popup.addDimmed('return_error');
+          return false;
+        }
+        if ((Purchase.Model.isPeriod() ? Purchase.Model.period.req_age_val : Purchase.Model.product.req_age_val) === '19'
+            && Purchase.Model.purchaseTicket.age_over === 'N') {
+          $('#return_error_message').html('19세 미만은 구매할 수 없는 상품입니다.');
+          Popup.addDimmed('return_error');
+          return false;
+        }
+
+        if (Purchase.Model.purchaseTicket.buy_password === 'Y') {
+          this.authInput.val('').next().hide();
+          $('#auth_confirm_button').prop("disabled", false);
+          Popup.addDimmed('purchase_auth');
+          return false;
+        }
+
+        Popup.addDimmed('confirm_purchase');
+
+        return false;
+      },
+      confirmAuthNumber: function () {
+        var errorMessage = this.authInput.next();
+        errorMessage.hide();
+        $('#auth_confirm_button').prop("disabled", true);
+
+        if (this.authInput.val().length < 4) {
+          $('#auth_confirm_button').prop("disabled", false);
+          errorMessage.html('<i class="ico_info"></i>인증 번호 숫자 4자리를 입력해 주세요.');
+          errorMessage.show();
+          return false;
+        }
+
+        $.ajax({
+          url: '/api/bill/confirm/password',
+          type: 'post',
+          data: {
+            pass: this.authInput.val()
+          }
+        }).done(function (response) {
+          $('#auth_confirm_button').prop("disabled", false);
+          if (response.result === 'OK') {
+            Popup.removeDimmed('purchase_auth');
+            Popup.addDimmed('confirm_purchase');
+          } else {
+            errorMessage.html('<i class="ico_info"></i>인증번호가 일치하지 않습니다.');
+            errorMessage.show();
+          }
+        });
+
+        return false;
+      },
+      processPurchase: function () {
+        var purchaseTicket = Purchase.Model.purchaseTicket;
+        var product = Purchase.Model.product;
+        if (Purchase.Model.isPeriod()) {
+          product = Purchase.Model.period;
+        }
+
+        var couponUse = 'N';
+        var couponNo = '';
+        var couponDiscount = '';
+        if ($('#coupon_checkbox').is(':checked')) {
+          couponUse = 'Y';
+          couponNo = Purchase.Model.coupon.no_coupon || '';
+          couponDiscount = Purchase.Model.discount.coupon;
+        }
+        var tMembershipUse = 'N';
+        var tMembershipSeqNo = '';
+        var tMembershipDiscount = '';
+        if ($('#membership_checkbox').is(':checked')) {
+          tMembershipUse = 'Y';
+          tMembershipSeqNo = Purchase.Model.hasMembership() ? Purchase.Model.product.option.tple.seqNo : '';
+          tMembershipDiscount = Purchase.Model.discount.membership;
+        }
+        var bpointUse = 'N';
+        var bpointDiscount = '';
+        if ($('#point_checkbox').is(':checked')) {
+          bpointUse = 'Y';
+          bpointDiscount = Purchase.Model.discount.point;
+        }
+        var purchaseType = '';
+        if (Purchase.Model.isBasic() &&
+            purchaseTicket.tfreemium && purchaseTicket.tfreemium.tfree_tgt && purchaseTicket.tfreemium.tfree_tgt === 'Y') {
+          purchaseType = 'TFREE';
+        }
+        var bandProductYn = 'N';
+        var calculatedAmount = '0';
+        if (Purchase.Model.isBand()) {
+          bandProductYn = 'Y';
+          calculatedAmount = product.cal_amt;
+        }
+
+        $('input[name="contentsId"]').val(purchaseTicket.content ? purchaseTicket.content.id : '');
+        $('input[name="productTypeCode"]').val(product.prd_typ_cd);
+        $('input[name="productId"]').val(product.id_product);
+        $('input[name="productName"]').val(encodeURIComponent(product.nm_product));
+        $('input[name="pgCode"]').val($('input[name="payment_opt"]:checked').val());
+        $('input[name="purchaseNum"]').val(Purchase.Model.purchaseTicket.buy_password === 'Y' ? this.authInput.val() : '');
+        $('input[name="couponUse"]').val(couponUse);
+        $('input[name="couponNo"]').val(couponNo);
+        $('input[name="couponDiscount"]').val(couponDiscount);
+        $('input[name="tMembershipUse"]').val(tMembershipUse);
+        $('input[name="tMembershipSeqNo"]').val(tMembershipSeqNo);
+        $('input[name="tMembershipDiscount"]').val(tMembershipDiscount);
+        $('input[name="bpointUse"]').val(bpointUse);
+        $('input[name="bpointDiscount"]').val(bpointDiscount);
+        $('input[name="purchaseType"]').val(purchaseType);
+        $('input[name="bandProductYn"]').val(bandProductYn);
+        $('input[name="calculatedAmount"]').val(calculatedAmount);
+        $('input[name="productAmount"]').val(product.prd_amt);
+        $('input[name="productPrice"]').val(Math.floor(Purchase.Model.getPrice() * 1.1));
+        $('input[name="totalDiscount"]').val(Math.floor(Purchase.Model.getTotalDiscount()));
+        $('input[name="totalPrice"]').val(Math.floor(Purchase.Model.getTotalPrice() * 1.1));
+
+        closePurchasePopup();
+        purchasePopup = window.open('', 'purchasePopup', 'width=450, height=550, top=100, left=100, fullscreen=no, menubar=no, status=no, toolbar=no, titlebar=yes, location=no, scrollbar=no');
+        document.purchase_form.submit();
+
+        return false;
+      }
+    }
+  };
+
+  $(function () {
+    if (!User.isMemberAuth) {
+      alert('결제를 위해서는 본인 인증이 필요합니다.');
+      location.href = '/user/check/me?rw=' + encodeURIComponent(location.href);
+    }
+
+    var result = 'OK';
+    if (result === '40002') {
+      alert("고객 정보를 찾을 수 없습니다.");
+      location.href = '/user/logout';
+    } else if (result === '10000') {
+      alert("이미 구매한 상품입니다.");
+      location.href = getUrlParam('rw') || '/';
+    } else if (result !== 'OK' || !true) {
+      alert('구매할 수 있는 상품이 없거나 대상자가 아닙니다.');
+      location.href = getUrlParam('rw') || '/';
+    }
+
+    Purchase.Model.purchaseTicket = JSON.parse('{"IF":"IF-NSPCS-515","ver":"1.0","result":"OK","message":"","content":{"id":"{73B14744-F0EE-11E7-BD5E-E199846257E6}","title":"[HD]윤식당 2","type":"vod","hd_ecpt":"N"},"svc_grp_cd":"4","age_over":"Y","ci_yn":"Y","buy_password":"N","permissionip_yn":"Y","products":[{"nscreenYn":"Y","ppm_paid":null,"req_age_val":"","prd_typ_cd":"110","prod_desc":null,"nm_product":"[HD]윤식당 2","id_product":"5919105","purc_sts_cd":null,"prd_amt":"1500","term_nm":"7일","term_title":null,"purc_fr_dy":null,"purc_to_dy":null,"fg_value":"7","discount":[],"promotion":{"tfreemium":null,"tfamily":null},"period_list":null,"option":{"tmembership":null,"coupons":null,"tple":null,"bpoint":null},"experience":null,"purc_no":null,"band_product":null,"cal_amt":null,"poc_cd":"7","nscreen_yn":"Y"},{"nscreenYn":"Y","ppm_paid":null,"req_age_val":"","prd_typ_cd":"130","prod_desc":null,"nm_product":"CJ E&M 월정액","id_product":"3396003","purc_sts_cd":null,"prd_amt":"10000","term_nm":"매월","term_title":null,"purc_fr_dy":null,"purc_to_dy":null,"fg_value":"9999","discount":[],"promotion":{"tfreemium":null,"tfamily":null},"period_list":null,"option":{"tmembership":null,"coupons":null,"tple":null,"bpoint":null},"experience":null,"purc_no":null,"band_product":null,"cal_amt":null,"poc_cd":"7","nscreen_yn":"Y"},{"nscreenYn":"Y","ppm_paid":null,"req_age_val":null,"prd_typ_cd":"132","prod_desc":null,"nm_product":null,"id_product":null,"purc_sts_cd":null,"prd_amt":null,"term_nm":null,"term_title":"CJ E&M 기간권","purc_fr_dy":null,"purc_to_dy":null,"fg_value":null,"discount":null,"promotion":null,"period_list":[{"prd_typ_cd":"132","nm_product":"CJ E&M 30일권","id_product":"4192983","prd_amt":"12000","term_nm":"30일","fg_value":"30","req_age_val":""}],"option":{"tmembership":null,"coupons":null,"tple":null,"bpoint":null},"experience":null,"purc_no":null,"band_product":null,"cal_amt":null,"poc_cd":"7","nscreen_yn":"Y"}],"tfreemium":{"tfree_tgt":"N","tfree_user":"N"}}');
+    Purchase.Control.init();
+  });
+</script>
+
+
+</body></html>
