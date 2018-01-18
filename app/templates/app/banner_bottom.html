@@ -1,0 +1,1528 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ko"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>oksusu</title>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta property="fb:app_id" content="140512069771590">
+<meta name="format-detection" content="telephone=no">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="oksusu">
+  <meta property="og:url" content="http://www.oksusu.com">
+  <meta property="og:image" content="http://www.oksusu.com/public/assets/img/oksusu_og_image.png">
+  <meta property="og:description" content="100여개의 실시간 채널과 영화, 방송VOD, 클립, 오리지널 콘텐츠가 고화질로! 보는 재미가 우수수, oksusu!">
+<link rel="stylesheet" type="text/css" href="{% static 'banner_static/fonts.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'banner_static/common.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'banner_static/layout.css' %}">
+<script src="{% static 'banner_static/1393037114073571' %}" async=""></script><script src="{% static 'banner_static/iwl.js' %}" async=""></script><script async="" src="{% static 'banner_static/fbevents.js' %}"></script><script async="" src="{% static 'banner_static/analytics.js' %}"></script><script type="text/javascript" src="{% static 'banner_static/jquery-1.js' %}"></script>
+<script type="text/javascript" src="{% static 'banner_static/jquery-ui.js' %}"></script>
+<script type="text/javascript" src="{% static 'banner_static/jquery-cookie.js' %}"></script>
+<script type="text/javascript" src="{% static 'banner_static/jquery.js' %}"></script>
+<script type="text/javascript" src="{% static 'banner_static/moment-with-locales.js' %}"></script>
+<script type="text/javascript" src="{% static 'banner_static/properties.js' %}"></script>
+<script type="text/javascript" src="{% static 'banner_static/util.js' %}"></script>
+<script type="text/javascript" src="{% static 'banner_static/search.js' %}"></script>
+<script type="text/javascript" src="{% static 'banner_static/banner.js' %}"></script>
+<script type="text/javascript" src="{% static 'banner_static/searchPeople.js' %}"></script>
+<script type="text/javascript" src="{% static 'banner_static/style_ui.js' %}"></script>
+<script type="text/javascript" src="{% static 'banner_static/jquery_002.js' %}"></script>
+<script type="text/javascript">
+  var serverDomain = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '');
+  var console = window.console || {log: function () {}};
+  var User = {
+    userId: '' || 'bmguest',
+    isLogin: false,
+    isAdult: false,
+    isMemberAuth: false,
+    serviceProvider: '',
+    watchLevel: 'N',
+    isKidsLockFirstYn: 'N',
+    isWatchAvailable: ($.cookie('popupRestrictView')) ? $.cookie('popupRestrictView') : 'N',
+    sex : '',
+    ageGroup : '',
+    nickName : '',
+    userNo : ''
+  };
+
+  var Category = {};
+    Category['free'] = {};
+      Category['free']['name'] = 'free';
+      Category['free']['code'] = '9000001345';
+      Category['free']['title'] = '무료';
+      Category['free']['link'] = '/free';
+      Category['free']['display'] = 'show';
+    Category['live'] = {};
+      Category['live']['name'] = 'live';
+      Category['live']['code'] = '9000000238';
+      Category['live']['title'] = 'LIVE';
+      Category['live']['link'] = '/live';
+      Category['live']['display'] = 'show';
+    Category['vod'] = {};
+      Category['vod']['name'] = 'vod';
+      Category['vod']['code'] = '9000000270';
+      Category['vod']['title'] = '방송VOD';
+      Category['vod']['link'] = '/vod';
+      Category['vod']['display'] = 'show';
+    Category['movie'] = {};
+      Category['movie']['name'] = 'movie';
+      Category['movie']['code'] = '9000000269';
+      Category['movie']['title'] = '영화';
+      Category['movie']['link'] = '/movie';
+      Category['movie']['display'] = 'show';
+    Category['sports'] = {};
+      Category['sports']['name'] = 'sports';
+      Category['sports']['code'] = '9000000239';
+      Category['sports']['title'] = '스포츠';
+      Category['sports']['link'] = '/sports';
+      Category['sports']['display'] = 'show';
+    Category['clip'] = {};
+      Category['clip']['name'] = 'clip';
+      Category['clip']['code'] = '9000000271';
+      Category['clip']['title'] = '클립';
+      Category['clip']['link'] = '/clip';
+      Category['clip']['display'] = 'show';
+    Category['sktmember'] = {};
+      Category['sktmember']['name'] = 'sktmember';
+      Category['sktmember']['code'] = '9000000396';
+      Category['sktmember']['title'] = 'SKT 고객 전용관';
+      Category['sktmember']['link'] = '/special/sktmember';
+      Category['sktmember']['display'] = 'hide';
+    Category['bandplay'] = {};
+      Category['bandplay']['name'] = 'bandplay';
+      Category['bandplay']['code'] = '9000002489';
+      Category['bandplay']['title'] = 'SKT oksusu 안심팩 혜택관';
+      Category['bandplay']['link'] = '/special/bandplay';
+      Category['bandplay']['display'] = 'hide';
+    Category['news'] = {};
+      Category['news']['name'] = 'news';
+      Category['news']['code'] = '9000002081';
+      Category['news']['title'] = '뉴스';
+      Category['news']['link'] = '/special/news';
+      Category['news']['display'] = 'hide';
+
+
+  function setCookie(cookie_name, value, exdays) {
+    var exdate = new Date();
+    exdate.setDate(exdate.getDate() + exdays);
+    var cookie_value = escape(value) + ((exdays == null) ? "" : "; expires=" + exdate.toUTCString()) + "; path=/";
+    document.cookie = cookie_name + "=" + cookie_value;
+  }
+
+  function getCookie(cookie_name) {
+    var i, x, y, z = document.cookie.split("; ");
+    for (i = 0; i < z.length; i++) {
+      x = z[i].substr(0, z[i].indexOf("="));
+      y = z[i].substr(z[i].indexOf("=") + 1);
+      x = x.replace(/^s+|s+$/g, "");
+
+      if (x == cookie_name) {
+        return unescape(y);
+      }
+    }
+  }
+
+  function addCookie(str) {
+    var maxitem = 8; // 최대 유지할 수 있는 개수
+    var prev_recent = getCookie('recent');
+    var isExist = false;
+    if ((prev_recent == '') || (prev_recent == null)) {
+      setCookie('recent', str);
+    } else {
+      if (getCookie('recent').split(',').length > maxitem - 1) {
+        prev_recent = prev_recent.substring(prev_recent.indexOf(',') + 1);
+      }
+
+      for (var i=0; i<prev_recent.split(',').length; i++) {
+        if (prev_recent.split(',')[i] == str) {
+          isExist = true;
+        }
+      }
+
+      if (isExist) {
+        console.log(str); // 이미 존재하는 경우 console에만 출력하고 실제 반영되지 않음
+      }
+      else {
+        setCookie('recent', prev_recent + ',' + str);
+      }
+    }
+  }
+</script></head>
+<body>
+<nav class="skip">
+  <ul>
+    <li><a href="#contStart">본문바로가기</a></li>
+  </ul>
+</nav>
+<div id="wrap">
+  <div id="header" style="position: absolute; top: 0px; margin-left: 0px;">
+<div class="header_top">
+  <div class="header_top_inner">
+    <div class="header_info_view" id="header-notice">
+      <a href="http://www.oksusu.com/support/notice"><span class="info_view_tit">공지사항</span></a><a href="http://www.oksusu.com/support/notice/open" class="info_view_cnt"><span class="info_view_summary">인기영화, 드라마, 오리지널 콘텐츠를 oksusu에서 Full HD(1080P)로 즐겨보세요.</span><span class="info_view_date">2017.10.26</span></a>
+    </div>
+    <div class="util_menu"> 
+      <a href="http://www.oksusu.com/event/list">이벤트</a>
+      <a href="http://www.oksusu.com/schedule">편성표</a>
+      <a href="http://www.oksusu.com/bill/ticket">이용권</a>
+              <a href="http://www.oksusu.com/user/login" title="로그인" id="header-login">로그인</a>
+    </div>
+  </div>
+</div>
+<div class="header_bottom">
+<div class="header_bottom_inner">
+  <div class="nav_bar_left">
+    <a href="javascript:;" class="hmenu hover">카테고리</a>
+    <!--cate menu s-->
+    <div class="hmenu_gnb_list" style="display: block;">
+      <i class="img_arrow"></i>
+      <ul>
+                        <li>
+                  <a href="http://www.oksusu.com/free" title="무료" class="hmenu_free">
+                    무료
+                  </a>
+                </li>
+                <li>
+                  <a href="http://www.oksusu.com/live" title="LIVE" class="hmenu_live">
+                    LIVE
+                  </a>
+                </li>
+                <li>
+                  <a href="http://www.oksusu.com/vod" title="방송VOD" class="hmenu_vod">
+                    방송VOD
+                  </a>
+                </li>
+                <li>
+                  <a href="http://www.oksusu.com/movie" title="영화" class="hmenu_movie">
+                    영화
+                  </a>
+                </li>
+                <li>
+                  <a href="http://www.oksusu.com/sports" title="스포츠" class="hmenu_sports">
+                    스포츠
+                  </a>
+                </li>
+                <li>
+                  <a href="http://www.oksusu.com/clip" title="클립" class="hmenu_clip">
+                    클립
+                  </a>
+                </li>
+                <li style="display: none;">
+                  <a href="http://www.oksusu.com/special/sktmember" title="SKT 고객 전용관" class="hmenu_sktmember">
+                    SKT 고객 전용관
+                  </a>
+                </li>
+                <li style="display: none;">
+                  <a href="http://www.oksusu.com/special/news" title="뉴스" class="hmenu_news">
+                    뉴스
+                  </a>
+                </li>
+                <li style="display: none;">
+                  <a href="http://www.oksusu.com/special/bandplay" title="SKT oksusu 안심팩 혜택관" class="hmenu_bandplay">
+                    SKT oksusu 안심팩 혜택관
+                  </a>
+                </li>
+        <li>
+          <a href="http://www.oksusu.com/clip?mid=9000002133" title="뉴스" class="hmenu_news">
+            뉴스
+          </a>
+        </li>
+        <li>
+          <a href="http://www.oksusu.com/clip?mid=9000000292" title="오리지널" class="hmenu_original">
+            오리지널
+          </a>
+        </li>
+        <li>
+          <a href="http://www.oksusu.com/sports?mid=9000000243&amp;sid=9000001159" title="프리미어리그" class="hmenu_league">
+            프리미어리그
+          </a>
+        </li>
+        <li>
+          <a href="http://www.oksusu.com/vod?mid=9000000328&amp;sid=9000000369" title="키즈" class="hmenu_kids">
+            키즈
+          </a>
+        </li>
+        <li>
+          <a href="http://www.oksusu.com/special/sktmember" title="SKT 고객 전용관" class="hmenu_sktmember">
+            SKT 고객 전용관
+          </a>
+        </li>
+        <li>
+          <a href="http://www.oksusu.com/special/bandplay" title="SKT oksusu 안심팩 혜택관" class="hmenu_bandplay">
+            SKT oksusu 안심팩 혜택관
+          </a>
+        </li>
+      </ul>
+    </div>
+    <!-- cate menu e-->
+    <a href="http://www.oksusu.com/special/ranking" class="header_rank" style="display:none;">랭킹</a>
+    <a href="http://www.oksusu.com/my" class="header_my ">MY</a>
+  </div>
+  <h1 class="logo"><a id="goHome" href="http://www.oksusu.com/" title="홈 페이지로 이동">oksusu logo</a></h1>
+  <div class="nav_bar_right">
+    <a href="http://www.oksusu.com/special/sktmember" class="header_customtheater"><span class="txt_strong">SKT</span> 고객전용관</a>
+    <a href="http://www.oksusu.com/special/bandplay" class="header_playpack"><span class="txt_strong">SKT oksusu</span> 안심팩 혜택관</a>
+    <button type="button" id="search-btn" class="btnUnifedSearch"><span>통합검색하기</span></button>
+  </div>
+</div>
+<script>
+  $(function(){
+    /* s : 본문바로가기 포커스 이동시 페이지 상단으로 스크롤되는 현상 방지 */
+    $('#contStart').focusin(function() {
+      $('html, body').animate({scrollTop : 0}, 0);
+    });
+    /* e : 본문바로가기 포커스 이동시 페이지 상단으로 스크롤되는 현상 방지 */
+
+    /* s : 사용자 메뉴 */
+    $('.header_top .util_menu > a').focusin(function() {
+      var _this = $(this);
+      var _userUtil = $('.header_top .util_menu .user_info');
+      var _hmenu = $('.header_bottom .hmenu');
+      var _hmenu_gnb_list = $('.hmenu_gnb_list');
+
+      if(!_hmenu_gnb_list.is(':hidden')) {
+        _hmenu.removeClass('hover');
+        _hmenu_gnb_list.hide();
+      }
+
+      if(_this.hasClass('user_id')) {
+        _userUtil.show();
+      }else{
+        _userUtil.hide();
+      }
+    });
+    /* e : 사용자 메뉴 */
+
+    /* s : 카테고리 메뉴*/
+    $('.header_bottom .hmenu').mouseenter(function() {
+      var _this = $(this);
+      var _hmenu_gnb_list = $('.hmenu_gnb_list');
+
+      _this.addClass('hover');
+      _hmenu_gnb_list.show();
+
+    }).mouseleave(function() {
+      var _this = $(this);
+      var _hmenu_gnb_list = $('.hmenu_gnb_list');
+
+      _this.removeClass('hover');
+      _hmenu_gnb_list.hide();
+
+    });
+    $('.hmenu_gnb_list').mouseenter(function() {
+      var _this = $(this);
+      var _hmenu = $('.header_bottom .hmenu');
+
+      _hmenu.addClass('hover');
+      _this.show();
+
+    }).mouseleave(function() {
+      var _this = $(this);
+      var _hmenu = $('.header_bottom .hmenu');
+
+      _hmenu.removeClass('hover');
+      _this.hide();
+
+    });
+    $('.header_bottom .nav_bar_left > a').focusin(function() {
+      var _this = $(this);
+      var _hmenu = $('.header_bottom .hmenu');
+      var _hmenu_gnb_list = $('.hmenu_gnb_list');
+      var _userUtil = $('.header_top .util_menu .user_info');
+
+      if(!_this.hasClass('hmenu')) {
+        if(_hmenu_gnb_list.is(':hidden')) {return;}
+        _hmenu.removeClass('hover');
+        _hmenu_gnb_list.hide();
+      }else{
+        _userUtil.hide();
+        _hmenu.addClass('hover');
+        _hmenu_gnb_list.show();
+      }
+    });
+    /* e : 카테고리 메뉴*/
+  });
+</script>
+</div>
+<!-- 통합검색 -->
+<div id="search-area" class="unifiedSearchWrap" style="display: none;">
+  <div class="unifiedTop">
+    <div class="unifiedTopInner">
+      <form onsubmit="return false;">
+        <fieldset>
+          <legend class="over_hidden">통합검색</legend>
+          <input placeholder="검색어를 입력해주세요." title="검색어를 입력해주세요." class="iptSearch" maxlength="35" type="text">
+          <button type="button" class="btnSchClear" onclick="Search.clickClearKeyword();" style="display:none;"><span>검색어 지우기</span></button>
+          <!-- 연관검색어 -->
+          <div class="searchRelateWrap" style="display:none;">
+            <!-- <h2 class="searchRelateTit">연관검색어</h2> -->
+            <ul class="relateListBox">
+            </ul>
+          </div>
+          <!-- //연관검색어 -->
+          <button type="button" class="btnSearch"><span>검색하기</span></button>
+        </fieldset>
+      </form>
+    </div>
+    <!-- 최근검색 -->
+    <div class="unifiRecentBox">
+      <div class="recentInner">
+        <strong class="recentTit">최근 검색어</strong>
+        <div class="recentListBox">
+          <ul class="recentList">
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- //최근검색 -->
+  </div>
+  <!-- 인기검색어 -->
+  <div class="unifiedPopularWrap" style="display: none;">
+    <div class="unifiedPopularInner">
+      <div class="popularTit">인기 검색어</div>
+      <div class="timeBox">2018.01.15 10:31 <span>기준</span></div>
+      <div class="popularList"><ul>	<li><span class="popularTop">1</span> <a href="http://www.oksusu.com/search/result?q=LEVEL%20UP%20Project%202">LEVEL UP Project 2</a> </li>	<li><span class="popularTop">2</span> <a href="http://www.oksusu.com/search/result?q=%ED%99%94%EC%9C%A0%EA%B8%B0">화유기</a> </li>	<li><span class="popularTop">3</span> <a href="http://www.oksusu.com/search/result?q=%EB%B3%B5%EC%88%98%EB%85%B8%ED%8A%B8">복수노트</a> </li>	<li><span>4</span> <a href="http://www.oksusu.com/search/result?q=%EC%95%84%EB%8A%94%20%ED%98%95%EB%8B%98">아는 형님</a> </li>	<li><span>5</span> <a href="http://www.oksusu.com/search/result?q=%EB%8F%84%EA%B9%A8%EB%B9%84">도깨비</a> </li></ul><ul>	<li><span>6</span> <a href="http://www.oksusu.com/search/result?q=%EC%9C%A4%EC%8B%9D%EB%8B%B9%202">윤식당 2</a> </li>	<li><span>7</span> <a href="http://www.oksusu.com/search/result?q=%EC%8A%AC%EA%B8%B0%EB%A1%9C%EC%9A%B4%20%EA%B0%90%EB%B9%B5%EC%83%9D%ED%99%9C">슬기로운 감빵생활</a> </li>	<li><span>8</span> <a href="http://www.oksusu.com/search/result?q=%EB%82%98%EC%81%9C%EB%85%80%EC%84%9D%EB%93%A4%3A%20%EC%95%85%EC%9D%98%20%EB%8F%84%EC%8B%9C">나쁜녀석들: 악의 도시</a> </li>	<li><span>9</span> <a href="http://www.oksusu.com/search/result?q=%EC%8B%A0%EC%84%9C%EC%9C%A0%EA%B8%B0%20%EC%99%B8%EC%A0%84%20%EA%B0%95%EC%8B%9D%EB%8B%B9">신서유기 외전 강식당</a> </li>	<li><span>10</span> <a href="http://www.oksusu.com/search/result?q=LEVEL%20UP%20Project">LEVEL UP Project</a> </li></ul><ul>	<li><span>11</span> <a href="http://www.oksusu.com/search/result?q=%EC%8B%A0%EC%84%9C%EC%9C%A0%EA%B8%B0%204">신서유기 4</a> </li>	<li><span>12</span> <a href="http://www.oksusu.com/search/result?q=%EC%8B%A0%EC%84%9C%EC%9C%A0%EA%B8%B03">신서유기3</a> </li>	<li><span>13</span> <a href="http://www.oksusu.com/search/result?q=%EC%9C%A4%EC%8B%9D%EB%8B%B9">윤식당</a> </li>	<li><span>14</span> <a href="http://www.oksusu.com/search/result?q=%EB%AF%B8%EC%98%A5%20oksusu%20%EC%A0%84%EC%9A%A9">미옥 oksusu 전용</a> </li>	<li><span>15</span> <a href="http://www.oksusu.com/search/result?q=%EC%9D%B4%EB%B2%88%20%EC%83%9D%EC%9D%80%20%EC%B2%98%EC%9D%8C%EC%9D%B4%EB%9D%BC">이번 생은 처음이라</a> </li></ul><ul>	<li><span>16</span> <a href="http://www.oksusu.com/search/result?q=%EB%82%98%EB%A7%8C%20%EB%AF%BF%EA%B3%A0%20%EB%94%B0%EB%9D%BC%EC%99%80%2C%20%EB%8F%84%EC%8B%9C%EC%96%B4%EB%B6%80">나만 믿고 따라와, 도시어부</a> </li>	<li><span>17</span> <a href="http://www.oksusu.com/search/result?q=%EC%95%8C%EC%95%84%EB%91%90%EB%A9%B4%20%EC%93%B8%EB%8D%B0%EC%97%86%EB%8A%94%20%EC%8B%A0%EB%B9%84%ED%95%9C%20%EC%9E%A1%ED%95%99%EC%82%AC%EC%A0%842">알아두면 쓸데없는 신비한 잡학사전2</a> </li>	<li><span>18</span> <a href="http://www.oksusu.com/search/result?q=%EC%9D%B8%EC%83%9D%EC%88%A0%EC%A7%91">인생술집</a> </li>	<li><span>19</span> <a href="http://www.oksusu.com/search/result?q=%EC%95%A0%EA%B0%84%EC%9E%A5">애간장</a> </li>	<li><span>20</span> <a href="http://www.oksusu.com/search/result?q=%EC%9D%B4%EB%B0%A9%EC%9D%B8">이방인</a> </li></ul></div>
+    </div>
+  </div>
+  <!-- //인기검색어 -->
+</div>
+<!-- 통합검색 //-->
+
+
+  </div>
+  <div id="container">
+    <p id="contStart" tabindex="0">본문 시작</p>
+    <div class="main_category_wrap"><!-- main category -->
+      <div class="main_category_inner">
+        <div class="vmenu_inner">
+          <a href="http://www.oksusu.com/free" class="vmenu_free">무료</a>
+        </div>
+        <div class="vmenu_inner">
+          <a href="http://www.oksusu.com/live" class="vmenu_live">LIVE</a>
+        </div>
+        <div class="vmenu_inner">
+          <a href="http://www.oksusu.com/vod" class="vmenu_vod">방송VOD</a>
+        </div>
+        <div class="vmenu_inner">
+          <a href="http://www.oksusu.com/movie" class="vmenu_movie">영화</a>
+        </div>
+        <div class="vmenu_inner">
+          <a href="http://www.oksusu.com/sports" class="vmenu_sports">스포츠</a>
+        </div>
+        <div class="vmenu_inner">
+          <a href="http://www.oksusu.com/clip" class="vmenu_clip">클립</a>
+        </div>
+        <div class="vmenu_inner">
+          <a href="http://www.oksusu.com/clip?mid=9000002133" class="vmenu_news">뉴스</a>
+        </div>
+        <div class="vmenu_inner">
+          <a href="http://www.oksusu.com/clip?mid=9000000292" class="vmenu_original">오리지널</a>
+        </div>
+        <div class="vmenu_inner">
+          <a href="http://www.oksusu.com/sports?mid=9000000243&amp;sid=9000001159" class="vmenu_league">프리미어리그</a>
+        </div>
+        <div class="vmenu_inner">
+          <a href="http://www.oksusu.com/vod?mid=9000000328&amp;sid=9000000369" class="vmenu_kids">키즈</a>
+        </div>
+      </div>
+    </div><!-- main category //-->
+    <div class="main_content"><!-- main content -->
+      <div id="cardSection"><div class="general_section_list grid03" data-type="20_1"> <div class="section_title_box">   <span class="ico_name text_blue">뉴스</span>   <span class="section_title normal">#이세돌VS커제 #미세먼지#연말정산</span> </div> <div class="vlist_allview">    <a href="http://www.oksusu.com/browse?sid=9000002082" title="전체보기" class="ico_arrow">전체보기</a>  </div> <span id="slider-prevUNYLw"><a class="bx-prev btn_slider prev disabled" href=""></a></span><div class="bx-wrapper" style="max-width: 1201px;"><div class="bx-viewport" aria-live="polite" style="width: 100%; overflow: hidden; position: relative; height: 292px;"><ul class="section_vlist " id="UNYLw" style="width: 15215%; position: relative; transition-duration: 0s; transform: translate3d(0px, 0px, 0px);"><li style="float: left; list-style: outside none none; position: relative; width: 386.667px; margin-left: 20px;" aria-hidden="false"> <a href="http://www.oksusu.com/v/%7BB4336DE3-F93D-11E7-9023-499D9432ACE9%7D" title="실수와 승부 사이...이것이 '인간의 바둑'이다"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180115002248285_971_002.jpg' %}" alt="실수와 승부 사이...이것이 '인간의 바둑'이다">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">02:13</span>   </div>   <div class="vlist_text_box">     <div class="text_title" style="overflow-wrap: break-word; white-space: normal;">실수와 승부 사이...이것이 '인간의 바둑'이다     </div>     <div class="text_subtitle text_blue">YTN 뉴스     </div>     <div class="text_play_count">       <span class="ico_count">605</span>       <span class="text_date">2018.01.14<em>(일)</em></span>     </div>   </div> </div> </a></li><li style="float: left; list-style: outside none none; position: relative; width: 386.667px; margin-left: 20px;" aria-hidden="false"> <a href="http://www.oksusu.com/v/%7B8631477D-F991-11E7-9023-499D9432ACE9%7D" title="연말정산, 올해부터 달라지는 점"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180115101833588_997.jpg' %}" alt="연말정산, 올해부터 달라지는 점">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">02:21</span>   </div>   <div class="vlist_text_box">     <div class="text_title" style="overflow-wrap: break-word; white-space: normal;">연말정산, 올해부터 달라지는 점     </div>     <div class="text_subtitle text_blue">YTN 뉴스     </div>     <div class="text_play_count">       <span class="ico_count">4</span>       <span class="text_date">2018.01.15<em>(월)</em></span>     </div>   </div> </div> </a></li><li style="float: left; list-style: outside none none; position: relative; width: 386.667px; margin-left: 20px;" aria-hidden="false"> <a href="http://www.oksusu.com/v/%7B88C7D0E0-F991-11E7-9023-499D9432ACE9%7D" title="'北 예술단 파견' 실무접촉...모란봉악단 오나"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180115101903814_1000.jpg' %}" alt="'北 예술단 파견' 실무접촉...모란봉악단 오나">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">03:01</span>   </div>   <div class="vlist_text_box">     <div class="text_title" style="overflow-wrap: break-word; white-space: normal;">'北 예술단 파견' 실무접촉...모란봉악단 오나     </div>     <div class="text_subtitle text_blue">YTN 뉴스     </div>     <div class="text_play_count">       <span class="ico_count">0</span>       <span class="text_date">2018.01.15<em>(월)</em></span>     </div>   </div> </div> </a></li><li style="float: left; list-style: outside none none; position: relative; width: 386.667px; margin-left: 20px;" aria-hidden="true"> <a href="http://www.oksusu.com/v/%7B8C48E152-F991-11E7-9023-499D9432ACE9%7D" title="[날씨] 추위 풀리자 미세먼지 비상...마스크 챙기세요"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180115101932200_1002.jpg' %}" alt="[날씨] 추위 풀리자 미세먼지 비상...마스크 챙기세요">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">01:49</span>   </div>   <div class="vlist_text_box">     <div class="text_title" style="overflow-wrap: break-word; white-space: normal;">[날씨] 추위 풀리자 미세먼지 비상...마스크 챙기세요     </div>     <div class="text_subtitle text_blue">YTN 뉴스     </div>     <div class="text_play_count">       <span class="ico_count">3</span>       <span class="text_date">2018.01.15<em>(월)</em></span>     </div>   </div> </div> </a></li><li style="float: left; list-style: outside none none; position: relative; width: 386.667px; margin-left: 20px;" aria-hidden="true"> <a href="http://www.oksusu.com/v/%7B8A878241-F991-11E7-9023-499D9432ACE9%7D" title="면역력 떨어지는 겨울, 미세먼지 더 위험한가?"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180115101919097_1001.jpg' %}" alt="면역력 떨어지는 겨울, 미세먼지 더 위험한가?">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">03:43</span>   </div>   <div class="vlist_text_box">     <div class="text_title" style="overflow-wrap: break-word; white-space: normal;">면역력 떨어지는 겨울, 미세먼지 더 위험한가?     </div>     <div class="text_subtitle text_blue">YTN 뉴스     </div>     <div class="text_play_count">       <span class="ico_count">1</span>       <span class="text_date">2018.01.15<em>(월)</em></span>     </div>   </div> </div> </a></li><li style="float: left; list-style: outside none none; position: relative; width: 386.667px; margin-left: 20px;" aria-hidden="true"> <a href="http://www.oksusu.com/v/%7B871788CE-F991-11E7-9023-499D9432ACE9%7D" title="'영하 28도'에서 뜨거운 물을 공중에 뿌리면?"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180115102030360_998.jpg' %}" alt="'영하 28도'에서 뜨거운 물을 공중에 뿌리면?">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">00:44</span>   </div>   <div class="vlist_text_box">     <div class="text_title" style="overflow-wrap: break-word; white-space: normal;">'영하 28도'에서 뜨거운 물을 공중에 뿌리면?     </div>     <div class="text_subtitle text_blue">YTN 뉴스     </div>     <div class="text_play_count">       <span class="ico_count">0</span>       <span class="text_date">2018.01.15<em>(월)</em></span>     </div>   </div> </div> </a></li><li style="float: left; list-style: outside none none; position: relative; width: 386.667px; margin-left: 20px;" aria-hidden="true"> <a href="http://www.oksusu.com/v/%7BCCC456DB-F93D-11E7-9023-499D9432ACE9%7D" title="경기는 얼어붙어도 명품·고가 패션은 '훨훨'"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180115002444406_979.jpg' %}" alt="경기는 얼어붙어도 명품·고가 패션은 '훨훨'">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">01:55</span>   </div>   <div class="vlist_text_box">     <div class="text_title" style="overflow-wrap: break-word; white-space: normal;">경기는 얼어붙어도 명품·고가 패션은 '훨훨'     </div>     <div class="text_subtitle text_blue">YTN 뉴스     </div>     <div class="text_play_count">       <span class="ico_count">347</span>       <span class="text_date">2018.01.14<em>(일)</em></span>     </div>   </div> </div> </a></li><li style="float: left; list-style: outside none none; position: relative; width: 386.667px; margin-left: 20px;" aria-hidden="true"> <a href="http://www.oksusu.com/v/%7BB23CF510-F93D-11E7-9023-499D9432ACE9%7D" title="＂韓 남성, 홍콩 여행 중 부인·아들 살해＂"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180115002206482_968.jpg' %}" alt="＂韓 남성, 홍콩 여행 중 부인·아들 살해＂">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">00:39</span>   </div>   <div class="vlist_text_box">     <div class="text_title" style="overflow-wrap: break-word; white-space: normal;">＂韓 남성, 홍콩 여행 중 부인·아들 살해＂     </div>     <div class="text_subtitle text_blue">YTN 뉴스     </div>     <div class="text_play_count">       <span class="ico_count">298</span>       <span class="text_date">2018.01.14<em>(일)</em></span>     </div>   </div> </div> </a></li><li style="float: left; list-style: outside none none; position: relative; width: 386.667px; margin-left: 20px;" aria-hidden="true"> <a href="http://www.oksusu.com/v/%7B62ACAFC5-F925-11E7-89BE-3B27F3E0FB90%7D" title="가구당 평균 12개, 매달 103만원 납입…'보험 과잉사회'"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180114212102336_357_002.jpg' %}" alt="가구당 평균 12개, 매달 103만원 납입…'보험 과잉사회'">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">01:38</span>   </div>   <div class="vlist_text_box">     <div class="text_title" style="overflow-wrap: break-word; white-space: normal;">가구당 평균 12개, 매달 103만원 납입…'보험 과잉사회'     </div>     <div class="text_subtitle text_blue">jtbc뉴스룸     </div>     <div class="text_play_count">       <span class="ico_count">1,631</span>       <span class="text_date">2018.01.14<em>(일)</em></span>     </div>   </div> </div> </a></li><li style="float: left; list-style: outside none none; position: relative; width: 386.667px; margin-left: 20px;" aria-hidden="true"> <a href="http://www.oksusu.com/v/%7B5BB34174-F925-11E7-89BE-3B27F3E0FB90%7D" title="가상화폐 규제 움직임 본격화…'실명제·자금세탁방지' 추진"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180114212050632_356.jpg' %}" alt="가상화폐 규제 움직임 본격화…'실명제·자금세탁방지' 추진">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">01:28</span>   </div>   <div class="vlist_text_box">     <div class="text_title is-truncated" style="overflow-wrap: break-word; white-space: normal;">가상화폐 규제 움직임 본격화…'실명제·자금세탁방지… </div>     <div class="text_subtitle text_blue">jtbc뉴스룸     </div>     <div class="text_play_count">       <span class="ico_count">381</span>       <span class="text_date">2018.01.14<em>(일)</em></span>     </div>   </div> </div> </a></li><li style="float: left; list-style: outside none none; position: relative; width: 386.667px; margin-left: 20px;" aria-hidden="true"> <a href="http://www.oksusu.com/v/%7B78E817E6-F922-11E7-99BA-29E80F192259%7D" title="미세먼지 보통이라 해도…못 미더운 '허공 위' 측정소"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180114210011184_349.jpg' %}" alt="미세먼지 보통이라 해도…못 미더운 '허공 위' 측정소">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">01:39</span>   </div>   <div class="vlist_text_box">     <div class="text_title" style="overflow-wrap: break-word; white-space: normal;">미세먼지 보통이라 해도…못 미더운 '허공 위' 측정소     </div>     <div class="text_subtitle text_blue">jtbc뉴스룸     </div>     <div class="text_play_count">       <span class="ico_count">218</span>       <span class="text_date">2018.01.14<em>(일)</em></span>     </div>   </div> </div> </a></li><li style="float: left; list-style: outside none none; position: relative; width: 386.667px; margin-left: 20px;" aria-hidden="true"> <a href="http://www.oksusu.com/v/%7BC76D2279-F91F-11E7-B85F-75D3EAD501FE%7D" title="" 과거="" 적폐도="" 정리"…경찰,="" '백남기씨="" 사망'="" 등="" 5건="" 조사"=""> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180114204054413_346.jpg' %}" alt="" 과거="" 적폐도="" 정리"…경찰,="" '백남기씨="" 사망'="" 등="" 5건="" 조사"="">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">01:27</span>   </div>   <div class="vlist_text_box">     <div class="text_title" style="overflow-wrap: break-word; white-space: normal;">"과거 적폐도 정리"…경찰, '백남기씨 사망' 등 5건 조사     </div>     <div class="text_subtitle text_blue">jtbc뉴스룸     </div>     <div class="text_play_count">       <span class="ico_count">200</span>       <span class="text_date">2018.01.14<em>(일)</em></span>     </div>   </div> </div> </a></li><li style="float: left; list-style: outside none none; position: relative; width: 386.667px; margin-left: 20px;" aria-hidden="true"> <a href="http://www.oksusu.com/v/%7B87F70A1B-F90B-11E7-9023-499D9432ACE9%7D" title="故 박종철 열사 31주기 추모식 열려"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180114182519840_963.jpg' %}" alt="故 박종철 열사 31주기 추모식 열려">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">00:36</span>   </div>   <div class="vlist_text_box">     <div class="text_title" style="overflow-wrap: break-word; white-space: normal;">故 박종철 열사 31주기 추모식 열려     </div>     <div class="text_subtitle text_blue">YTN 뉴스     </div>     <div class="text_play_count">       <span class="ico_count">434</span>       <span class="text_date">2018.01.14<em>(일)</em></span>     </div>   </div> </div> </a></li><li style="float: left; list-style: outside none none; position: relative; width: 386.667px; margin-left: 20px;" aria-hidden="true"> <a href="http://www.oksusu.com/v/%7B69A559DC-F90B-11E7-9023-499D9432ACE9%7D" title="靑, 국정원·검·경 개혁안 발표...＂국민 위한 권력기관으로 재편＂"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180114182158125_948.jpg' %}" alt="靑, 국정원·검·경 개혁안 발표...＂국민 위한 권력기관으로 재편＂">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">02:33</span>   </div>   <div class="vlist_text_box">     <div class="text_title is-truncated" style="overflow-wrap: break-word; white-space: normal;">靑, 국정원·검·경 개혁안 발표...＂국민 위한 권력기관… </div>     <div class="text_subtitle text_blue">YTN 뉴스     </div>     <div class="text_play_count">       <span class="ico_count">2,710</span>       <span class="text_date">2018.01.14<em>(일)</em></span>     </div>   </div> </div> </a></li><li style="float: left; list-style: outside none none; position: relative; width: 386.667px; margin-left: 20px;" aria-hidden="true"> <a href="http://www.oksusu.com/v/%7B6E17810F-F90B-11E7-9023-499D9432ACE9%7D" title="권한 커지는 경찰·작아지는 검찰"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180114182230576_951.jpg' %}" alt="권한 커지는 경찰·작아지는 검찰">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">02:18</span>   </div>   <div class="vlist_text_box">     <div class="text_title" style="overflow-wrap: break-word; white-space: normal;">권한 커지는 경찰·작아지는 검찰     </div>     <div class="text_subtitle text_blue">YTN 뉴스     </div>     <div class="text_play_count">       <span class="ico_count">618</span>       <span class="text_date">2018.01.14<em>(일)</em></span>     </div>   </div> </div> </a></li> </ul></div><div class="bx-controls bx-has-pager"><div class="bx-pager bx-default-pager"><div class="bx-pager-item"><a href="" data-slide-index="0" class="bx-pager-link active">1</a></div><div class="bx-pager-item"><a href="" data-slide-index="1" class="bx-pager-link">2</a></div><div class="bx-pager-item"><a href="" data-slide-index="2" class="bx-pager-link">3</a></div><div class="bx-pager-item"><a href="" data-slide-index="3" class="bx-pager-link">4</a></div><div class="bx-pager-item"><a href="" data-slide-index="4" class="bx-pager-link">5</a></div></div></div></div><span id="slider-nextUNYLw"><a class="bx-next btn_slider next" href=""></a></span></div><div class="general_section_list grid03" data-type="20_1"> <div class="section_title_box">   <span class="ico_name text_blue">클립</span>   <span class="section_title normal">요명명을 위한 깜짝 선물!!</span> </div> <div class="vlist_allview">    <a href="http://www.oksusu.com/browse?sid=8000000091" title="전체보기" class="ico_arrow">전체보기</a>  </div> <span id="slider-prevRHy8T"><a class="bx-prev btn_slider prev disabled" href=""></a></span><div class="bx-wrapper" style="max-width: 1201px;"><div class="bx-viewport" aria-live="polite" style="width: 100%; overflow: hidden; position: relative; height: 292px;"><ul class="section_vlist " id="RHy8T" style="width: 5215%; position: relative; transition-duration: 0s; transform: translate3d(0px, 0px, 0px);"><li style="float: left; list-style: outside none none; position: relative; width: 386.667px; margin-left: 20px;" aria-hidden="false"> <a href="http://www.oksusu.com/v/%7B38A49DC3-F933-11E7-8F8E-AD53380E53EA%7D" title="'남자 TOP3' 우진영·김효진·김병관의 곡 선택은!?"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180114232917770_752.jpg' %}" alt="'남자 TOP3' 우진영·김효진·김병관의 곡 선택은!?">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">02:52</span>   </div>   <div class="vlist_text_box">     <div class="text_title" style="overflow-wrap: break-word; white-space: normal;">'남자 TOP3' 우진영·김효진·김병관의 곡 선택은!?     </div>     <div class="text_subtitle text_blue">믹스나인     </div>     <div class="text_play_count">       <span class="ico_count">2,244</span>       <span class="text_date">2018.01.14<em>(일)</em></span>     </div>   </div> </div> </a></li><li style="float: left; list-style: outside none none; position: relative; width: 386.667px; margin-left: 20px;" aria-hidden="false"> <a href="http://www.oksusu.com/v/%7B388C33BE-F933-11E7-8F8E-AD53380E53EA%7D" title="요명명을 위한 깜짝 선물! 중국으로부터 온 영상 편지♡"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180114232815357_747.jpg' %}" alt="요명명을 위한 깜짝 선물! 중국으로부터 온 영상 편지♡">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">02:06</span>   </div>   <div class="vlist_text_box">     <div class="text_title" style="overflow-wrap: break-word; white-space: normal;">요명명을 위한 깜짝 선물! 중국으로부터 온 영상 편지♡     </div>     <div class="text_subtitle text_blue">믹스나인     </div>     <div class="text_play_count">       <span class="ico_count">2,137</span>       <span class="text_date">2018.01.14<em>(일)</em></span>     </div>   </div> </div> </a></li><li style="float: left; list-style: outside none none; position: relative; width: 386.667px; margin-left: 20px;" aria-hidden="false"> <a href="http://www.oksusu.com/v/%7B389115BF-F933-11E7-8F8E-AD53380E53EA%7D" title="＂손에 손잡고 벽을 넘어서~＂ | '손에 손잡고'♪ - 평창"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180114232831344_748.jpg' %}" alt="＂손에 손잡고 벽을 넘어서~＂ | '손에 손잡고'♪ - 평창">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">03:36</span>   </div>   <div class="vlist_text_box">     <div class="text_title" style="overflow-wrap: break-word; white-space: normal;">＂손에 손잡고 벽을 넘어서~＂ | '손에 손잡고'♪ - 평창     </div>     <div class="text_subtitle text_blue">믹스나인     </div>     <div class="text_play_count">       <span class="ico_count">2,144</span>       <span class="text_date">2018.01.14<em>(일)</em></span>     </div>   </div> </div> </a></li><li style="float: left; list-style: outside none none; position: relative; width: 386.667px; margin-left: 20px;" aria-hidden="true"> <a href="http://www.oksusu.com/v/%7B388778CD-F933-11E7-8F8E-AD53380E53EA%7D" title="＂곁에 있어줘, STAND BY ME＂ | 'STAND BY ME'♪ - 9reat!"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180114232805261_746.jpg' %}" alt="＂곁에 있어줘, STAND BY ME＂ | 'STAND BY ME'♪ - 9reat!">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">03:26</span>   </div>   <div class="vlist_text_box">     <div class="text_title is-truncated" style="overflow-wrap: break-word; white-space: normal;">＂곁에 있어줘, STAND BY ME＂ | 'STAND BY ME'♪… </div>     <div class="text_subtitle text_blue">믹스나인     </div>     <div class="text_play_count">       <span class="ico_count">2,148</span>       <span class="text_date">2018.01.14<em>(일)</em></span>     </div>   </div> </div> </a></li><li style="float: left; list-style: outside none none; position: relative; width: 386.667px; margin-left: 20px;" aria-hidden="true"> <a href="http://www.oksusu.com/v/%7B389A1671-F933-11E7-8F8E-AD53380E53EA%7D" title="＂보여줘 미친X＂ | 'SUPER FREAK'♪ - 강남역 10번 출구"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180114232854604_750.jpg' %}" alt="＂보여줘 미친X＂ | 'SUPER FREAK'♪ - 강남역 10번 출구">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">03:39</span>   </div>   <div class="vlist_text_box">     <div class="text_title is-truncated" style="overflow-wrap: break-word; white-space: normal;">＂보여줘 미친X＂ | 'SUPER FREAK'♪ - 강남역 10번… </div>     <div class="text_subtitle text_blue">믹스나인     </div>     <div class="text_play_count">       <span class="ico_count">2,143</span>       <span class="text_date">2018.01.14<em>(일)</em></span>     </div>   </div> </div> </a></li> </ul></div><div class="bx-controls bx-has-pager"><div class="bx-pager bx-default-pager"><div class="bx-pager-item"><a href="" data-slide-index="0" class="bx-pager-link active">1</a></div><div class="bx-pager-item"><a href="" data-slide-index="1" class="bx-pager-link">2</a></div></div></div></div><span id="slider-nextRHy8T"><a class="bx-next btn_slider next" href=""></a></span></div><div class="general_section_list list_banner_slider" data-key="HOME_CENTER"><ul> <li>   <a href="/through_banner/" target="_self">     <img src="{% static 'banner_static/23c8e44a-651f-4ba0-954d-ed2f2d71411e.jpg' %}" alt="윤식당2">   </a> </li></ul></div><div class="general_section_list grid03" data-type="20_1"> <div class="section_title_box">   <span class="ico_name text_blue">스포츠</span>   <span class="section_title normal">Today's 프리미어리그 명장면</span> </div> <div class="vlist_allview">    <a href="http://www.oksusu.com/browse?sid=9000002624" title="전체보기" class="ico_arrow">전체보기</a>  </div> <span id="slider-prevpcKat"><a class="bx-prev btn_slider prev disabled" href=""></a></span><div class="bx-wrapper" style="max-width: 1201px;"><div class="bx-viewport" aria-live="polite" style="width: 100%; overflow: hidden; position: relative; height: 292px;"><ul class="section_vlist " id="pcKat" style="width: 15215%; position: relative; transition-duration: 0s; transform: translate3d(0px, 0px, 0px);"><li style="float: left; list-style: outside none none; position: relative; width: 386.667px; margin-left: 20px;" aria-hidden="false"> <a href="http://www.oksusu.com/v/%7BCAA8C046-F956-11E7-BD5E-E199846257E6%7D" title="'이 경기는 미쳤다' 끝내 맨시티의 무패를 저지하는 리버풀"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180115031517297_17.jpg' %}" alt="'이 경기는 미쳤다' 끝내 맨시티의 무패를 저지하는 리버풀">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">02:57</span>   </div>   <div class="vlist_text_box">     <div class="text_title is-truncated" style="overflow-wrap: break-word; white-space: normal;">'이 경기는 미쳤다' 끝내 맨시티의 무패를 저지하는 리… </div>     <div class="text_subtitle text_blue">리버풀:맨시티 23R     </div>     <div class="text_play_count">       <span class="ico_count">2,192</span>       <span class="text_date">2018.01.15<em>(월)</em></span>     </div>   </div> </div> </a></li><li style="float: left; list-style: outside none none; position: relative; width: 386.667px; margin-left: 20px;" aria-hidden="false"> <a href="http://www.oksusu.com/v/%7B54C63925-F956-11E7-BD5E-E199846257E6%7D" title="리버풀:맨시티 23R 경기 골모음"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180115031210537_16.jpg' %}" alt="리버풀:맨시티 23R 경기 골모음">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">08:24</span>   </div>   <div class="vlist_text_box">     <div class="text_title" style="overflow-wrap: break-word; white-space: normal;">리버풀:맨시티 23R 경기 골모음     </div>     <div class="text_subtitle text_blue">리버풀:맨시티 23R     </div>     <div class="text_play_count">       <span class="ico_count">1,039</span>       <span class="text_date">2018.01.15<em>(월)</em></span>     </div>   </div> </div> </a></li><li style="float: left; list-style: outside none none; position: relative; width: 386.667px; margin-left: 20px;" aria-hidden="false"> <a href="http://www.oksusu.com/v/%7B016CB61D-F752-11E7-BD5E-E199846257E6%7D" title="'시간이 조금만 더 있었더라면..' 추가시간에 터진 귄도안의 득점! "> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180115030744772_15.jpg' %}" alt="'시간이 조금만 더 있었더라면..' 추가시간에 터진 귄도안의 득점! ">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">02:37</span>   </div>   <div class="vlist_text_box">     <div class="text_title is-truncated" style="overflow-wrap: break-word; white-space: normal;">'시간이 조금만 더 있었더라면..' 추가시간에 터진 귄도… </div>     <div class="text_subtitle text_blue">리버풀:맨시티 23R     </div>     <div class="text_play_count">       <span class="ico_count">109</span>       <span class="text_date">2018.01.15<em>(월)</em></span>     </div>   </div> </div> </a></li><li style="float: left; list-style: outside none none; position: relative; width: 386.667px; margin-left: 20px;" aria-hidden="true"> <a href="http://www.oksusu.com/v/%7B0168223C-F752-11E7-BD5E-E199846257E6%7D" title="'아직 끝나지 않았다' 베르나르두 실바의 만회골!"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180115030725968_14.jpg' %}" alt="'아직 끝나지 않았다' 베르나르두 실바의 만회골!">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">02:48</span>   </div>   <div class="vlist_text_box">     <div class="text_title" style="overflow-wrap: break-word; white-space: normal;">'아직 끝나지 않았다' 베르나르두 실바의 만회골!     </div>     <div class="text_subtitle text_blue">리버풀:맨시티 23R     </div>     <div class="text_play_count">       <span class="ico_count">57</span>       <span class="text_date">2018.01.15<em>(월)</em></span>     </div>   </div> </div> </a></li><li style="float: left; list-style: outside none none; position: relative; width: 386.667px; margin-left: 20px;" aria-hidden="true"> <a href="http://www.oksusu.com/v/%7B016451AB-F752-11E7-BD5E-E199846257E6%7D" title="'엄청난 스프린트' 굉장한 압박으로 분위기를 이어가는 로버트슨!"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180115024803356_13.jpg' %}" alt="'엄청난 스프린트' 굉장한 압박으로 분위기를 이어가는 로버트슨!">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">02:43</span>   </div>   <div class="vlist_text_box">     <div class="text_title is-truncated" style="overflow-wrap: break-word; white-space: normal;">'엄청난 스프린트' 굉장한 압박으로 분위기를 이어가… </div>     <div class="text_subtitle text_blue">리버풀:맨시티 23R     </div>     <div class="text_play_count">       <span class="ico_count">72</span>       <span class="text_date">2018.01.15<em>(월)</em></span>     </div>   </div> </div> </a></li><li style="float: left; list-style: outside none none; position: relative; width: 386.667px; margin-left: 20px;" aria-hidden="true"> <a href="http://www.oksusu.com/v/%7B0160811A-F752-11E7-BD5E-E199846257E6%7D" title="클롭 감독을 날뛰게 만드는 완벽한 살라의 득점!"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180115024216970_12.jpg' %}" alt="클롭 감독을 날뛰게 만드는 완벽한 살라의 득점!">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">02:42</span>   </div>   <div class="vlist_text_box">     <div class="text_title" style="overflow-wrap: break-word; white-space: normal;">클롭 감독을 날뛰게 만드는 완벽한 살라의 득점!     </div>     <div class="text_subtitle text_blue">리버풀:맨시티 23R     </div>     <div class="text_play_count">       <span class="ico_count">100</span>       <span class="text_date">2018.01.15<em>(월)</em></span>     </div>   </div> </div> </a></li><li style="float: left; list-style: outside none none; position: relative; width: 386.667px; margin-left: 20px;" aria-hidden="true"> <a href="http://www.oksusu.com/v/%7B015C1449-F752-11E7-BD5E-E199846257E6%7D" title="'마네가 결국 넣고 마네' 분위기를 완전히 반전시킨 마네의 추가골"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180115024203491_11.jpg' %}" alt="'마네가 결국 넣고 마네' 분위기를 완전히 반전시킨 마네의 추가골">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">02:34</span>   </div>   <div class="vlist_text_box">     <div class="text_title is-truncated" style="overflow-wrap: break-word; white-space: normal;">'마네가 결국 넣고 마네' 분위기를 완전히 반전시킨 마… </div>     <div class="text_subtitle text_blue">리버풀:맨시티 23R     </div>     <div class="text_play_count">       <span class="ico_count">96</span>       <span class="text_date">2018.01.15<em>(월)</em></span>     </div>   </div> </div> </a></li><li style="float: left; list-style: outside none none; position: relative; width: 386.667px; margin-left: 20px;" aria-hidden="true"> <a href="http://www.oksusu.com/v/%7B01520228-F752-11E7-BD5E-E199846257E6%7D" title="피르미누를 향한 안필드의 에너지! 침묵을 깨는 슈퍼골"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180115022941801_10.jpg' %}" alt="피르미누를 향한 안필드의 에너지! 침묵을 깨는 슈퍼골">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">02:40</span>   </div>   <div class="vlist_text_box">     <div class="text_title" style="overflow-wrap: break-word; white-space: normal;">피르미누를 향한 안필드의 에너지! 침묵을 깨는 슈퍼골     </div>     <div class="text_subtitle text_blue">리버풀:맨시티 23R     </div>     <div class="text_play_count">       <span class="ico_count">93</span>       <span class="text_date">2018.01.15<em>(월)</em></span>     </div>   </div> </div> </a></li><li style="float: left; list-style: outside none none; position: relative; width: 386.667px; margin-left: 20px;" aria-hidden="true"> <a href="http://www.oksusu.com/v/%7B014F4307-F752-11E7-BD5E-E199846257E6%7D" title="리버풀의 파상공세를 족족 선방해내는 에데르송GK"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180115022230139_9.jpg' %}" alt="리버풀의 파상공세를 족족 선방해내는 에데르송GK">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">02:49</span>   </div>   <div class="vlist_text_box">     <div class="text_title" style="overflow-wrap: break-word; white-space: normal;">리버풀의 파상공세를 족족 선방해내는 에데르송GK     </div>     <div class="text_subtitle text_blue">리버풀:맨시티 23R     </div>     <div class="text_play_count">       <span class="ico_count">64</span>       <span class="text_date">2018.01.15<em>(월)</em></span>     </div>   </div> </div> </a></li><li style="float: left; list-style: outside none none; position: relative; width: 386.667px; margin-left: 20px;" aria-hidden="true"> <a href="http://www.oksusu.com/v/%7B014DBC66-F752-11E7-BD5E-E199846257E6%7D" title="골대를 때리는 오타멘디의 위협적인 헤더!"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180115021653820_8.jpg' %}" alt="골대를 때리는 오타멘디의 위협적인 헤더!">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">02:38</span>   </div>   <div class="vlist_text_box">     <div class="text_title" style="overflow-wrap: break-word; white-space: normal;">골대를 때리는 오타멘디의 위협적인 헤더!     </div>     <div class="text_subtitle text_blue">리버풀:맨시티 23R     </div>     <div class="text_play_count">       <span class="ico_count">59</span>       <span class="text_date">2018.01.15<em>(월)</em></span>     </div>   </div> </div> </a></li><li style="float: left; list-style: outside none none; position: relative; width: 386.667px; margin-left: 20px;" aria-hidden="true"> <a href="http://www.oksusu.com/v/%7B014A39F5-F752-11E7-BD5E-E199846257E6%7D" title="리버풀:맨시티 23R 경기 전반 하이라이트"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180115020206383_7.jpg' %}" alt="리버풀:맨시티 23R 경기 전반 하이라이트">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">03:46</span>   </div>   <div class="vlist_text_box">     <div class="text_title" style="overflow-wrap: break-word; white-space: normal;">리버풀:맨시티 23R 경기 전반 하이라이트     </div>     <div class="text_subtitle text_blue">리버풀:맨시티 23R     </div>     <div class="text_play_count">       <span class="ico_count">114</span>       <span class="text_date">2018.01.15<em>(월)</em></span>     </div>   </div> </div> </a></li><li style="float: left; list-style: outside none none; position: relative; width: 386.667px; margin-left: 20px;" aria-hidden="true"> <a href="http://www.oksusu.com/v/%7B01477AD4-F752-11E7-BD5E-E199846257E6%7D" title="자신감 있는 슈팅, 승부를 원점으로 만드는 사네의 동점골!"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180115014722301_6.jpg' %}" alt="자신감 있는 슈팅, 승부를 원점으로 만드는 사네의 동점골!">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">02:49</span>   </div>   <div class="vlist_text_box">     <div class="text_title is-truncated" style="overflow-wrap: break-word; white-space: normal;">자신감 있는 슈팅, 승부를 원점으로 만드는 사네의 동… </div>     <div class="text_subtitle text_blue">리버풀:맨시티 23R     </div>     <div class="text_play_count">       <span class="ico_count">86</span>       <span class="text_date">2018.01.15<em>(월)</em></span>     </div>   </div> </div> </a></li><li style="float: left; list-style: outside none none; position: relative; width: 386.667px; margin-left: 20px;" aria-hidden="true"> <a href="http://www.oksusu.com/v/%7B0141AE73-F752-11E7-BD5E-E199846257E6%7D" title="결국 부상으로 전반에 교체 아웃되는 파비안 델프"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180115013815913_5.jpg' %}" alt="결국 부상으로 전반에 교체 아웃되는 파비안 델프">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">03:12</span>   </div>   <div class="vlist_text_box">     <div class="text_title" style="overflow-wrap: break-word; white-space: normal;">결국 부상으로 전반에 교체 아웃되는 파비안 델프     </div>     <div class="text_subtitle text_blue">리버풀:맨시티 23R     </div>     <div class="text_play_count">       <span class="ico_count">68</span>       <span class="text_date">2018.01.15<em>(월)</em></span>     </div>   </div> </div> </a></li><li style="float: left; list-style: outside none none; position: relative; width: 386.667px; margin-left: 20px;" aria-hidden="true"> <a href="http://www.oksusu.com/v/%7B013C5742-F752-11E7-BD5E-E199846257E6%7D" title="'발끝에 걸렸더라면..' 아쉬웠던 아구에로의 발끝"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180115012905382_4.jpg' %}" alt="'발끝에 걸렸더라면..' 아쉬웠던 아구에로의 발끝">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">02:48</span>   </div>   <div class="vlist_text_box">     <div class="text_title" style="overflow-wrap: break-word; white-space: normal;">'발끝에 걸렸더라면..' 아쉬웠던 아구에로의 발끝     </div>     <div class="text_subtitle text_blue">리버풀:맨시티 23R     </div>     <div class="text_play_count">       <span class="ico_count">106</span>       <span class="text_date">2018.01.15<em>(월)</em></span>     </div>   </div> </div> </a></li><li style="float: left; list-style: outside none none; position: relative; width: 386.667px; margin-left: 20px;" aria-hidden="true"> <a href="http://www.oksusu.com/v/%7B01370011-F752-11E7-BD5E-E199846257E6%7D" title="골대 앞 위협적인 움직임을 보여주는 모하메드 살라"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180115012421512_3.jpg' %}" alt="골대 앞 위협적인 움직임을 보여주는 모하메드 살라">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">02:33</span>   </div>   <div class="vlist_text_box">     <div class="text_title" style="overflow-wrap: break-word; white-space: normal;">골대 앞 위협적인 움직임을 보여주는 모하메드 살라     </div>     <div class="text_subtitle text_blue">리버풀:맨시티 23R     </div>     <div class="text_play_count">       <span class="ico_count">109</span>       <span class="text_date">2018.01.15<em>(월)</em></span>     </div>   </div> </div> </a></li> </ul></div><div class="bx-controls bx-has-pager"><div class="bx-pager bx-default-pager"><div class="bx-pager-item"><a href="" data-slide-index="0" class="bx-pager-link active">1</a></div><div class="bx-pager-item"><a href="" data-slide-index="1" class="bx-pager-link">2</a></div><div class="bx-pager-item"><a href="" data-slide-index="2" class="bx-pager-link">3</a></div><div class="bx-pager-item"><a href="" data-slide-index="3" class="bx-pager-link">4</a></div><div class="bx-pager-item"><a href="" data-slide-index="4" class="bx-pager-link">5</a></div></div></div></div><span id="slider-nextpcKat"><a class="bx-next btn_slider next" href=""></a></span></div><div class="general_section_list " data-type="4"> <div class="section_title_box">   <span class="ico_name ">LIVE</span>   <span class="section_title normal">지금 시청률이 높은 채널</span> </div> <span id="slider-prevS0O3r"><a class="bx-prev btn_slider prev disabled" href=""></a></span><div class="bx-wrapper" style="max-width: 1200px;"><div class="bx-viewport" aria-live="polite" style="width: 100%; overflow: hidden; position: relative; height: 188px;"><ul class="section_vlist " id="S0O3r" style="width: 21215%; position: relative; transition-duration: 0s; transform: translate3d(0px, 0px, 0px);">   <li style="float: left; list-style: outside none none; position: relative; width: 224px; margin-left: 20px;" aria-hidden="false">     <a href="http://www.oksusu.com/v/125" title="UFC FIGHT NIGHT 124&lt;강경호 출전/언더카드&gt;">     <div class="section_info">       <div class="vlist_img">         <img src="{% static 'banner_static/thumb_125.jpg' %}" alt="SPOTV" class="img_default" onerror="this.src='/public/assets/img/img_default_224x126.png'">         <div class="info-play-linear">           <span style="width:64%">재생진행률</span>         </div>         <div class="ico_right_box"><span class="ico_free">FREE</span><span class="ico_chatting">채팅중</span>         </div>       </div>       <div class="vlist_text_box">         <div class="text_title line2" style="overflow-wrap: break-word;">UFC FIGHT NIGHT 124&lt;강경호 출전/언더카드&gt;         </div>       <div class="txt_log">SPOTV</div>       </div>     </div>     </a>   </li>   <li style="float: left; list-style: outside none none; position: relative; width: 224px; margin-left: 20px;" aria-hidden="false">     <a href="http://www.oksusu.com/v/872" title="윤식당 2(2회)(재)">     <div class="section_info">       <div class="vlist_img">         <img src="{% static 'banner_static/thumb_872.jpg' %}" alt="tvN" class="img_default" onerror="this.src='/public/assets/img/img_default_224x126.png'">         <div class="info-play-linear">           <span style="width:23%">재생진행률</span>         </div>         <div class="ico_right_box"><span class="ico_chatting">채팅중</span>         </div>       </div>       <div class="vlist_text_box">         <div class="text_title line2" style="overflow-wrap: break-word;">윤식당 2(2회)(재)         </div>       <div class="txt_log">tvN</div>       </div>     </div>     </a>   </li>   <li style="float: left; list-style: outside none none; position: relative; width: 224px; margin-left: 20px;" aria-hidden="false">     <a href="http://www.oksusu.com/v/240" title="이방인(6회)(재)">     <div class="section_info">       <div class="vlist_img">         <img src="{% static 'banner_static/thumb_240.jpg' %}" alt="JTBC" class="img_default" onerror="this.src='/public/assets/img/img_default_224x126.png'">         <div class="info-play-linear">           <span style="width:94%">재생진행률</span>         </div>         <div class="ico_right_box"><span class="ico_free">FREE</span><span class="ico_chatting">채팅중</span>         </div>       </div>       <div class="vlist_text_box">         <div class="text_title line2" style="overflow-wrap: break-word;">이방인(6회)(재)         </div>       <div class="txt_log">JTBC</div>       </div>     </div>     </a>   </li>   <li style="float: left; list-style: outside none none; position: relative; width: 224px; margin-left: 20px;" aria-hidden="false">     <a href="http://www.oksusu.com/v/570" title="뉴스타워">     <div class="section_info">       <div class="vlist_img">         <img src="{% static 'banner_static/thumb_570.jpg' %}" alt="YTN" class="img_default" onerror="this.src='/public/assets/img/img_default_224x126.png'">         <div class="info-play-linear">           <span style="width:78%">재생진행률</span>         </div>         <div class="ico_right_box"><span class="ico_free">FREE</span><span class="ico_chatting">채팅중</span>         </div>       </div>       <div class="vlist_text_box">         <div class="text_title line2" style="overflow-wrap: break-word;">뉴스타워         </div>       <div class="txt_log">YTN</div>       </div>     </div>     </a>   </li>   <li style="float: left; list-style: outside none none; position: relative; width: 224px; margin-left: 20px;" aria-hidden="false">     <a href="http://www.oksusu.com/v/949" title="아는 형님 (34회)">     <div class="section_info">       <div class="vlist_img">         <img src="{% static 'banner_static/20160724_010817_8039.jpg' %}" alt="ch. JTBC 아는형님" class="img_default" onerror="this.src='/public/assets/img/img_default_224x126.png'">         <div class="info-play-linear">           <span style="width:66%">재생진행률</span>         </div>         <div class="ico_right_box"><span class="ico_free">FREE</span><span class="ico_chatting">채팅중</span>         </div>       </div>       <div class="vlist_text_box">         <div class="text_title line2" style="overflow-wrap: break-word;">아는 형님 (34회)         </div>       <div class="txt_log">ch. JTBC 아는형님</div>       </div>     </div>     </a>   </li>   <li style="float: left; list-style: outside none none; position: relative; width: 224px; margin-left: 20px;" aria-hidden="true">     <a href="http://www.oksusu.com/v/527" title="슬기로운 감빵생활(11회)(재)">     <div class="section_info">       <div class="vlist_img">         <img src="{% static 'banner_static/thumb_527.jpg' %}" alt="O tvN" class="img_default" onerror="this.src='/public/assets/img/img_default_224x126.png'">         <div class="info-play-linear">           <span style="width:77%">재생진행률</span>         </div>         <div class="ico_right_box"><span class="ico_chatting">채팅중</span>         </div>       </div>       <div class="vlist_text_box">         <div class="text_title line2" style="overflow-wrap: break-word;">슬기로운 감빵생활(11회)(재)         </div>       <div class="txt_log">O tvN</div>       </div>     </div>     </a>   </li>   <li style="float: left; list-style: outside none none; position: relative; width: 224px; margin-left: 20px;" aria-hidden="true">     <a href="http://www.oksusu.com/v/571" title="뉴스포커스">     <div class="section_info">       <div class="vlist_img">         <img src="{% static 'banner_static/thumb_571.jpg' %}" alt="연합뉴스TV" class="img_default" onerror="this.src='/public/assets/img/img_default_224x126.png'">         <div class="info-play-linear">           <span style="width:43%">재생진행률</span>         </div>         <div class="ico_right_box"><span class="ico_free">FREE</span><span class="ico_chatting">채팅중</span>         </div>       </div>       <div class="vlist_text_box">         <div class="text_title line2" style="overflow-wrap: break-word;">뉴스포커스         </div>       <div class="txt_log">연합뉴스TV</div>       </div>     </div>     </a>   </li>   <li style="float: left; list-style: outside none none; position: relative; width: 224px; margin-left: 20px;" aria-hidden="true">     <a href="http://www.oksusu.com/v/241" title="전국네트워크뉴스">     <div class="section_info">       <div class="vlist_img">         <img src="{% static 'banner_static/thumb_241.jpg' %}" alt="MBN" class="img_default" onerror="this.src='/public/assets/img/img_default_224x126.png'">         <div class="info-play-linear">           <span style="width:47%">재생진행률</span>         </div>         <div class="ico_right_box"><span class="ico_free">FREE</span><span class="ico_chatting">채팅중</span>         </div>       </div>       <div class="vlist_text_box">         <div class="text_title line2" style="overflow-wrap: break-word;">전국네트워크뉴스         </div>       <div class="txt_log">MBN</div>       </div>     </div>     </a>   </li>   <li style="float: left; list-style: outside none none; position: relative; width: 224px; margin-left: 20px;" aria-hidden="true">     <a href="http://www.oksusu.com/v/242" title="뉴스A LIVE">     <div class="section_info">       <div class="vlist_img">         <img src="{% static 'banner_static/thumb_242.jpg' %}" alt="채널A" class="img_default" onerror="this.src='/public/assets/img/img_default_224x126.png'">         <div class="info-play-linear">           <span style="width:6%">재생진행률</span>         </div>         <div class="ico_right_box"><span class="ico_free">FREE</span><span class="ico_chatting">채팅중</span>         </div>       </div>       <div class="vlist_text_box">         <div class="text_title line2" style="overflow-wrap: break-word;">뉴스A LIVE         </div>       <div class="txt_log">채널A</div>       </div>     </div>     </a>   </li>   <li style="float: left; list-style: outside none none; position: relative; width: 224px; margin-left: 20px;" aria-hidden="true">     <a href="http://www.oksusu.com/v/76" title="잊지 말아요 : 백지영">     <div class="section_info">       <div class="vlist_img">         <img src="{% static 'banner_static/nsepg_76.png' %}" alt="2000년대 인기가요" class="img_default" onerror="this.src='/public/assets/img/img_default_224x126.png'">         <div class="info-play-linear">           <span style="width:71%">재생진행률</span>         </div>         <div class="ico_right_box"><span class="ico_free">FREE</span>         </div>       </div>       <div class="vlist_text_box">         <div class="text_title line2" style="overflow-wrap: break-word;">잊지 말아요 : 백지영         </div>       <div class="txt_log">2000년대 인기가요</div>       </div>     </div>     </a>   </li>   <li style="float: left; list-style: outside none none; position: relative; width: 224px; margin-left: 20px;" aria-hidden="true">     <a href="http://www.oksusu.com/v/904" title="저글러스(11회)(재)">     <div class="section_info">       <div class="vlist_img">         <img src="{% static 'banner_static/thumb_904.jpg' %}" alt="드라맥스" class="img_default" onerror="this.src='/public/assets/img/img_default_224x126.png'">         <div class="info-play-linear">           <span style="width:87%">재생진행률</span>         </div>         <div class="ico_right_box"><span class="ico_free">FREE</span>         </div>       </div>       <div class="vlist_text_box">         <div class="text_title line2" style="overflow-wrap: break-word;">저글러스(11회)(재)         </div>       <div class="txt_log">드라맥스</div>       </div>     </div>     </a>   </li>   <li style="float: left; list-style: outside none none; position: relative; width: 224px; margin-left: 20px;" aria-hidden="true">     <a href="http://www.oksusu.com/v/874" title="한끼줍쇼(64회)(재)">     <div class="section_info">       <div class="vlist_img">         <img src="{% static 'banner_static/thumb_874.jpg' %}" alt="jtbc2" class="img_default" onerror="this.src='/public/assets/img/img_default_224x126.png'">         <div class="info-play-linear">           <span style="width:67%">재생진행률</span>         </div>         <div class="ico_right_box"><span class="ico_free">FREE</span><span class="ico_chatting">채팅중</span>         </div>       </div>       <div class="vlist_text_box">         <div class="text_title line2" style="overflow-wrap: break-word;">한끼줍쇼(64회)(재)         </div>       <div class="txt_log">jtbc2</div>       </div>     </div>     </a>   </li>   <li style="float: left; list-style: outside none none; position: relative; width: 224px; margin-left: 20px;" aria-hidden="true">     <a href="http://www.oksusu.com/v/85" title="깡 : 비">     <div class="section_info">       <div class="vlist_img">         <img src="{% static 'banner_static/nsepg_85.png' %}" alt="최신가요" class="img_default" onerror="this.src='/public/assets/img/img_default_224x126.png'">         <div class="info-play-linear">           <span style="width:29%">재생진행률</span>         </div>         <div class="ico_right_box"><span class="ico_free">FREE</span>         </div>       </div>       <div class="vlist_text_box">         <div class="text_title line2" style="overflow-wrap: break-word;">깡 : 비         </div>       <div class="txt_log">최신가요</div>       </div>     </div>     </a>   </li>   <li style="float: left; list-style: outside none none; position: relative; width: 224px; margin-left: 20px;" aria-hidden="true">     <a href="http://www.oksusu.com/v/431" title="인생술집(51회)&lt;명불허전 뮤지컬 여왕! ＂옥주현＂&gt;">     <div class="section_info">       <div class="vlist_img">         <img src="{% static 'banner_static/thumb_431.jpg' %}" alt="올리브" class="img_default" onerror="this.src='/public/assets/img/img_default_224x126.png'">         <div class="info-play-linear">           <span style="width:68%">재생진행률</span>         </div>         <div class="ico_right_box"><span class="ico_chatting">채팅중</span>         </div>       </div>       <div class="vlist_text_box">         <div class="text_title line2" style="overflow-wrap: break-word;">인생술집(51회)&lt;명불허전 뮤지컬 여왕! ＂옥주현＂&gt;         </div>       <div class="txt_log">올리브</div>       </div>     </div>     </a>   </li>   <li style="float: left; list-style: outside none none; position: relative; width: 224px; margin-left: 20px;" aria-hidden="true">     <a href="http://www.oksusu.com/v/873" title="너의 목소리가 보여 3 (9회)&lt;2PM&gt;(재)">     <div class="section_info">       <div class="vlist_img">         <img src="{% static 'banner_static/thumb_873.jpg' %}" alt="M.net" class="img_default" onerror="this.src='/public/assets/img/img_default_224x126.png'">         <div class="info-play-linear">           <span style="width:49%">재생진행률</span>         </div>         <div class="ico_right_box"><span class="ico_chatting">채팅중</span>         </div>       </div>       <div class="vlist_text_box">         <div class="text_title line2" style="overflow-wrap: break-word;">너의 목소리가 보여 3 (9회)&lt;2PM&gt;(재)         </div>       <div class="txt_log">M.net</div>       </div>     </div>     </a>   </li>   <li style="float: left; list-style: outside none none; position: relative; width: 224px; margin-left: 20px;" aria-hidden="true">     <a href="http://www.oksusu.com/v/70" title="무자식 상팔자">     <div class="section_info">       <div class="vlist_img">         <img src="{% static 'banner_static/thumb_70.jpg' %}" alt="OBS" class="img_default" onerror="this.src='/public/assets/img/img_default_224x126.png'">         <div class="info-play-linear">           <span style="width:42%">재생진행률</span>         </div>         <div class="ico_right_box"><span class="ico_free">FREE</span><span class="ico_chatting">채팅중</span>         </div>       </div>       <div class="vlist_text_box">         <div class="text_title line2" style="overflow-wrap: break-word;">무자식 상팔자         </div>       <div class="txt_log">OBS</div>       </div>     </div>     </a>   </li>   <li style="float: left; list-style: outside none none; position: relative; width: 224px; margin-left: 20px;" aria-hidden="true">     <a href="http://www.oksusu.com/v/884" title="식신로드 시즌3(10회)(재)">     <div class="section_info">       <div class="vlist_img">         <img src="{% static 'banner_static/thumb_884.jpg' %}" alt="K star" class="img_default" onerror="this.src='/public/assets/img/img_default_224x126.png'">         <div class="info-play-linear">           <span style="width:66%">재생진행률</span>         </div>         <div class="ico_right_box"><span class="ico_free">FREE</span>         </div>       </div>       <div class="vlist_text_box">         <div class="text_title line2" style="overflow-wrap: break-word;">식신로드 시즌3(10회)(재)         </div>       <div class="txt_log">K star</div>       </div>     </div>     </a>   </li>   <li style="float: left; list-style: outside none none; position: relative; width: 224px; margin-left: 20px;" aria-hidden="true">     <a href="http://www.oksusu.com/v/72" title="모르시나요 : 다비치">     <div class="section_info">       <div class="vlist_img">         <img src="{% static 'banner_static/nsepg_72.png' %}" alt="발라드가요" class="img_default" onerror="this.src='/public/assets/img/img_default_224x126.png'">         <div class="info-play-linear">           <span style="width:66%">재생진행률</span>         </div>         <div class="ico_right_box"><span class="ico_free">FREE</span>         </div>       </div>       <div class="vlist_text_box">         <div class="text_title line2" style="overflow-wrap: break-word;">모르시나요 : 다비치         </div>       <div class="txt_log">발라드가요</div>       </div>     </div>     </a>   </li>   <li style="float: left; list-style: outside none none; position: relative; width: 224px; margin-left: 20px;" aria-hidden="true">     <a href="http://www.oksusu.com/v/350" title="2018 PGA투어 소니 오픈&lt;FR&gt;">     <div class="section_info">       <div class="vlist_img">         <img src="{% static 'banner_static/thumb_350.jpg' %}" alt="SBS Golf" class="img_default" onerror="this.src='/public/assets/img/img_default_224x126.png'">         <div class="info-play-linear">           <span style="width:64%">재생진행률</span>         </div>         <div class="ico_right_box"><span class="ico_chatting">채팅중</span>         </div>       </div>       <div class="vlist_text_box">         <div class="text_title line2" style="overflow-wrap: break-word;">2018 PGA투어 소니 오픈&lt;FR&gt;         </div>       <div class="txt_log">SBS Golf</div>       </div>     </div>     </a>   </li>   <li style="float: left; list-style: outside none none; position: relative; width: 224px; margin-left: 20px;" aria-hidden="true">     <a href="http://www.oksusu.com/v/626" title="증시라인 1부">     <div class="section_info">       <div class="vlist_img">         <img src="{% static 'banner_static/thumb_626.jpg' %}" alt="한국경제TV" class="img_default" onerror="this.src='/public/assets/img/img_default_224x126.png'">         <div class="info-play-linear">           <span style="width:57%">재생진행률</span>         </div>         <div class="ico_right_box"><span class="ico_free">FREE</span>         </div>       </div>       <div class="vlist_text_box">         <div class="text_title line2" style="overflow-wrap: break-word;">증시라인 1부         </div>       <div class="txt_log">한국경제TV</div>       </div>     </div>     </a>   </li>   <li style="float: left; list-style: outside none none; position: relative; width: 224px; margin-left: 20px;" aria-hidden="true">     <a href="http://www.oksusu.com/v/947" title="비정상회담 (120회)">     <div class="section_info">       <div class="vlist_img">         <img src="{% static 'banner_static/20161018_002224_3236.jpg' %}" alt="ch. JTBC 시사+" class="img_default" onerror="this.src='/public/assets/img/img_default_224x126.png'">         <div class="info-play-linear">           <span style="width:62%">재생진행률</span>         </div>         <div class="ico_right_box"><span class="ico_free">FREE</span><span class="ico_chatting">채팅중</span>         </div>       </div>       <div class="vlist_text_box">         <div class="text_title line2" style="overflow-wrap: break-word;">비정상회담 (120회)         </div>       <div class="txt_log">ch. JTBC 시사+</div>       </div>     </div>     </a>   </li> </ul></div><div class="bx-controls bx-has-pager"><div class="bx-pager bx-default-pager" style="right: 0px;"><div class="bx-pager-item"><a href="" data-slide-index="0" class="bx-pager-link active">1</a></div><div class="bx-pager-item"><a href="" data-slide-index="1" class="bx-pager-link">2</a></div><div class="bx-pager-item"><a href="" data-slide-index="2" class="bx-pager-link">3</a></div><div class="bx-pager-item"><a href="" data-slide-index="3" class="bx-pager-link">4</a></div><div class="bx-pager-item"><a href="" data-slide-index="4" class="bx-pager-link">5</a></div></div></div></div><span id="slider-nextS0O3r"><a class="bx-next btn_slider next" href=""></a></span></div><div class="general_poster_list" data-type="7"> <div class="poster_title_box">   <span class="ico_name ">영화</span>   <span class="poster_title">가장 인기있는 영화</span> </div> <ul class="poster_vlist movie sort" id="7T8pw">   <li>     <a href="javascript:;" onclick='move("/v/{2A664939-E3E2-11E7-9AF3-8F67358FC1D2}")' title="꾼(2017)">     <div class="poster_info">       <div class="vlist_img">         <img src="{% static 'banner_static/20171219100600240.jpg' %}" alt="" onerror="this.src='/public/assets/img/img_default_224x320.png'">         <div class="summary_info">           <span class="ico_grade">9.4</span>           <div class="text_title" style="overflow-wrap: break-word;">꾼(2017)</div>           <div class="text_summary is-truncated" style="overflow-wrap: break-word;">[이 콘텐츠는 1월 17일 오전 10시 이후 프리미어 월정액 편성 예정입니다]
+  <br style="display: inline;">  이 판에선 그 누구도 절대 믿지 마라!
+  <br style="display: inline;">  ‘희대의 사기꾼’을 잡기 위해 사기‘꾼’들이 뭉쳤다!
+… <br style="display: inline;"></div>         </div>       </div>       <div class="vlist_text_box">         <div class="text_title">           꾼(2017)         </div>       </div>     </div>     </a>   </li>   <li>     <a href="javascript:;" onclick='move("/v/{84502BB5-D0D4-11E7-9DF9-29FB69C2CCDB}")' title="부라더">     <div class="poster_info">       <div class="vlist_img">         <img src="{% static 'banner_static/20171127111158906.jpg' %}" alt="" onerror="this.src='/public/assets/img/img_default_224x320.png'">         <div class="summary_info">           <span class="ico_grade">9.2</span>           <div class="text_title" style="overflow-wrap: break-word;">부라더</div>           <div class="text_summary is-truncated" style="overflow-wrap: break-word;">[프리미어 월정액 고객은 별도 과금없이 시청가능 합니다.]
+  <br style="display: inline;">  웃기고 앉아있는 중입니다!
+  <br style="display: inline;">  가보도 팔아먹는 형 VS 집안도 팔아먹는 동생, 제대로 사고 쳤다!
+… <br style="display: inline;"></div>         </div>       </div>       <div class="vlist_text_box">         <div class="text_title">           부라더         </div>       </div>     </div>     </a>   </li>   <li>     <a href="javascript:;" onclick='move("/v/{A5D727E4-D0F7-11E7-8CE3-457E0C9ADBAE}")' title="예감은 틀리지 않는다[SKT 고객 전용관]">     <div class="poster_info">       <div class="vlist_img">         <img src="{% static 'banner_static/M343027.jpg' %}" alt="" onerror="this.src='/public/assets/img/img_default_224x320.png'">         <div class="summary_info">           <span class="ico_grade">8.9</span>           <div class="text_title is-truncated" style="overflow-wrap: break-word;">예감은 틀리지 않… </div>           <div class="text_summary is-truncated" style="overflow-wrap: break-word;">찬란하게 빛나던 그 시절, 과연 나의 기억은 진짜일까?
+  <br style="display: inline;">  맨부커상 수상 베스트셀러 원작 영화화!
+  <br style="display: inline;">  첫사랑의 기억을 되찾고 싶은 토니, 첫사랑의 기억을 지우고 싶은 베로니카.
+… <br style="display: inline;"></div>         </div>       </div>       <div class="vlist_text_box">         <div class="text_title">           예감은 틀리지 않는다[SKT 고객 전용관]         </div>       </div>     </div>     </a>   </li>   <li>     <a href="javascript:;" onclick='move("/v/{D7634A13-DE39-11E7-9971-17154B177FE0}")' title="반드시 잡는다">     <div class="poster_info">       <div class="vlist_img">         <img src="{% static 'banner_static/20171212135857491.jpg' %}" alt="" onerror="this.src='/public/assets/img/img_default_224x320.png'">         <div class="summary_info">           <span class="ico_grade">8.8</span>           <div class="text_title" style="overflow-wrap: break-word;">반드시 잡는다</div>           <div class="text_summary is-truncated" style="overflow-wrap: break-word;">[프리미어 월정액 고객은 별도 과금없이 시청가능 합니다.]
+  <br style="display: inline;">  30년 만에 나타난 그 놈, 우리가 반드시 잡는다!!
+  <br style="display: inline;">  오늘 또 한 명이 죽었다! 30년 전 해결… </div>         </div>       </div>       <div class="vlist_text_box">         <div class="text_title">           반드시 잡는다         </div>       </div>     </div>     </a>   </li>   <li>     <a href="javascript:;" onclick='move("/v/{CD667FD1-B3D2-11E7-B1F8-4D7E299670CA}")' title="아이 캔 스피크">     <div class="poster_info">       <div class="vlist_img">         <img src="{% static 'banner_static/20171023142235758.jpg' %}" alt="" onerror="this.src='/public/assets/img/img_default_224x320.png'">         <div class="summary_info">           <span class="ico_grade">9.9</span>           <div class="text_title" style="overflow-wrap: break-word;">아이 캔 스피크</div>           <div class="text_summary is-truncated" style="overflow-wrap: break-word;">[프리미어 월정액 고객은 별도 과금없이 시청가능 합니다.]
+  <br style="display: inline;">  꼭 하고 싶은 말이 있다!
+  <br style="display: inline;">  온 동네를 휘저으며 무려 8천 건에 달하는 민원을 넣어 도깨비 할매라고 불리… </div>         </div>       </div>       <div class="vlist_text_box">         <div class="text_title">           아이 캔 스피크         </div>       </div>     </div>     </a>   </li>   <li>     <a href="javascript:;" onclick='move("/v/{AD256EA4-9787-11E7-A5C7-655E5F2DD984}")' title="청년경찰">     <div class="poster_info">       <div class="vlist_img">         <img src="{% static 'banner_static/20170918140623503.jpg' %}" alt="" onerror="this.src='/public/assets/img/img_default_224x320.png'">         <div class="summary_info">           <span class="ico_grade">9.4</span>           <div class="text_title" style="overflow-wrap: break-word;">청년경찰</div>           <div class="text_summary is-truncated" style="overflow-wrap: break-word;">[프리미어 월정액 고객은 별도 과금없이 시청가능 합니다.]
+  <br style="display: inline;">  청춘수사액션!!
+  <br style="display: inline;">  현장경험 전무, 수사는 책으로 배웠다!
+  <br style="display: inline;">  그냥 우리가 잡아볼게요!
+… <br style="display: inline;"></div>         </div>       </div>       <div class="vlist_text_box">         <div class="text_title">           청년경찰         </div>       </div>     </div>     </a>   </li>   <li>     <a href="javascript:;" onclick='move("/v/{EA652411-EA11-11E7-9AF3-8F67358FC1D2}")' title="바이스: 범죄도시">     <div class="poster_info">       <div class="vlist_img">         <img src="{% static 'banner_static/20171227095643172.jpg' %}" alt="" onerror="this.src='/public/assets/img/img_default_224x320.png'">         <div class="summary_info">           <span class="ico_grade">7.5</span>           <div class="text_title" style="overflow-wrap: break-word;">바이스: 범죄도시</div>           <div class="text_summary is-truncated" style="overflow-wrap: break-word;">[프리미어 월정액 고객은 별도 과금없이 시청가능 합니다.]
+  <br style="display: inline;">  신개념 인공지능의 역습이 시작된다!
+  <br style="display: inline;">  “당신이 원하는 건 무엇이든 얻을 수 있는 지상 낙원 ‘바이스’에 오신 걸 환영합니… </div>         </div>       </div>       <div class="vlist_text_box">         <div class="text_title">           바이스: 범죄도시         </div>       </div>     </div>     </a>   </li>   <li>     <a href="javascript:;" onclick='move("/v/{CD72167B-E52B-11E7-9AF3-8F67358FC1D2}")' title="기억의 밤">     <div class="poster_info">       <div class="vlist_img">         <img src="{% static 'banner_static/20171221103946579.jpg' %}" alt="" onerror="this.src='/public/assets/img/img_default_224x320.png'">         <div class="summary_info">           <span class="ico_grade">8.9</span>           <div class="text_title" style="overflow-wrap: break-word;">기억의 밤</div>           <div class="text_summary is-truncated" style="overflow-wrap: break-word;">[현재 극장 동시 상영 중인 영화로 특별편성 영화입니다.]
+  <br style="display: inline;">  [이 콘텐츠는 1월 17일 오전 10시 이후 프리미어 월정액 편성 예정입니다]
+  <br style="display: inline;">  형제, 서로를 의심하다!
+… <br style="display: inline;"></div>         </div>       </div>       <div class="vlist_text_box">         <div class="text_title">           기억의 밤         </div>       </div>     </div>     </a>   </li>   <li>     <a href="javascript:;" onclick='move("/v/{79732B54-BFA1-11E7-9B3E-679C8998107E}")' title="남한산성">     <div class="poster_info">       <div class="vlist_img">         <img src="{% static 'banner_static/20171103140712739.jpg' %}" alt="" onerror="this.src='/public/assets/img/img_default_224x320.png'">         <div class="summary_info">           <span class="ico_grade">9.2</span>           <div class="text_title" style="overflow-wrap: break-word;">남한산성</div>           <div class="text_summary is-truncated" style="overflow-wrap: break-word;">[프리미어 월정액 고객은 별도 과금없이 시청가능 합니다.]
+  <br style="display: inline;">  조선의 운명이 걸린 47일간의 기록!!
+  <br style="display: inline;">  1636년 인조 14년 병자호란.
+  <br style="display: inline;">  청의 대군이 공격해오자 임금과 조정… </div>         </div>       </div>       <div class="vlist_text_box">         <div class="text_title">           남한산성         </div>       </div>     </div>     </a>   </li>   <li>     <a href="javascript:;" onclick='move("/v/{3D11BFA6-D025-11E7-9DF9-29FB69C2CCDB}")' title="손오공">     <div class="poster_info">       <div class="vlist_img">         <img src="{% static 'banner_static/20171124141006783.jpg' %}" alt="" onerror="this.src='/public/assets/img/img_default_224x320.png'">         <div class="summary_info">           <span class="ico_grade">8.9</span>           <div class="text_title" style="overflow-wrap: break-word;">손오공</div>           <div class="text_summary is-truncated" style="overflow-wrap: break-word;">[프리미어 월정액 고객은 별도 과금없이 시청가능 합니다.]
+  <br style="display: inline;">  천지를 뒤흔들 신과의 대결이 시작된다!
+  <br style="display: inline;">  손오공과 그의 친구들이 악당을 물리치며 우정을 쌓아가는 과정을 그린 액션… </div>         </div>       </div>       <div class="vlist_text_box">         <div class="text_title">           손오공         </div>       </div>     </div>     </a>   </li> </ul></div><div class="general_poster_list" data-type="14"> <div class="poster_title_box">   <span class="ico_name ">방송</span>   <span class="poster_title">가장 많이 즐겨보는 방송</span> </div> <ul class="poster_vlist sort" id="taJFv">   <li>     <a href="javascript:;" onclick='move("/v/{206D89EA-E5F4-11E7-B6BD-C350A7E37865}")' title="화유기">     <div class="poster_info">       <div class="vlist_img">         <img src="{% static 'banner_static/T343999.jpg' %}" alt="" onerror="this.src='/public/assets/img/img_default_224x320.png'">       </div>       <div class="vlist_text_box">         <div class="text_title">           화유기         </div>       </div>     </div>     </a>   </li>   <li>     <a href="javascript:;" onclick='move("/v/{73D37545-F0EE-11E7-BD5E-E199846257E6}")' title="윤식당 2">     <div class="poster_info">       <div class="vlist_img">         <img src="{% static 'banner_static/T344437.jpg' %}" alt="" onerror="this.src='/public/assets/img/img_default_224x320.png'">       </div>       <div class="vlist_text_box">         <div class="text_title">           윤식당 2         </div>       </div>     </div>     </a>   </li>   <li>     <a href="javascript:;" onclick='move("/v/{F19B08AE-DFA0-11E7-91CA-D52EE091A74A}")' title="나쁜녀석들: 악의 도시">     <div class="poster_info">       <div class="vlist_img">         <img src="{% static 'banner_static/T343538.jpg' %}" alt="" onerror="this.src='/public/assets/img/img_default_224x320.png'">       </div>       <div class="vlist_text_box">         <div class="text_title">           나쁜녀석들: 악의 도시         </div>       </div>     </div>     </a>   </li>   <li>     <a href="javascript:;" onclick='move("/v/{CE9AB99E-CF27-11E7-9664-8121FC65C31A}")' title="슬기로운 감빵생활">     <div class="poster_info">       <div class="vlist_img">         <img src="{% static 'banner_static/T342789.jpg' %}" alt="" onerror="this.src='/public/assets/img/img_default_224x320.png'">       </div>       <div class="vlist_text_box">         <div class="text_title">           슬기로운 감빵생활         </div>       </div>     </div>     </a>   </li>   <li>     <a href="javascript:;" onclick='move("/v/{9C9DD498-C052-11E7-BC39-E75924B4C443}")' title="아는 형님">     <div class="poster_info">       <div class="vlist_img">         <img src="{% static 'banner_static/T315835.jpg' %}" alt="" onerror="this.src='/public/assets/img/img_default_224x320.png'">       </div>       <div class="vlist_text_box">         <div class="text_title">           아는 형님         </div>       </div>     </div>     </a>   </li>   <li>     <a href="javascript:;" onclick='move("/v/{57713860-D978-11E7-971E-D705B093F194}")' title="신서유기 외전 강식당">     <div class="poster_info">       <div class="vlist_img">         <img src="{% static 'banner_static/T343354.jpg' %}" alt="" onerror="this.src='/public/assets/img/img_default_224x320.png'">       </div>       <div class="vlist_text_box">         <div class="text_title">           신서유기 외전 강식당         </div>       </div>     </div>     </a>   </li>   <li>     <a href="javascript:;" onclick='move("/v/{EE700729-CF28-11E7-9664-8121FC65C31A}")' title="짠내투어">     <div class="poster_info">       <div class="vlist_img">         <img src="{% static 'banner_static/T342790.jpg' %}" alt="" onerror="this.src='/public/assets/img/img_default_224x320.png'">       </div>       <div class="vlist_text_box">         <div class="text_title">           짠내투어         </div>       </div>     </div>     </a>   </li>   <li>     <a href="javascript:;" onclick='move("/v/{C0DF9A3D-D02B-11E7-9664-8121FC65C31A}")' title="언터처블">     <div class="poster_info">       <div class="vlist_img">         <img src="{% static 'banner_static/T342922.jpg' %}" alt="" onerror="this.src='/public/assets/img/img_default_224x320.png'">       </div>       <div class="vlist_text_box">         <div class="text_title">           언터처블         </div>       </div>     </div>     </a>   </li>   <li>     <a href="javascript:;" onclick='move("/v/{8AB20B7B-F69A-11E7-99CE-27E26A488D5E}")' title="투유 프로젝트 - 슈가맨2">     <div class="poster_info">       <div class="vlist_img">         <img src="{% static 'banner_static/T344652.jpg' %}" alt="" onerror="this.src='/public/assets/img/img_default_224x320.png'">       </div>       <div class="vlist_text_box">         <div class="text_title">           투유 프로젝트 - 슈가맨2         </div>       </div>     </div>     </a>   </li>   <li>     <a href="javascript:;" onclick='move("/v/{3C19C960-D650-11E7-8CE3-E96012E66217}")' title="이방인">     <div class="poster_info">       <div class="vlist_img">         <img src="{% static 'banner_static/T343249.jpg' %}" alt="" onerror="this.src='/public/assets/img/img_default_224x320.png'">       </div>       <div class="vlist_text_box">         <div class="text_title">           이방인         </div>       </div>     </div>     </a>   </li> </ul></div><div class="general_section_list " data-type="24"> <div class="section_title_box">   <span class="ico_name ">클립</span>   <span class="section_title normal">지금 뜨고 있는 클립</span> </div> <span id="slider-prevuntgp"><a class="bx-prev btn_slider prev disabled" href=""></a></span><div class="bx-wrapper" style="max-width: 1200px;"><div class="bx-viewport" aria-live="polite" style="width: 100%; overflow: hidden; position: relative; height: 215px;"><ul class="section_vlist " id="untgp" style="width: 21215%; position: relative; transition-duration: 0s; transform: translate3d(0px, 0px, 0px);"><li style="float: left; list-style: outside none none; position: relative; width: 224px; margin-left: 20px;" aria-hidden="false"> <a href="http://www.oksusu.com/v/%7BFF22DBC4-F96F-11E7-9023-499D9432ACE9%7D" title="미세먼지 '최악' 비상조치 발령...차량 2부제·출퇴근 대중교통 무료"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180115061913856_988.jpg' %}" alt="미세먼지 '최악' 비상조치 발령...차량 2부제·출퇴근 대중교통 무료">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">01:49</span>   </div>   <div class="vlist_text_box">     <div class="text_title" style="overflow-wrap: break-word;">미세먼지 '최악' 비상조치 발령...차량 2부제·출퇴근 대중교통 무료     </div>     <div class="text_subtitle text_blue">YTN 뉴스     </div>     <div class="text_play_count">       <span class="ico_count">2,902</span>       <span class="text_date">2018.01.15<em>(월)</em></span>     </div>   </div> </div> </a></li><li style="float: left; list-style: outside none none; position: relative; width: 224px; margin-left: 20px;" aria-hidden="false"> <a href="http://www.oksusu.com/v/%7BCAA8C046-F956-11E7-BD5E-E199846257E6%7D" title="'이 경기는 미쳤다' 끝내 맨시티의 무패를 저지하는 리버풀"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180115031517297_17_002.jpg' %}" alt="'이 경기는 미쳤다' 끝내 맨시티의 무패를 저지하는 리버풀">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">02:57</span>   </div>   <div class="vlist_text_box">     <div class="text_title" style="overflow-wrap: break-word;">'이 경기는 미쳤다' 끝내 맨시티의 무패를 저지하는 리버풀     </div>     <div class="text_subtitle text_blue">리버풀:맨시티 23R     </div>     <div class="text_play_count">       <span class="ico_count">2,192</span>       <span class="text_date">2018.01.15<em>(월)</em></span>     </div>   </div> </div> </a></li><li style="float: left; list-style: outside none none; position: relative; width: 224px; margin-left: 20px;" aria-hidden="false"> <a href="http://www.oksusu.com/v/%7BCEF10A24-EC63-11E7-BD5E-E199846257E6%7D" title="[7화] 승부욕 불타는 게임의 늪"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180109160759349_17.jpg' %}" alt="[7화] 승부욕 불타는 게임의 늪">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">12:38</span>   </div>   <div class="vlist_text_box">     <div class="text_title" style="overflow-wrap: break-word;">[7화] 승부욕 불타는 게임의 늪     </div>     <div class="text_subtitle text_blue">LEVEL UP Project 2     </div>     <div class="text_play_count">       <span class="ico_count">11,667</span>       <span class="text_date">2018.01.15<em>(월)</em></span>     </div>   </div> </div> </a></li><li style="float: left; list-style: outside none none; position: relative; width: 224px; margin-left: 20px;" aria-hidden="false"> <a href="http://www.oksusu.com/v/%7BCED93C5F-EC63-11E7-BD5E-E199846257E6%7D" title="[6화] 호로록 호로록 본격 먹방"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180103134706164_12.jpg' %}" alt="[6화] 호로록 호로록 본격 먹방">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">10:49</span>   </div>   <div class="vlist_text_box">     <div class="text_title" style="overflow-wrap: break-word;">[6화] 호로록 호로록 본격 먹방     </div>     <div class="text_subtitle text_blue">LEVEL UP Project 2     </div>     <div class="text_play_count">       <span class="ico_count">118,344</span>       <span class="text_date">2018.01.13<em>(토)</em></span>     </div>   </div> </div> </a></li><li style="float: left; list-style: outside none none; position: relative; width: 224px; margin-left: 20px;" aria-hidden="false"> <a href="http://www.oksusu.com/v/%7B62ACAFC5-F925-11E7-89BE-3B27F3E0FB90%7D" title="가구당 평균 12개, 매달 103만원 납입…'보험 과잉사회'"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180114212102336_357.jpg' %}" alt="가구당 평균 12개, 매달 103만원 납입…'보험 과잉사회'">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">01:38</span>   </div>   <div class="vlist_text_box">     <div class="text_title" style="overflow-wrap: break-word;">가구당 평균 12개, 매달 103만원 납입…'보험 과잉사회'     </div>     <div class="text_subtitle text_blue">jtbc뉴스룸     </div>     <div class="text_play_count">       <span class="ico_count">1,631</span>       <span class="text_date">2018.01.14<em>(일)</em></span>     </div>   </div> </div> </a></li><li style="float: left; list-style: outside none none; position: relative; width: 224px; margin-left: 20px;" aria-hidden="true"> <a href="http://www.oksusu.com/v/%7B8F55ACD1-F73A-11E7-BD5E-E199846257E6%7D" title="'리그 8호' 손흥민의 선제골"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180114030203006_4.jpg' %}" alt="'리그 8호' 손흥민의 선제골">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">01:32</span>   </div>   <div class="vlist_text_box">     <div class="text_title" style="overflow-wrap: break-word;">'리그 8호' 손흥민의 선제골     </div>     <div class="text_subtitle text_blue">토트넘:에버튼 23R     </div>     <div class="text_play_count">       <span class="ico_count">51,916</span>       <span class="text_date">2018.01.14<em>(일)</em></span>     </div>   </div> </div> </a></li><li style="float: left; list-style: outside none none; position: relative; width: 224px; margin-left: 20px;" aria-hidden="true"> <a href="http://www.oksusu.com/v/%7B0D808E9F-F86A-11E7-B06B-2355C6133863%7D" title="첫사랑 잡고 싶었던 석천(!) 돌아온 답은 ＂질척대지 마!＂"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180114004616630_898.jpg' %}" alt="첫사랑 잡고 싶었던 석천(!) 돌아온 답은 ＂질척대지 마!＂">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">02:52</span>   </div>   <div class="vlist_text_box">     <div class="text_title" style="overflow-wrap: break-word;">첫사랑 잡고 싶었던 석천(!) 돌아온 답은 ＂질척대지 마!＂     </div>     <div class="text_subtitle text_blue">아는 형님     </div>     <div class="text_play_count">       <span class="ico_count">9,888</span>       <span class="text_date">2018.01.13<em>(토)</em></span>     </div>   </div> </div> </a></li><li style="float: left; list-style: outside none none; position: relative; width: 224px; margin-left: 20px;" aria-hidden="true"> <a href="http://www.oksusu.com/v/%7B00318CA5-F970-11E7-9023-499D9432ACE9%7D" title="터키 여객기, 활주로 이탈해 바다 추락할 뻔"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180115061940968_989.jpg' %}" alt="터키 여객기, 활주로 이탈해 바다 추락할 뻔">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">00:51</span>   </div>   <div class="vlist_text_box">     <div class="text_title" style="overflow-wrap: break-word;">터키 여객기, 활주로 이탈해 바다 추락할 뻔     </div>     <div class="text_subtitle text_blue">YTN 뉴스     </div>     <div class="text_play_count">       <span class="ico_count">1,216</span>       <span class="text_date">2018.01.15<em>(월)</em></span>     </div>   </div> </div> </a></li><li style="float: left; list-style: outside none none; position: relative; width: 224px; margin-left: 20px;" aria-hidden="true"> <a href="http://www.oksusu.com/v/%7BDCE60C88-C906-11E7-9664-8121FC65C31A%7D" title="[16화] 정규직이 되면? 월급이 깎여요"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180104132347113_17.jpg' %}" alt="[16화] 정규직이 되면? 월급이 깎여요">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">15:44</span>   </div>   <div class="vlist_text_box">     <div class="text_title" style="overflow-wrap: break-word;">[16화] 정규직이 되면? 월급이 깎여요     </div>     <div class="text_subtitle text_blue">회사를관두는최고의순간     </div>     <div class="text_play_count">       <span class="ico_count">15,290</span>       <span class="text_date">2018.01.13<em>(토)</em></span>     </div>   </div> </div> </a></li><li style="float: left; list-style: outside none none; position: relative; width: 224px; margin-left: 20px;" aria-hidden="true"> <a href="http://www.oksusu.com/v/%7BCEEC4F33-EC63-11E7-BD5E-E199846257E6%7D" title="[스페셜] 송이&amp;창이 산책"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180109160654075_16.jpg' %}" alt="[스페셜] 송이&amp;창이 산책">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">01:51</span>   </div>   <div class="vlist_text_box">     <div class="text_title" style="overflow-wrap: break-word;">[스페셜] 송이&amp;창이 산책     </div>     <div class="text_subtitle text_blue">LEVEL UP Project 2     </div>     <div class="text_play_count">       <span class="ico_count">30,325</span>       <span class="text_date">2018.01.14<em>(일)</em></span>     </div>   </div> </div> </a></li><li style="float: left; list-style: outside none none; position: relative; width: 224px; margin-left: 20px;" aria-hidden="true"> <a href="http://www.oksusu.com/v/%7B00DFA6F6-F970-11E7-9023-499D9432ACE9%7D" title="페루 남부서 규모 7.1 강진...최소 2명 사망·65명 부상"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180115062010813_990.jpg' %}" alt="페루 남부서 규모 7.1 강진...최소 2명 사망·65명 부상">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">00:38</span>   </div>   <div class="vlist_text_box">     <div class="text_title" style="overflow-wrap: break-word;">페루 남부서 규모 7.1 강진...최소 2명 사망·65명 부상     </div>     <div class="text_subtitle text_blue">YTN 뉴스     </div>     <div class="text_play_count">       <span class="ico_count">870</span>       <span class="text_date">2018.01.15<em>(월)</em></span>     </div>   </div> </div> </a></li><li style="float: left; list-style: outside none none; position: relative; width: 224px; margin-left: 20px;" aria-hidden="true"> <a href="http://www.oksusu.com/v/%7B41651B78-F732-11E7-BD5E-E199846257E6%7D" title="[덩크 콘테스트 결선] 버튼:켈리"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180114183341465_18.jpg' %}" alt="[덩크 콘테스트 결선] 버튼:켈리">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">07:23</span>   </div>   <div class="vlist_text_box">     <div class="text_title" style="overflow-wrap: break-word;">[덩크 콘테스트 결선] 버튼:켈리     </div>     <div class="text_subtitle text_blue">매직팀:드림팀     </div>     <div class="text_play_count">       <span class="ico_count">2,491</span>       <span class="text_date">2018.01.14<em>(일)</em></span>     </div>   </div> </div> </a></li><li style="float: left; list-style: outside none none; position: relative; width: 224px; margin-left: 20px;" aria-hidden="true"> <a href="http://www.oksusu.com/v/%7BCEE7BB52-EC63-11E7-BD5E-E199846257E6%7D" title="[스페셜] 웬디vs아이린의 명승부"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180109160622541_15.jpg' %}" alt="[스페셜] 웬디vs아이린의 명승부">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">01:25</span>   </div>   <div class="vlist_text_box">     <div class="text_title" style="overflow-wrap: break-word;">[스페셜] 웬디vs아이린의 명승부     </div>     <div class="text_subtitle text_blue">LEVEL UP Project 2     </div>     <div class="text_play_count">       <span class="ico_count">26,984</span>       <span class="text_date">2018.01.14<em>(일)</em></span>     </div>   </div> </div> </a></li><li style="float: left; list-style: outside none none; position: relative; width: 224px; margin-left: 20px;" aria-hidden="true"> <a href="http://www.oksusu.com/v/%7B01C15467-F970-11E7-9023-499D9432ACE9%7D" title="[현장24] '부실급식에 아동학대' 엉터리 인증 어린이집"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180115062049528_991.jpg' %}" alt="[현장24] '부실급식에 아동학대' 엉터리 인증 어린이집">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">02:12</span>   </div>   <div class="vlist_text_box">     <div class="text_title" style="overflow-wrap: break-word;">[현장24] '부실급식에 아동학대' 엉터리 인증 어린이집     </div>     <div class="text_subtitle text_blue">YTN 뉴스     </div>     <div class="text_play_count">       <span class="ico_count">718</span>       <span class="text_date">2018.01.15<em>(월)</em></span>     </div>   </div> </div> </a></li><li style="float: left; list-style: outside none none; position: relative; width: 224px; margin-left: 20px;" aria-hidden="true"> <a href="http://www.oksusu.com/v/%7B0463C4A9-F970-11E7-9023-499D9432ACE9%7D" title="[날씨] 전국 영상권 포근...중서부·전북 미세먼지 '나쁨'"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180115062215493_993.jpg' %}" alt="[날씨] 전국 영상권 포근...중서부·전북 미세먼지 '나쁨'">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">01:22</span>   </div>   <div class="vlist_text_box">     <div class="text_title" style="overflow-wrap: break-word;">[날씨] 전국 영상권 포근...중서부·전북 미세먼지 '나쁨'     </div>     <div class="text_subtitle text_blue">YTN 뉴스     </div>     <div class="text_play_count">       <span class="ico_count">751</span>       <span class="text_date">2018.01.15<em>(월)</em></span>     </div>   </div> </div> </a></li><li style="float: left; list-style: outside none none; position: relative; width: 224px; margin-left: 20px;" aria-hidden="true"> <a href="http://www.oksusu.com/v/%7BCEC58D4B-EC63-11E7-BD5E-E199846257E6%7D" title="[2화] 유럽여행 물씬 나는 짐 싸기"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180102143837494_8.jpg' %}" alt="[2화] 유럽여행 물씬 나는 짐 싸기">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">09:39</span>   </div>   <div class="vlist_text_box">     <div class="text_title" style="overflow-wrap: break-word;">[2화] 유럽여행 물씬 나는 짐 싸기     </div>     <div class="text_subtitle text_blue">LEVEL UP Project 2     </div>     <div class="text_play_count">       <span class="ico_count">229,947</span>       <span class="text_date">2018.01.09<em>(화)</em></span>     </div>   </div> </div> </a></li><li style="float: left; list-style: outside none none; position: relative; width: 224px; margin-left: 20px;" aria-hidden="true"> <a href="http://www.oksusu.com/v/%7B54C63925-F956-11E7-BD5E-E199846257E6%7D" title="리버풀:맨시티 23R 경기 골모음"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180115031210537_16_002.jpg' %}" alt="리버풀:맨시티 23R 경기 골모음">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">08:24</span>   </div>   <div class="vlist_text_box">     <div class="text_title" style="overflow-wrap: break-word;">리버풀:맨시티 23R 경기 골모음     </div>     <div class="text_subtitle text_blue">리버풀:맨시티 23R     </div>     <div class="text_play_count">       <span class="ico_count">1,039</span>       <span class="text_date">2018.01.15<em>(월)</em></span>     </div>   </div> </div> </a></li><li style="float: left; list-style: outside none none; position: relative; width: 224px; margin-left: 20px;" aria-hidden="true"> <a href="http://www.oksusu.com/v/%7BD6C987D4-F752-11E7-BD5E-E199846257E6%7D" title="리버풀:맨시티 23R H/L"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180115032049914_5.jpg' %}" alt="리버풀:맨시티 23R H/L">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">14:55</span>   </div>   <div class="vlist_text_box">     <div class="text_title" style="overflow-wrap: break-word;">리버풀:맨시티 23R H/L     </div>     <div class="text_subtitle text_blue">2017-18 PL 23R     </div>     <div class="text_play_count">       <span class="ico_count">907</span>       <span class="text_date">2018.01.15<em>(월)</em></span>     </div>   </div> </div> </a></li><li style="float: left; list-style: outside none none; position: relative; width: 224px; margin-left: 20px;" aria-hidden="true"> <a href="http://www.oksusu.com/v/%7BCED2D3BE-EC63-11E7-BD5E-E199846257E6%7D" title="[5화] 여행 첫 저녁식사 실화냐"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180112094940352_11.jpg' %}" alt="[5화] 여행 첫 저녁식사 실화냐">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">07:38</span>   </div>   <div class="vlist_text_box">     <div class="text_title" style="overflow-wrap: break-word;">[5화] 여행 첫 저녁식사 실화냐     </div>     <div class="text_subtitle text_blue">LEVEL UP Project 2     </div>     <div class="text_play_count">       <span class="ico_count">118,828</span>       <span class="text_date">2018.01.12<em>(금)</em></span>     </div>   </div> </div> </a></li><li style="float: left; list-style: outside none none; position: relative; width: 224px; margin-left: 20px;" aria-hidden="true"> <a href="http://www.oksusu.com/v/%7BCEDE4570-EC63-11E7-BD5E-E199846257E6%7D" title="[스페셜] 미모블랙홀 미공개 영상"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180103134727970_13.jpg' %}" alt="[스페셜] 미모블랙홀 미공개 영상">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">01:10</span>   </div>   <div class="vlist_text_box">     <div class="text_title" style="overflow-wrap: break-word;">[스페셜] 미모블랙홀 미공개 영상     </div>     <div class="text_subtitle text_blue">LEVEL UP Project 2     </div>     <div class="text_play_count">       <span class="ico_count">46,865</span>       <span class="text_date">2018.01.13<em>(토)</em></span>     </div>   </div> </div> </a></li><li style="float: left; list-style: outside none none; position: relative; width: 224px; margin-left: 20px;" aria-hidden="true"> <a href="http://www.oksusu.com/v/%7BB4336DE3-F93D-11E7-9023-499D9432ACE9%7D" title="실수와 승부 사이...이것이 '인간의 바둑'이다"> <div class="section_info">   <div class="vlist_img">     <img src="{% static 'banner_static/C_20180115002248285_971.jpg' %}" alt="실수와 승부 사이...이것이 '인간의 바둑'이다">     <i class="bg_line">이미지 그라데이션</i>     <span class="vlist_time">02:13</span>   </div>   <div class="vlist_text_box">     <div class="text_title" style="overflow-wrap: break-word;">실수와 승부 사이...이것이 '인간의 바둑'이다     </div>     <div class="text_subtitle text_blue">YTN 뉴스     </div>     <div class="text_play_count">       <span class="ico_count">605</span>       <span class="text_date">2018.01.14<em>(일)</em></span>     </div>   </div> </div> </a></li> </ul></div><div class="bx-controls bx-has-pager"><div class="bx-pager bx-default-pager" style="right: 0px;"><div class="bx-pager-item"><a href="" data-slide-index="0" class="bx-pager-link active">1</a></div><div class="bx-pager-item"><a href="" data-slide-index="1" class="bx-pager-link">2</a></div><div class="bx-pager-item"><a href="" data-slide-index="2" class="bx-pager-link">3</a></div><div class="bx-pager-item"><a href="" data-slide-index="3" class="bx-pager-link">4</a></div><div class="bx-pager-item"><a href="" data-slide-index="4" class="bx-pager-link">5</a></div></div></div></div><span id="slider-nextuntgp"><a class="bx-next btn_slider next" href=""></a></span></div></div>
+    </div><!--  main content //-->
+
+  </div>
+<!-- 브라우저 지원 여부 팝업(윈도우) -->
+<div class="popup_wrap check_browser" style="display:none;">
+  <div class="pop_wrap_inner">
+    <div class="popup_header"><a href="javascript:" onclick="SupportBrowser.close()" class="popup_btn_close" title="정보동의 팝업 닫기">닫기</a></div>
+    <div class="popup_content">
+      <p class="one_txt">죄송합니다.</p>
+      <p class="two_txt_top">현재 사용하고 계신 인터넷 브라우저에서는<br>옥수수 서비스를 이용하실 수 없습니다.</p>
+      <p class="two_txt_bottom">옥수수 서비스를 이용하시려면 Internet Explorer 11(Windows 8.1 이상), Microsoft Edge 이상의 브라우저<br>또는 Chrome, Firefox 브라우저를 설치하신 후 이용하여 주시기 바랍니다.</p>
+      <div class="btn_set">
+        <a href="https://support.microsoft.com/ko-kr/help/17621/internet-explorer-downloads">Internet Explorer11<br>다운로드</a><a href="https://www.google.com/chrome/browser/desktop/index.html">chrome 다운로드</a>
+      </div>
+      <a href="http://www.oksusu.com/" class="btn_default">홈으로 돌아가기</a>
+    </div>
+  </div>
+</div>
+<!-- 브라우저 지원 여부 팝업 //-->
+
+<div id="footer">
+  <div class="footer_top">
+    <div class="footer_top_inner">
+      <div class="footer_info_view" id="footer-notice">
+        <a href="http://www.oksusu.com/support/notice"><span class="info_view_tit">공지사항</span></a><a href="http://www.oksusu.com/support/notice/open" class="info_view_cnt"><span class="info_view_summary">인기영화, 드라마, 오리지널 콘텐츠를 oksusu에서 Full HD(1080P)로 즐겨보세요.</span><span class="info_view_date">2017.10.26</span></a>
+      </div>
+
+      <button type="button" class="btn_detail">전체보기</button>
+    </div>
+  </div>
+  <div class="footer_bottom">
+    <div class="footer_bottom_inner">
+      <div class="footer_bottom_menu">
+        <a href="http://www.oksusu.com/guide/intro">옥수수소개</a>
+        <a href="http://www.oksusu.com/guide/sitemap">사이트맵</a>
+        <a href="http://www.oksusu.com/guide/terms">이용약관</a>
+        <a href="http://www.skbroadband.com/footer/Page.do?retUrl=/footer/PrivacyStatement" target="_blank"><strong>개인정보처리방침</strong></a>
+        <a href="http://www.oksusu.com/support/notice">고객센터</a>
+        <a href="http://www.oksusu.com/guide/newsPolicy">기사배열기본방침</a>
+      </div>
+      <div class="info_company">SK브로드밴드㈜  <span class="info_company_divide"></span> 대표이사/사장  이형희 <span class="info_company_divide"></span> 서울시 중구 퇴계로 24 SK남산빌딩 <span class="info_company_divide"></span> 사업자등록번호 : 214-86-18758 <br> 통신판매신고번호 : 서울 중구 제 2008-1608호 <span class="info_company_divide"></span> <a href="http://www.ftc.go.kr/info/bizinfo/communicationView.jsp?apv_perm_no=2008301010030201608&amp;area1=&amp;area2=&amp;currpage=1&amp;search%20Key=04&amp;searchVal=2148618758&amp;stdate=&amp;enddate=" class="info_company_link" target="_blank">사업자정보확인</a> 고객센터 : 가입문의 국번 없이 106 (당사 전화고객 무료, 타사 전화고객 유료) 080-8282-106 (무료)<span class="info_company_divide"></span>E-mail : <a href="mailto:mobileqna@skbroadband.com" class="footEmail">mobileqna@skbroadband.com</a></div>
+      <div class="copyright">COPYRIGHT  © SK broadband CO.LTD. ALL RIGHTS RESERVED.</div>
+    </div>
+  </div>
+  <div class="btn_top" style="top: -3177px; display: block;">위로가기</div>
+  <div class="pop_dimmed"></div>
+</div>
+<!-- 성인 등급제한 설정 //-->
+<!-- 등급 제한 설정 (비밀번호 확인) 팝업 -->
+<div id="kidsLevelIdentifyPwDiv" class="popup_wrap payment" style="display: none">
+    <div class="pop_wrap_inner default">
+        <div class="popup_header">등급제한 설정<a href="javascript:;" class="popup_btn_close" title="팝업 닫기">닫기</a></div>
+        <div class="popup_content">
+            <div class="one_txt">성인 인증 번호를 입력해 주세요.</div>
+            <div class="input_inner">
+                <input id="kidsIdentifyPin" placeholder="4자리 숫자를 입력해 주세요." maxlength="4" type="password">
+                <span id="msgKidsPinIdentifyPw01" class="hidden_msg" style="display: none"><i class="ico_info"></i>성인 인증번호가 일치하지 않습니다.</span>
+                <span id="msgKidsPinIdentifyPw02" class="hidden_msg" style="display: none"><i class="ico_info"></i>인증번호 4자리 숫자를 입력하세요.</span>
+            </div>
+            <div id="kidsLockPwUpdateDiv" class="small_txt"><a href="javascript:;">인증번호 재설정</a>
+            </div>
+        </div>
+        <div class="popup_footer">
+            <button type="button" id="accept" class="btn_default accept">확인</button>
+            <button type="button" id="cancel" class="btn_default cancel">취소</button>
+        </div>
+    </div>
+</div>
+<!-- 등급 제한 설정 팝업 //-->
+
+<div id="kidsLockSaveComplete" class="popup_wrap my" style="display: none"><!-- 등급 제한 설정 완료 팝업 -->
+    <div class="pop_wrap_inner">
+        <div class="popup_header">등급제한 설정<a href="javascript:" onclick="Popup.close('kidsLockSaveComplete')" class="popup_btn_close" title="팝업 닫기">닫기</a></div>
+        <div class="popup_content">
+            <p class="one_txt">등급 제한 설정이 완료되었습니다.</p>
+        </div>
+        <div class="popup_footer">
+            <button type="button" class="btn_default accept" onclick="Popup.confirm('kidsLockSaveComplete')">확인</button>
+        </div>
+    </div>
+</div><!-- 등급 제한 설정 완료 팝업 -->
+
+<div class="popup_wrap alert" style="display:none"><!-- 경고 팝업 -->
+  <div class="pop_wrap_inner">
+    <div class="popup_header">Alert<a href="#" class="popup_btn_close" title="경고 팝업 닫기">닫기</a></div>
+    <div class="popup_content">
+      <p class="one_txt">검색어를 입력해주세요.</p>
+    </div>
+    <div class="popup_footer">
+      <button type="button" class="btn_default accept">확인</button>
+    </div>
+  </div>
+</div><!-- 경고 팝업 //-->
+
+<div class="popup_wrap alert" style="display:none"><!-- 경고 팝업 -->
+  <div class="pop_wrap_inner">
+    <div class="popup_header">Alert<a href="#" class="popup_btn_close" title="경고 팝업 닫기">닫기</a></div>
+    <div class="popup_content">
+      <p class="one_txt">상품 구매 후 시청이 가능한 프로그램입니다.<br>상품을 구매하시겠습니까?</p>
+
+      <div class="popup_one_input">
+        <input title="비밀번호를 입력해 주세요." placeholder="비밀번호를 입력해 주세요." type="text">
+      </div>
+
+    </div>
+
+    <div class="popup_footer">
+      <button type="button" class="btn_default find">확인</button><button type="button" class="btn_default cancel">취소</button>
+    </div>
+  </div>
+</div><!-- 경고 팝업 //-->
+
+<div id="commonPopup" class="popup_wrap" style="display: none;height: 180px">
+  <div class="pop_wrap_inner nohead">
+    <a href="#" class="popup_btn_close" title="닫기">닫기</a>
+    <div class="popup_content">
+      <p class="one_txt mart40">메시지</p>
+    </div>
+    <div class="popup_footer">
+      <button type="button" class="btn_default find">확인</button>
+    </div>
+  </div>
+</div>
+
+<div id="commonPopupWithHeader" class="popup_wrap alert" style="display:none">
+  <div class="pop_wrap_inner">
+    <div class="popup_header"><span class="header">헤더</span><a href="#" class="popup_btn_close" title="경고 팝업 닫기">닫기</a></div>
+    <div class="popup_content">
+      <p class="one_txt">내용</p>
+    </div>
+    <div class="popup_footer">
+      <button type="button" class="btn_default accept">확인</button>
+    </div>
+  </div>
+</div>
+
+<div id="popupLogin2" class="popup_wrap" style="display:none">
+  <div class="pop_wrap_inner ident">
+    <div class="popup_header"><a href="javascript:" class="popup_btn_close" onclick="Popup.close('popupLogin2')" title="팝업 닫기">닫기</a></div>
+    <div class="popup_content">
+      <p class="one_txt">로그인이 필요한 정보입니다.<br>로그인하시겠습니까?</p>
+    </div>
+    <div class="popup_footer">
+      <button type="button" class="btn_default" onclick="Popup.move('popupLogin2','/user/login')">확인</button><button type="button" onclick="Popup.close('popupLogin2')" class="btn_default cancel">취소</button>
+    </div>
+  </div>
+</div><!-- 본인인증 팝업 //-->
+<div id="popupLogin" class="popup_wrap" style="display:none">
+  <div class="pop_wrap_inner ident">
+    <div class="popup_header">로그인<a href="javascript:" class="popup_btn_close" onclick="Popup.close('popupLogin')" title="팝업 닫기">닫기</a></div>
+    <div class="popup_content">
+      <p class="one_txt">로그인 후 사용 가능합니다.<br>로그인 페이지로 이동하시겠습니까?</p>
+    </div>
+    <div class="popup_footer">
+      <button type="button" class="btn_default" onclick="Popup.move('popupLogin','/user/login')">확인</button><button type="button" onclick="Popup.close('popupLogin')" class="btn_default cancel">취소</button>
+    </div>
+  </div>
+</div><!-- 본인인증 팝업 //-->
+
+<div id="popupCheckMe" class="popup_wrap" style="display:none">
+  <div class="pop_wrap_inner ident">
+    <div class="popup_header">본인인증<a href="javascript:" class="popup_btn_close" onclick="Popup.close('popupCheckMe')" title="팝업 닫기">닫기</a></div>
+    <div class="popup_content">
+      <p class="one_txt">본인인증 후 사용 가능합니다.<br>본인인증 페이지로 이동하시겠습니까?</p>
+    </div>
+    <div class="popup_footer">
+      <button type="button" class="btn_default" onclick="Popup.move('popupCheckMe','/user/check/me')">확인</button><button type="button" onclick="Popup.close('popupCheckMe')" class="btn_default cancel">취소</button>
+    </div>
+  </div>
+</div><!-- 본인인증 팝업 //-->
+
+<div id="popupCheckAdult" class="popup_wrap" style="display:none"><!-- 본인인증 팝업 -->
+  <div class="pop_wrap_inner ident">
+    <div class="popup_header">성인인증<a href="javascript:" onclick="Popup.close('popupCheckAdult')" class="popup_btn_close" title="팝업 닫기">닫기</a></div>
+    <div class="popup_content">
+      <p class="one_txt">성인인증이 필요합니다.<br>인증하시겠습니까?</p>
+    </div>
+    <div class="popup_footer">
+      <button type="button" class="btn_default" onclick="Popup.move('popupCheckAdult','/user/check/adult')">확인</button><button type="button" onclick="Popup.close('popupCheckAdult')" class="btn_default cancel">취소</button>
+    </div>
+  </div>
+</div><!-- 본인인증 팝업 //-->
+
+<div class="popup_wrap payment" style="display:none"><!-- 등급 설정 팝업 -->
+  <div class="pop_wrap_inner default">
+    <div class="popup_header">등급제한 설정<a href="#" class="popup_btn_close" title="팝업 닫기">닫기</a></div>
+    <div class="popup_content">
+      <div class="one_txt">성인 인증 번호를 입력해 주세요.</div>
+      <div class="input_inner">
+        <input placeholder="4자리 숫자를 입력해 주세요." type="text">
+      </div>
+      <div class="small_txt"><a href="">인증번호 재설정</a></div>
+    </div>
+    <div class="popup_footer">
+      <button type="button" class="btn_default">확인</button><button type="button" class="btn_default cancel">취소</button>
+    </div>
+  </div>
+</div><!-- 등급 설정 팝업 -->
+
+<div class="popup_wrap" style="display:none"> <!-- 등급 설정 팝업 -->
+  <div class="pop_wrap_inner rating_limit">
+    <div class="popup_header">등급제한 설정<a href="#" class="popup_btn_close" title="팝업 닫기">닫기</a></div>
+    <div class="popup_content">
+      <p class="one_txt">성인 인증 번호를 입력해 주세요.</p>
+
+      <div class="popup_one_input">
+        <input title="4자리 숫자를 입력해주세요." class="onlynum" placeholder="4자리 숫자를 입력해주세요." type="text">
+      </div>
+
+      <p class="one_txt">인증 번호를 재입력해 주세요.</p>
+
+      <div class="popup_one_input">
+        <input title="4자리 숫자를 입력해주세요." class="onlynum" placeholder="4자리 숫자를 입력해주세요." type="text">
+      </div>
+
+      <!-- <p class="one_txt_red"><i class="ico_info"></i>인증 번호 숫자 4자리를 입력해주세요.</p> -->
+
+    </div>
+
+    <div class="popup_footer">
+      <button type="button" class="btn_default">확인</button><button type="button" class="btn_default cancel">취소</button>
+    </div>
+  </div>
+</div> <!-- 등급 설정 팝업 //-->
+
+<div class="popup_wrap" style="display:none"> <!-- 등급 설정 팝업 -->
+  <div class="pop_wrap_inner rating_limit">
+    <div class="popup_header">등급제한 설정<a href="#" class="popup_btn_close" title="팝업 닫기">닫기</a></div>
+    <div class="popup_content">
+      <p class="one_txt text_left">성인 인증 번호를 입력해 주세요.</p>
+
+      <div class="popup_one_input">
+        <input title="4자리 숫자를 입력해주세요." class="onlynum" placeholder="4자리 숫자를 입력해주세요." type="text">
+      </div>
+
+      <p class="one_txt text_left">인증 번호를 재입력해 주세요.</p>
+
+      <div class="popup_one_input">
+        <input title="4자리 숫자를 입력해주세요." class="onlynum" placeholder="4자리 숫자를 입력해주세요." type="text">
+      </div>
+
+      <p class="one_txt_red text_left"><i class="ico_info"></i>인증 번호가 일치하지 않습니다.</p>
+
+    </div>
+
+    <div class="popup_footer">
+      <button type="button" class="btn_default">확인</button><button type="button" class="btn_default cancel">취소</button>
+    </div>
+  </div>
+</div> <!-- 등급 설정 팝업 //-->
+
+<div class="popup_wrap" style="display:none"> <!-- 등급 설정 팝업 -->
+  <div class="pop_wrap_inner rating_limit">
+    <div class="popup_header">등급제한 설정<a href="#" class="popup_btn_close" title="팝업 닫기">닫기</a></div>
+    <div class="popup_content">
+      <p class="one_txt text_left">성인 인증 번호를 입력해 주세요.</p>
+
+      <div class="popup_one_input">
+        <input title="4자리 숫자를 입력해주세요." class="onlynum" placeholder="4자리 숫자를 입력해주세요." type="text">
+      </div>
+
+      <p class="one_txt text_left">인증 번호를 재입력해 주세요.</p>
+
+      <div class="popup_one_input">
+        <input title="4자리 숫자를 입력해주세요." class="onlynum" placeholder="4자리 숫자를 입력해주세요." type="text">
+      </div>
+
+      <p class="one_txt_red text_left"><i class="ico_info"></i>인증 번호 숫자 4자리를 입력해주세요</p>
+
+    </div>
+
+    <div class="popup_footer">
+      <button type="button" class="btn_default">확인</button><button type="button" class="btn_default cancel">취소</button>
+    </div>
+  </div>
+</div> <!-- 등급 설정 팝업 //-->
+
+<div class="popup_wrap my" style="display:none"><!-- 등급 설정 팝업 -->
+  <div class="pop_wrap_inner">
+    <div class="popup_header">등급제한 설정<a href="#" class="popup_btn_close" title="팝업 닫기">닫기</a></div>
+    <div class="popup_content">
+      <p class="one_txt txt_center">등급 제한 설정이 해지되었습니다.</p>
+
+    </div>
+
+    <div class="popup_footer">
+      <button type="button" class="btn_default">확인</button>
+    </div>
+
+  </div>
+</div><!-- 등급 설정 팝업 //-->
+
+<div id="popupRestrictView" class="popup_wrap payment" style="display:none"><!-- 등급 설정 팝업 -->
+  <div class="pop_wrap_inner default">
+    <div class="popup_header">등급제한 설정<a href="javascript:" onclick="Popup.close('popupRestrictView')" class="popup_btn_close" title="팝업 닫기">닫기</a></div>
+    <div class="popup_content">
+      <div class="one_txt">성인 인증 번호를 입력해 주세요.</div>
+      <div class="input_inner">
+        <input maxlength="4" class="onlynum" placeholder="4자리 숫자를 입력해 주세요." type="password">
+      </div>
+      <div class="info_notice_msg grade red"></div>
+      <div class="small_txt"><a href="javascript:" class="ch_pin">인증번호 재설정</a></div>
+    </div>
+    <div class="popup_footer">
+      <button type="button" class="btn_default" onclick="Popup.confirm('popupRestrictView')">확인</button>
+      <button type="button" onclick="" class="btn_default cancel">취소</button>
+    </div>
+  </div>
+</div><!-- 등급 설정 팝업 -->
+
+<div id="confirmPw" class="popup_wrap payment" style="display:none"><!-- 등급 설정 팝업 -->
+  <div class="pop_wrap_inner default">
+    <div class="popup_header">인증번호 재설정<a href="javascript:" onclick="Popup.close('confirmPw')" class="popup_btn_close" title="팝업 닫기">닫기</a></div>
+    <div class="popup_content">
+      <div class="one_txt">인증 번호 재설정을 위해<br>oksusu비밀번호를 입력해 주세요.</div>
+      <div class="input_inner">
+        <input maxlength="20" placeholder="비밀번호를 입력해 주세요." type="password">
+        <div class="info_notice_msg grade red"></div>
+      </div>
+    </div>
+    <div class="popup_footer">
+      <button type="button" class="btn_default" onclick="Popup.confirm('confirmPw')">확인</button>
+      <button type="button" class="btn_default cancel" onclick="">취소</button>
+    </div>
+  </div>
+</div><!-- 등급 설정 팝업 -->
+
+<div id="kidsLockUpdate" class="popup_wrap" style="display: none;"><!-- 성인 등급제한 설정 -->
+  <div class="pop_wrap_inner rating_limit default_type02">
+    <div class="popup_header">등급제한 설정<a href="javascript:" onclick="Popup.close('kidsLockUpdate')" class="popup_btn_close" title="팝업 닫기">닫기</a></div>
+    <div class="popup_content">
+      <p class="one_txt">성인 인증 번호를 입력해 주세요.</p>
+      <div class="popup_one_input">
+        <input id="kidsLockPin" class="onlynum" title="4자리 숫자를 입력해주세요." maxlength="4" placeholder="4자리 숫자를 입력해주세요." type="password">
+      </div>
+      <p class="one_txt">성인 인증 번호를 재입력해 주세요.</p>
+      <div class="popup_one_input">
+        <input id="kidsLockPinChk" class="onlynum" title="4자리 숫자를 입력해주세요." maxlength="4" placeholder="4자리 숫자를 입력해주세요." type="password">
+      </div>
+      <div class="info_notice_msg grade red"></div>
+    </div>
+    <div class="popup_footer">
+      <button type="button" class="btn_default accept" onclick="Popup.confirm('kidsLockUpdate')">확인</button>
+      <button type="button" class="btn_default cancel">취소</button>
+    </div>
+  </div>
+</div><!-- 성인 등급제한 설정 //-->
+
+<div class="popup_wrap" style="display:none"><!-- 본인인증 팝업 -->
+  <div class="pop_wrap_inner default">
+    <div class="popup_header">본인인증<a href="#" class="popup_btn_close" title="팝업 닫기">닫기</a></div>
+    <div class="popup_content">
+      <div class="one_txt">미성인인 경우, 성인 월정액 구매가<br>불가합니다.<br>성인인증 후, 이용해주세요.</div>
+    </div>
+    <div class="popup_footer">
+      <button type="button" class="btn_default cfm">확인</button><button type="button" class="btn_default cancel">취소</button>
+    </div>
+  </div>
+</div><!-- 본인인증 팝업 -->
+
+<div class="popup_wrap my" style="display:none"><!-- 본인인증 팝업 -->
+  <div class="pop_wrap_inner">
+    <div class="popup_header">성인 인증<a href="#" class="popup_btn_close" title="팝업 닫기">닫기</a></div>
+    <div class="popup_content">
+      <p class="one_txt txt_center">성인 인증이 완료되었습니다.</p>
+
+    </div>
+
+    <div class="popup_footer">
+      <button type="button" class="btn_default cfm">확인</button>
+    </div>
+
+  </div>
+</div><!-- 본인인증 팝업 //-->
+<div class="popup_wrap my" style="display:none"><!-- 본인인증 팝업 -->
+  <div class="pop_wrap_inner">
+    <div class="popup_header">성인 인증<a href="#" class="popup_btn_close" title="팝업 닫기">닫기</a></div>
+    <div class="popup_content">
+      <p class="one_txt txt_center">성인 인증이 실패하였습니다.</p>
+
+    </div>
+
+    <div class="popup_footer">
+      <button type="button" class="btn_default cfm">확인</button>
+    </div>
+
+  </div>
+</div><!-- 본인인증 팝업 //-->
+
+
+<!-- 성인인증 팝업 -->
+<div class="toast_popup_wrap popup_wrap" style="display:none">
+  <div class="toast_wrap_inner">
+    <p>
+      성인인증에 실패하였습니다.
+    </p>
+  </div>
+</div>
+<!-- 성인인증 팝업 -->
+
+<!-- 성인인증 팝업 -->
+<div class="toast_popup_wrap popup_wrap" style="display:none">
+  <div class="toast_wrap_inner">
+    <p>
+      성인인증이 완료되었습니다.
+    </p>
+  </div>
+</div>
+<!-- 성인인증 팝업 -->
+
+<div class="toast_popup_wrap popup_wrap" style="display:none" id="toastPopup">
+  <div class="toast_wrap_inner"><p class="toastMessage"></p></div>
+</div>
+
+<div id="layer-popup-alert" class="popup_wrap" style="display:none">
+  <div class="pop_wrap_inner ident">
+    <div class="popup_header"></div>
+    <div class="popup_content">
+      <p class="one_txt"></p>
+    </div>
+    <div class="popup_footer">
+      <button type="button" class="btn_default accept">확인</button>
+    </div>
+  </div>
+</div>
+
+<div id="layer-popup-confirm" class="popup_wrap" style="display:none">
+    <div class="pop_wrap_inner ident">
+        <div class="popup_header"></div>
+        <div class="popup_content">
+            <p class="one_txt"></p>
+        </div>
+        <div class="popup_footer">
+            <button type="button" class="btn_default accept">확인</button>
+            <button type="button" class="btn_default cancel" onclick="Popup.close('layer-popup-confirm')">취소</button>
+        </div>
+    </div>
+</div>
+<script>
+  var LayerPopup = {
+    addDimmed : function($id) {
+      $id.show().before('<div class="pop_dimmed addDim" style="display:block;"></div>');
+      $(document).bind('mousewheel DOMMouseScroll', function(e) {e.preventDefault();});
+    },
+    removeDimmed : function($id) {
+      $id.hide();
+      $('.addDim').remove();
+      $(document).unbind('mousewheel DOMMouseScroll');
+    },
+    alert : function(title, msg, okCallback, closeCallback) {
+      var $id = $('#layer-popup-alert');
+
+      LayerPopup.addDimmed($id);
+      $id.show();
+      $id.find('.popup_header').html(title + '<a href="javascript:;" class="popup_btn_close" title="정보동의 팝업 닫기">닫기</a>');
+      $id.find('.one_txt').html(msg);
+
+      $id.find('.popup_btn_close').off().click(function(e) {
+        e.preventDefault();
+
+        LayerPopup.closePopup($id);
+        if (closeCallback) {
+          closeCallback();
+        }
+      });
+
+      $id.find('.btn_default.accept').off().click(function(e) {
+        LayerPopup.closePopup($id);
+
+        if (okCallback) {
+          okCallback();
+        }
+      });
+    },
+      confirm : function(title, msg, okCallback, closeCallback) {
+      var $id = $('#layer-popup-confirm');
+
+      LayerPopup.addDimmed($id);
+      $id.show();
+      $id.find('.popup_header').html(title + '<a href="javascript:;" class="popup_btn_close" title="정보동의 팝업 닫기">닫기</a>');
+      $id.find('.one_txt').html(msg);
+
+      $id.find('.popup_btn_close').off().click(function(e) {
+          e.preventDefault();
+
+          LayerPopup.closePopup($id);
+          if (closeCallback) {
+              closeCallback();
+          }
+      });
+
+      $id.find('.btn_default.accept').off().click(function(e) {
+          LayerPopup.closePopup($id);
+
+          if (okCallback) {
+              okCallback();
+          }
+      });
+    },
+    closePopup : function($id) {
+      LayerPopup.removeDimmed($id);
+      $id.hide();
+    }
+  };
+
+  /**
+   * layer popup
+   */
+  var Popup = {
+    property: {
+      url: null,
+      type: 'list',
+      where: ''
+    },
+    initialize: function(id, data, url, where) {
+      this.property.type = data.type;
+      this.property.eros = data.eros;
+      this.property.url = url;
+      this.property.where = where;
+
+      switch(id){
+        case 'popupRestrictView':
+          $('#popupRestrictView input:password').val('');
+          $('#popupRestrictView .info_notice_msg').html('');
+
+          $('#'+id+' .cancel').on('click', function() {
+            Popup.close('popupRestrictView');
+          });
+
+          $('#'+id+' .ch_pin').on('click', function() {
+            Popup.close('popupRestrictView');
+            Popup.show('confirmPw', '', url);
+          });
+
+          break;
+        case 'confirmPw':
+          $('#confirmPw input:password').val('');
+          $('#confirmPw .info_notice_msg').html('');
+
+          $('#' + id + ' .cancel').on('click', function () {
+            Popup.close('confirmPw');
+          });
+
+          break;
+        case 'kidsLockUpdate':
+          $('#kidsLockUpdate input:password').val('');
+
+          $('#' + id + ' .cancel').on('click', function () {
+            Popup.close('kidsLockUpdate');
+          });
+          break;
+      }
+    },
+    close: function(id) {
+      this.removeDimmed(id);
+      if (this.property.type === 'view') {
+        if ( document.referrer.indexOf( 'bill/purchase/result' ) > -1 ) {
+         if($('.vod_watch_wrap').length > 0){
+            location.href = '/vod';
+          } else if($('.movie_watch_wrap').length > 0){
+            location.href = '/movie';
+          } else if($('.live_watch_wrap').length > 0){
+            location.href = '/live';
+          }
+        } else if(this.property.eros == 'Y'){
+          location.href = '/';
+        } else {
+          history.back(1);
+        }
+      }
+      return false;
+    },
+    addDimmed: function(id) {
+      $('#' + id).show().before('<div class="pop_dimmed addDim" style="display:block;"></div>');
+      $(document).bind('mousewheel DOMMouseScroll', function(e) {e.preventDefault();});
+    },
+    removeDimmed: function(id) {
+      $('#' + id).hide();
+      $('.addDim').remove();
+      $(document).unbind('mousewheel DOMMouseScroll');
+    },
+    isViewPage: function() {
+      return (location.pathname.indexOf('/v/') === 0) ? true : false;
+    },
+    show: function (id, data, url, where) {
+      this.initialize(id, data, url, where);
+      if (id !== 'popupPurchase') {
+        this.addDimmed(id);
+      }
+      return false;
+    },
+    move: function(id, url) {
+//      if (url === '/user/check/adult') {
+//        if (User.isLogin && User.isMemberAuth && !User.isAdult) {
+//          this.close(id);
+//          CommonPopupWithHeader.open('본인인증', '미성인인 경우\n성인인증을 할 수 없습니다.');
+//          return false;
+//        }
+//      }
+      location.href = url + '?rw='+location.pathname+location.search;
+      return false;
+    },
+    confirm: function(cmd, where) {
+
+      switch(cmd){
+        case 'popupRestrictView':
+          var password = $('#popupRestrictView input:password').val();
+          if (!password) {
+            $('#popupRestrictView .info_notice_msg').html('<i class="ico_info_red_small"></i>인증번호 숫자 4자리를 입력해 주세요.');
+            return false;
+          }
+          $.ajax({
+            url: '/api/my/confirm/kids',
+            data: {
+              passwd: password
+            },
+            type: "GET",
+            success: function (response) {
+              if (response.result === "OK") {
+                $.cookie(cmd, 'Y', {domain: '.oksusu.com', path: '/', expires: GetDate.seconds(5)});
+                if (Popup.property.url) {
+                  location.href = Popup.property.url;
+                } else {
+                  // 상세시놉의 상품선택 변경시 등급제한 성공 후 선택한 상품으로 유지
+                  if (Popup.property.where === "detailSynopsis") {
+                    $('.buy_list li a').trigger('click');
+                  } else {
+                    $("#popupRestrictView").trigger( 'allowWatch' );
+                  }
+
+                  Popup.removeDimmed(cmd);
+                }
+              } else if (response.result === "NE-89019") {
+                $('#popupRestrictView .info_notice_msg').html('<i class="ico_info_red_small"></i>성인 인증번호가 일치하지 않습니다.');
+                return false;
+              } else {
+                $('#popupRestrictView .info_notice_msg').html('<i class="ico_info_red_small"></i>'+response.message);
+                return false;
+              }
+            }
+          });
+          break;
+        case 'confirmPw':
+          var password = $('#confirmPw input:password').val();
+          if (!password) {
+            $('#confirmPw .info_notice_msg').html('<i class="ico_info_red_small"></i>비밀번호를 입력해 주세요.');
+            return false;
+          }
+          $.ajax({
+            url: '/api/user/confirm/password',
+            data: {
+              pass: password
+            },
+            type: "POST",
+            cache: false,
+            success: function (response) {
+              if (response.result === "OK") {
+                Popup.removeDimmed(cmd);
+                Popup.show('kidsLockUpdate', '', Popup.property.url);
+              } else if (response.result === "NE-89016") {
+                $('#confirmPw .info_notice_msg').html('<i class="ico_info_red_small"></i>비밀번호가 일치하지 않습니다.');
+                return false;
+              } else {
+                $('#confirmPw .info_notice_msg').html('<i class="ico_info_red_small"></i>'+response.message);
+                return false;
+              }
+            }
+          });
+          break;
+        case 'kidsLockUpdate':
+          var pin = $('#kidsLockUpdate #kidsLockPin').val();
+          var pinChk = $('#kidsLockUpdate #kidsLockPinChk').val();
+
+          if (!pin || pin.length!==4) {
+            $('#kidsLockUpdate .info_notice_msg').html('<i class="ico_info_red_small"></i>4자리 숫자를 입력하세요.');
+            return false;
+          } else if ( pin !== pinChk ){
+            $('#kidsLockUpdate .info_notice_msg').html('<i class="ico_info_red_small"></i>인증번호가 일치하지 않습니다.');
+            return false;
+          }
+
+          $.ajax({
+            async: 'true',
+            url: '/api/my/update/kids',
+            data: {
+              passwd: pin
+            },
+            cache : false,
+            type: "GET",
+            dataType: "json"
+          }).done(function (res) {
+            if (res.result == "OK") {
+              Popup.removeDimmed(cmd);
+              Popup.show('kidsLockSaveComplete', '', Popup.property.url);
+            } else {
+              $('#kidsLockUpdate .info_notice_msg').html('<i class="ico_info_red_small"></i>'+response.message);
+            }
+          }).fail(function (jqXHR, textStatus) {
+            Popup.close('kidsLockUpdate');
+            CommonPopup.open('시스템 장애가 발생 하였습니다.<br/>다시 시도해 주세요.');
+          });
+
+          break;
+
+        case 'kidsLockSaveComplete':
+          $.cookie('popupRestrictView', 'Y', {domain: '.oksusu.com', path: '/', expires: GetDate.seconds(5)});
+          if (Popup.property.url) {
+            location.href = Popup.property.url;
+          }
+
+          break;
+      }
+    },
+    toast:function(id, message){
+      $("#" + id)
+        .find(".toastMessage").text(message).end()
+        .stop( true ).delay( 400 ).fadeIn( 600 ).delay( 1000 ).fadeOut( 600 );
+    }
+  };
+  //글씨 제어
+  $(".onlynum").keyup(function () {
+      $(this).val($(this).val().replace(/[^0-9]/g, ""));
+  });
+</script><script src="{% static 'banner_static/oksusu-logger-1.js' %}"></script>
+<script>
+  $(function () {
+    var isLogin, loginChannel;
+    if (User.isLogin) {
+      isLogin = '1';
+    } else {
+      isLogin = '0';
+    }
+
+    if (User.serviceProvider === 'fb') {
+      loginChannel = '5'; // facebook 로그인
+    } else if (User.serviceProvider === 'kakao') {
+      loginChannel = '4'; // 카카오 로그인
+    } else if (User.userId.indexOf('P') === 0) {
+      loginChannel = '2'; // MDN 로그인
+    } else if (User.isLogin) {
+      loginChannel = '1'; // ID/PW 로그인
+    } else {
+      loginChannel = '0';
+    }
+
+    OksusuLogger.init({
+      appInfo: {
+        deviceId: $.cookie('CORN_SESSIONID') || '',
+        xOsInfo: ua_result.os.name + '/' + ua_result.os.version.info,
+        xServiceInfo: 'oksusu-web',
+        xDeviceInfo: ua_result.browser.name + '-' + ua_result.browser.version.major
+      },
+      userInfo: {
+        bmUserId: User.userId,
+        mobileUserNum: 'btvmobile',
+        userPack: {
+          isLogin: isLogin,
+          loginChannel: loginChannel,
+          telecommType: ''
+        }
+      },
+      contentsType: '',
+      contentsInfo: ''
+    });
+  });
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-88848313-3', 'auto');
+  ga('send', 'pageview');
+
+  <!-- Facebook Pixel Code -->
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1393037114073571');
+  fbq('track', 'PageView');
+  <!-- End Facebook Pixel Code -->
+
+  OksusuLogger.registerEventTrackingLogo();
+
+  function registerSynopEventTracking(){
+    OksusuLogger.registerEventTrackingPlay();
+    OksusuLogger.registerEventTrackingShare();
+    OksusuLogger.registerEventTrackingReply();
+    OksusuLogger.registerEventTrackingRelated();
+    OksusuLogger.registerEventTrackingFeaturePresentation();
+  }
+
+</script>
+
+<noscript>
+  <img height="1" width="1" style="display:none"
+       src="https://www.facebook.com/tr?id=1393037114073571&ev=PageView&noscript=1"/>
+</noscript>
+<!-- End Facebook Pixel Code --><script type="text/javascript" src="{% static 'banner_static/jquery_003.js' %}"></script>
+<script type="text/javascript" src="{% static 'banner_static/userAgent.js' %}"></script>
+<script type="text/javascript" src="{% static 'banner_static/oksusuCard-v1.js' %}"></script>
+<script type="text/javascript" src="{% static 'banner_static/oksusuBookmark.js' %}"></script>
+<script type="text/javascript" src="{% static 'banner_static/commonInfo.js' %}"></script>
+<script type="text/javascript">
+  $(function() {
+    Search.init('');
+
+    $(window).on("scroll load", function() {
+      var $win_st = $(window).scrollTop();
+      $("#header").css("position","absolute").css("top", $win_st);
+
+      if ($(this).scrollTop() > 300) {
+        var btnTopT = ($(window).height() - 70) + $win_st;
+        var btnPos = (btnTopT + 270) - $('#wrap').outerHeight();
+        if($('#wrap').outerHeight() - btnTopT > 340) {
+          $('.btn_top').hide().css("top",btnPos).fadeIn();
+        }else if($('#wrap').outerHeight() - btnTopT <= 340){
+          $('.btn_top').hide().css("top", "-70px").fadeIn();
+        }
+      } else {
+        $('.btn_top').hide();
+      }
+    });
+
+    var marginLeft = parseInt( $("#header").css('margin-left') );
+
+    $(window).scroll(function(e) {
+      $("#header").css("margin-left", marginLeft - $(this).scrollLeft());
+    });
+
+    $('div.btn_top').click(function(e) {
+      e.preventDefault();
+      $('html, body').animate({scrollTop: 0}, 0);
+    });
+
+    CommonInfo.init();
+    SupportBrowser.check();
+    OksusuBookmark.init('', '');
+
+    $('#header-login').click(function(e) {
+      e.preventDefault();
+
+      if (/^\?rw=/.test(location.search)) {
+        location.href = '/user/login' + location.search;
+      } else {
+        location.href = '/user/login?rw=' + encodeURIComponent(location.pathname + location.search);
+      }
+    });
+  });
+
+</script></div>
+<script src="{% static 'banner_static/mainBigBanner.js' %}"></script>
+<script type="text/javascript">
+  var section_order;
+  var clipList;
+  var liveList;
+  var movieList;
+  var vodList;
+  var HomeSpecial = {
+    LIVE: 'N',
+    MOVIE: 'N',
+    VOD: 'N',
+    CLIP: 'N'
+  };
+
+  // Page Init
+  $(window).load(function () {
+
+    displayBigBanner();
+
+    // 홈 화면의 섹션 순서를 가져온다.
+    if ('4^6^7^2') {
+      section_order = '4^6^7^2'.split('^');
+      if (section_order[0] === '2') {
+        HomeSpecial.CLIP = 'Y'
+      } else if (section_order[0] === '4') {
+        HomeSpecial.LIVE = 'Y'
+      } else if (section_order[0] === '6') {
+        HomeSpecial.MOVIE = 'Y'
+      } else if (section_order[0] === '7') {
+        HomeSpecial.VOD = 'Y'
+      }
+      checkAsyncCallsDone();
+    } else {
+      section_order = "2^4^6^7";
+    }
+
+    // CLIP
+    $.ajax({
+      url: '/api/nav/home/clip/list',
+      data: {
+        mobileUserNo: User.userNo,
+        specialCardYn: HomeSpecial.CLIP
+      },
+    }).done(function (res) {
+      if (res.result === "OK") {
+        clipList = res;
+        checkAsyncCallsDone();
+      }
+    });
+
+    // LIVE
+    $.ajax({
+      url: '/api/nav/home/live/list',
+      data: {
+        mobileUserNo: User.userNo,
+        specialCardYn: HomeSpecial.LIVE
+      },
+    }).done(function (res) {
+      if (res.result === "OK") {
+        liveList = res;
+        checkAsyncCallsDone();
+      }
+    });
+
+    // MOVIE
+    $.ajax({
+      url: '/api/nav/home/movie/list',
+      data: {
+        mobileUserNo: User.userNo,
+        specialCardYn: HomeSpecial.MOVIE
+      },
+    }).done(function (res) {
+      if (res.result === "OK") {
+        movieList = res;
+        checkAsyncCallsDone();
+      }
+    });
+
+    // VOD
+    $.ajax({
+      url: '/api/nav/home/vod/list',
+      data: {
+        mobileUserNo: User.userNo,
+        specialCardYn: HomeSpecial.VOD
+      },
+    }).done(function (res) {
+      if (res.result === "OK") {
+        vodList = res;
+        checkAsyncCallsDone();
+      }
+    });
+  });
+
+  /**
+   * clip, live, movie, vod, section order정보를 모두 가져왔는지 체크한 후
+   * 카드를 출력한다.
+   * // 다음 API를 통해 가져온 홈 화면의 섹션 순서대로, 해당 섹션의 카드를 출력하는 함수를 호출한다.
+   */
+  function checkAsyncCallsDone() {
+    if (clipList && liveList && movieList && vodList && section_order) {
+      for (var i=0; i < section_order.length; i++) {
+        setCards[Oksusu.MenuProp.Section_order[section_order[i]]]();
+      }
+      $('#cardSection .general_section_list:first').after('<div class="general_section_list list_banner_slider" data-key="HOME_CENTER"></div>');
+
+      $('.general_section_list .text_title').dotdotdot({
+        wrap: 'letter'
+        , height: 36
+      });
+
+      $('.general_section_list .section_vlist movie.movie .summary_info .text_title, .general_section_list .section_vlist.movie .summary_info .text_summary').dotdotdot({
+        wrap: 'letter'
+        , height: 59
+      });
+
+      $('.general_poster_list .poster_vlist.movie .summary_info .text_title').dotdotdot({
+        wrap: 'letter'
+        , height: 55
+      });
+
+      $('.general_poster_list .poster_vlist.movie .summary_info .text_summary').dotdotdot({
+        wrap: 'letter'
+        , height: 105
+      });
+      Oksusu.Banner.load({ codes : [Oksusu.Banner.TYPE.HOME_CENTER] });
+    }
+  }
+
+  var setCards = {};
+  setCards.movie = function () {
+    var i;
+    var cardTypCd;
+    var cardNum;
+    for (i = 0; i < movieList.card_count; i++) {
+      if (movieList.grids[i].card_typ_cd
+          && movieList.grids[i].card_source != 'metv'
+          && movieList.grids[i].card_source != 'book') {
+        cardTypCd = movieList.grids[i].card_typ_cd.substring(0, 10);
+        cardNum = OksusuCard.property.typeByCode[cardTypCd];
+
+        if (!cardNum) {
+          continue;
+        }
+        var cardInfo = OksusuCard.getCardInfo('cardSection', cardNum);
+        cardInfo.mainYn = 'Y';
+        OksusuCard.getCardTemplateWrapper(cardInfo, movieList.grids[i]);
+      } else {
+//        console.log("movie cardTypeis null:" + clipList.grids[i]);
+      }
+    }
+  };
+
+  setCards.live = function () {
+    var i;
+    var cardTypCd;
+    var cardNum;
+    for (i = 0; i < liveList.card_count; i++) {
+      if (liveList.grids[i] && liveList.grids[i].card_typ_cd
+          && liveList.grids[i].card_source != 'metv'
+          && liveList.grids[i].card_source != 'book') {
+        cardTypCd = liveList.grids[i].card_typ_cd.substring(0, 10);
+        cardNum = OksusuCard.property.typeByCode[cardTypCd];
+
+        if (!cardNum) {
+          continue;
+        }
+        var cardInfo = OksusuCard.getCardInfo('cardSection', cardNum);
+        cardInfo.mainYn = 'Y';
+        OksusuCard.getCardTemplateWrapper(cardInfo, liveList.grids[i]);
+      } else {
+//        console.log("live cardTypeis null:" + liveList.grids[i]);
+      }
+    }
+  };
+
+  setCards.vod = function () {
+    var i;
+    var cardTypCd;
+    var cardNum;
+    for (i = 0; i < vodList.card_count; i++) {
+      if (vodList.grids[i].card_typ_cd
+          && vodList.grids[i].card_source != 'metv'
+          && vodList.grids[i].card_source != 'book') {
+        cardTypCd = vodList.grids[i].card_typ_cd.substring(0, 10);
+        cardNum = OksusuCard.property.typeByCode[cardTypCd];
+        var cardInfo = OksusuCard.getCardInfo('cardSection', cardNum);
+        OksusuCard.getCardTemplateWrapper(cardInfo, vodList.grids[i]);
+      } else {
+//        console.log("vod cardType is null:" + vodList.grids[i]);
+      }
+    }
+  };
+
+  setCards.clip = function () {
+    var i;
+    var cardTypCd;
+    var cardNum;
+    for (i = 0; i < clipList.card_count; i++) {
+      if (clipList.grids[i].card_typ_cd
+          && clipList.grids[i].card_source != 'metv'
+          && clipList.grids[i].card_source != 'book') {
+        cardTypCd = clipList.grids[i].card_typ_cd.substring(0, 10);
+        cardNum = OksusuCard.property.typeByCode[cardTypCd];
+        var cardInfo = OksusuCard.getCardInfo('cardSection', cardNum);
+        OksusuCard.getCardTemplateWrapper(cardInfo, clipList.grids[i]);
+      } else {
+//        console.log("clip cardTypeis null:" + clipList.grids[i]);
+      }
+    }
+  };
+
+</script>
+<script src="{% static 'banner_static/banner.js' %}"></script>
+
+
+</body></html>
