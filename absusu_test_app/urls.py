@@ -7,4 +7,5 @@ urlpatterns = [
     url(r'^bannerpage/$', views.bannerpage),
     url(r'^through_button/$', views.through_button),
     url(r'^purchase/$', views.purchase),
+    url(r'^page_leave/$', views.page_leave, name='page_leave'),
 ]

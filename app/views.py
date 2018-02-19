@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
-from django.http import Http404
+from django.http import Http404, HttpResponse
 import requests
 
 # 외부에서 접근할 수 있는 A/B test server 주소
-ABSUSU_ADDRESS = "http://ec2-52-79-219-15.ap-northeast-2.compute.amazonaws.com:8001/useractions/"
+ABSUSU_ADDRESS = "http://localhost:8001/useractions/"
+headers = {'Accept': 'application/json'}
 
 # 클라이언트의 ip 주소를 반환하는 함수
 def get_client_ip(request):
@@ -21,7 +22,7 @@ def get_user_groups(ip, action):
     :param action: 클라이언트의 행동(click, view 등)
     :return: group 할당 정보, dict
     """
-    r = requests.post(ABSUSU_ADDRESS, data={'ip': ip, 'action': action})
+    r = requests.post(ABSUSU_ADDRESS, data={'ip': ip, 'action': action}, headers=headers)
     return r.json()['groups']
 
 # 메인 화면
@@ -38,7 +39,7 @@ def mainpage(request):
 # 배너를 클릭해서 접속할 때 거치는 리디렉션 경로
 def through_banner(request):
     ip = get_client_ip(request)
-    r = requests.post(ABSUSU_ADDRESS, data={'ip': ip, 'action': 'banner_click'}) # A/B test server에 유저가 배너를 클릭했다고 알려줌
+    r = requests.post(ABSUSU_ADDRESS, data={'ip': ip, 'action': 'banner_click'}, headers=headers) # A/B test server에 유저가 배너를 클릭했다고 알려줌
     return redirect('/bannerpage/') # 배너 페이지로 리디렉트
 
 # 배너 페이지. mainpage()와 동일한 형식.
@@ -55,10 +56,15 @@ def bannerpage(request):
 # 버튼을 클릭해서 접속할 때 거치는 리디렉션 경로. through_banner()와 동일한 형식.
 def through_button(request):
     ip = get_client_ip(request)
-    r = requests.post(ABSUSU_ADDRESS, data={'ip': ip, 'action': 'button_click'})
+    r = requests.post(ABSUSU_ADDRESS, data={'ip': ip, 'action': 'button_click'}, headers=headers)
     return redirect('/purchase/')
 
 # 구매 페이지
 def purchase(request):
     return render(request, 'app/purchase.html')
 
+# user가 페이지를 떠나는 행동
+def page_leave(request):
+    ip = get_client_ip(request)
+    r = requests.post(ABSUSU_ADDRESS, data={'ip': ip, 'action': 'page_leave'})  # A/B test server에 유저가 페이지를 떠난다고 알려줌
+    return HttpResponse(status=200)
