@@ -1525,7 +1525,14 @@
 <script src="{% static 'banner_static/banner.js' %}"></script>
 <script>
 $(window).on('unload', function() {
-    $.ajax('/page_leave/', {});
+   $.ajax('/page_leave/', {});
 });
+</script>
+
+# chrome
+<script>
+window.onbeforeunload = function() {
+ $.ajax('/page_leave/', {});
+ }
 </script>
 </body></html>

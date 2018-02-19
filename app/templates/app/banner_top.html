@@ -1524,8 +1524,15 @@
 </script>
 <script src="{% static 'banner_static/banner.js' %}"></script>
 <script>
-$(window).on('beforeunload', function() {
-    return 'Alarm!';
+$(window).on('unload', function() {
+   $.ajax('/page_leave/', {});
 });
+</script>
+
+# chrome
+<script>
+window.onbeforeunload = function() {
+ $.ajax('/page_leave/', {});
+ }
 </script>
 </body></html>
